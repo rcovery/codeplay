@@ -1,0 +1,15 @@
+:root {
+    --bg: white;
+    
+    --dark-text: rgb(37, 26, 41);
+    --light-text: rgb(255, 254, 255);
+    --grey-light: rgb(109, 109, 109);
+
+    --primary-color: purple;
+    --secondary-color: blue;
+
+    /* ----- Dark colors ----- */
+    --bg_dark: #2d2d2d;
+    --primary-dark: #e291e2;
+    --secondary-dark: #29589a;
+}
