@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	background-color: var(--bg);
+	transition: 0.2s;
+}
+
+/*-------------dark mode--------------*/
+body.dark {
+	background-color: var(--bg_dark);
+}
+/*------------------------------------*/

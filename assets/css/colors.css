@@ -1,5 +1,6 @@
 :root {
     --bg: white;
+    --bg2: rgb(240,240,240);
     
     --dark-text: rgb(37, 26, 41);
     --light-text: rgb(255, 254, 255);
@@ -10,6 +11,8 @@
 
     /* ----- Dark colors ----- */
     --bg_dark: #2d2d2d;
+    --bg_dark2: #444;
+
     --primary-dark: #e291e2;
     --secondary-dark: #29589a;
 }
