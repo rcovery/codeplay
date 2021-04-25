@@ -1,9 +1,8 @@
-@import url("colors.css");
 @import url("fonts.css");
 
 #main_form {
 	display: flex;
-	height: 100vh;
+	height: calc(100vh - 16px);
 	justify-content: center;
 	align-items: center;
 }
@@ -16,9 +15,10 @@
 	margin: 20px 0;
 }
 
-form {
+#main_form > form {
 	width: 600px;
 }
+
 .pixel {
 	font-family: 'Pixel Font', sans-serif;
 }.small {
@@ -38,6 +38,8 @@ form {
 	border-color: var(--primary-color);
 	padding: 30px;
 	border-radius: 10px;
+}#logged {
+	color: var(--dark_text);
 }
 
 .input_style {
@@ -96,7 +98,7 @@ textarea.description {
 	cursor: pointer;
 }
 
-.imglogin {
+#imglogo {
 	position: absolute;
 	left: 0;
 	width: 100px;
@@ -126,6 +128,10 @@ textarea.description {
 	width: 70px;
 }
 
+.file_label {
+	color: var(--dark-text);
+}
+
 /*---------DARK COLORS---------*/
 .input_style.dark{
 	color: var(--light-text);
@@ -138,6 +144,8 @@ textarea.description {
 	color: var(--primary-dark);
 }.card.dark {
 	border-color: var(--primary-dark);
+}#logged.dark {
+	color: var(--light-text);
 }.btn.dark button {
 	color: black;
 	background: linear-gradient(to left, var(--secondary-dark), var(--primary-dark));
@@ -149,12 +157,24 @@ textarea.description {
 	resize: vertical;
 	background: rgba(0,0,0,0.2);
 	min-height: 100px;
+}.file_label.dark {
+	color: var(--light-text);
 }
 
 /*-----------------------------*/
 
 @media only screen and (max-width: 600px){
-	form {
+	#main_form > form {
 		width: 90%;
+	}
+	#form_title {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0 0 20px 0;
+	}#imglogo {
+		position: initial;
+		width: 80px;
+		margin-bottom: 15px;
 	}
 }
