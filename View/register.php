@@ -37,12 +37,13 @@
 </head>
 
 <body class="color">
-    <button style="position:absolute;" onclick="toggle_theme()">Dark</button>
+    <?php include("navbar.php"); ?>
+    
     <div id="main_form">
         <form method="POST" action="register.php">
             <div class="card color">
                 <div id="form_title">
-                    <img class="imglogin" src="../assets/images/logo.png">
+                    <img id="imglogo" src="../assets/images/logo.png">
                     <p class="color pixel large title">CodePlay</p>
                 </div>
 

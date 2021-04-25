@@ -3,10 +3,10 @@
 <span id="rgb_top_bar"></span>
 
 <div id="navbar1991" class="color">
-	<img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img>
+	<a href="/codeclub/"><img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img></a>
 
 	<form action="" method="GET">
-		<input class="color" type="text" name="search" placeholder="Search"></input>
+		<input class="color search_box" type="text" name="search" placeholder="Search"></input>
 	</form>
 
 	<div id="btn" onclick="dropdown_on(this)">
@@ -28,11 +28,11 @@
 		</div>
 	</div>
     <?php if(!isset($_SESSION["id"])) : ?>
-        <a href="View/register.php">Register</a>
-        <a href="View/login.php">Login</a>
+        <a href="/codeclub/View/register.php">Registro</a>
+        <a href="/codeclub/View/login.php">Login</a>
     <?php endif ?>
     <?php if(isset($_SESSION["id"])) : ?>
-        <a href="View/logout.php">Logout</a>
-        <a href="View/newpost.php">Criar uma postagem</a>
+    	<a href="/codeclub/View/newpost.php">Criar uma postagem</a>
+        <a href="/codeclub/View/logout.php">Logout</a>
     <?php endif ?>
 </div>

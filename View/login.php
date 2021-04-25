@@ -37,12 +37,13 @@
 </head>
 
 <body class="color">
-    <button style="position:absolute;" onclick="toggle_theme()">Dark</button>
+    <?php include("navbar.php"); ?>
+
     <div id="main_form">
         <form method="POST" action="login.php">
             <div class="card color">
                 <div id="form_title">
-                    <img class="imglogin" src="../assets/images/logo.png">
+                    <img id="imglogo" src="../assets/images/logo.png">
                     <p class="color pixel large title">CodePlay</p>
                 </div>
 
@@ -51,7 +52,7 @@
                 <input class="color input_style" type="password" name="password" placeholder="Senha" required>
 
                 <input class="checkbox" type="checkbox" name="keep_logged">
-                <label>Me manter logado</label>
+                <label id="logged" class="color">Me manter logado</label>
 
                 <div class="btn-rgst">
                     <a class="color" href="register.php">Criar uma conta</a>

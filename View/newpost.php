@@ -42,12 +42,13 @@
 </head>
 
 <body class="color">
-    <button style="position:absolute;" onclick="toggle_theme()">Dark</button>
+    <?php include("navbar.php"); ?>
+    
     <div id="main_form">
         <form method="POST" action="newpost.php" enctype="multipart/form-data">
             <div class="card color">
                 <div id="form_title">
-                    <img class="imglogin" src="../assets/images/logo.png">
+                    <img id="imglogo" src="../assets/images/logo.png">
                     <p class="color pixel large title">CodePlay</p>
                 </div>
                 
@@ -61,7 +62,7 @@
                     <div>
                         <label for="file" class="upload_btn">
                             <img title="Logo" class="upload_icons" src="../assets/images/file.png">
-                            <p id="file_names">Upload files!</p>
+                            <p class="color file_label">Upload files!</p>
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
                             update_file_input(this.value, 'file_names')
@@ -70,7 +71,7 @@
                     <div>
                         <label for="thumb" class="upload_btn">
                             <img class="upload_icons" src="../assets/images/thumb.png">
-                            <p id="file_name">Upload thumb!</p>
+                            <p class="color file_label">Upload thumb!</p>
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
                             update_file_input(this.value, 'file_name')
