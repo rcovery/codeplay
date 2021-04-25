@@ -11,7 +11,6 @@ function toggle_theme(){
     let els = document.getElementsByClassName("color")
 
     for (let i = 0; i < els.length; i++){
-        console.log('color changed!')
         els[i].classList.toggle("dark")
     }
 
@@ -19,7 +18,7 @@ function toggle_theme(){
 
     icon.innerHTML = dark_on ? sun_svg : moon_svg
 
-	console.log(dark_on)
+	sessionStorage.setItem("is_dark", dark_on)
 }
 
 function update_file_input(value, id){
@@ -33,3 +32,5 @@ function dropdown_on(el){
 	el.classList.toggle("active")
 	document.getElementsByClassName("dropdown_menu")[0].classList.toggle("active")
 }
+
+if (sessionStorage.getItem("is_dark") === "true") toggle_theme()
