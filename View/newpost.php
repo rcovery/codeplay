@@ -28,8 +28,6 @@
 
     if ($pass){
         (new Post())->createPost($data, $files);
-    } else {
-        (new View("Você deve preencher todos os campos!"))->warning();
     }
 ?>
 
@@ -54,10 +52,10 @@
                 </div>
                 
                 <input class="color input_style" type="text" name="title"
-                value="" placeholder="Título da postagem">
+                value="" placeholder="Título da postagem" required>
                 
                 <textarea class="color input_style description" type="text" name="description"
-                value="" placeholder="Fale sobre seu código"></textarea>
+                value="" placeholder="Fale sobre seu código" required></textarea>
                 
                 <div class="upload_buttons">
                     <div>
@@ -67,7 +65,7 @@
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
                             update_file_input(this.value, 'file_names')
-                        "/>
+                        " required/>
                     </div>
                     <div>
                         <label for="thumb" class="upload_btn">
@@ -76,7 +74,7 @@
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
                             update_file_input(this.value, 'file_name')
-                        "/>
+                        " required/>
                     </div>
                 </div>
                 

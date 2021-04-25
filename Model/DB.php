@@ -12,42 +12,38 @@ class Database{
      * Função para fazer select no banco de dados
      * Você pode escolher pegar todos ou o primeiro registro
      *
-     * @param boolean $all
-     * @param string $id
-     * @param string $entity
-     * @param array $data
-     * @param array $contitional
+     * @param array $op
 	 * @return $result
      */
-    public function select($all, $id, $entity, $data = null, $contitional = null){
-        $imploded_fields = implode(",", array_keys($data));
+    public function select($op){
+        $imploded_fields = implode(",", array_keys($op["data"]));
         $data_parameters = [];
         $condition = "";
         
         // Se tiver parâmetros condicionais
-        if (isset($contitional)){
-            foreach ($contitional as $i=>$value){
-                $data_parameters[":$value"] = $data[$value];
+        if (isset($op["conditional"])){
+            foreach ($op["conditional"] as $i=>$value){
+                $data_parameters[":$value"] = $op["data"][$value];
                 $condition .= "$value = :$value";
 
                 // if length array - 1 < index
-                if ($i < sizeof($contitional) - 1){
+                if ($i < sizeof($op["conditional"]) - 1){
                     $condition .= " OR ";
                 }
             }
 
             // Gera uma query SELECT com a condição
-            $this->query = "SELECT {$id}, {$imploded_fields} FROM {$entity} WHERE {$condition}";
+            $this->query = "SELECT {$op["id"]}, {$imploded_fields} FROM {$op["entity"]} WHERE {$condition}";
 
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute($data_parameters);
         } else {
             // Gera uma query sem condição
-            $this->query = "SELECT {$id}, {$imploded_fields} FROM {$entity}";
+            $this->query = "SELECT {$op["id"]}, {$imploded_fields} FROM {$op["entity"]}";
         }
 
         // Se o parâmetro de selecionar todos os dados for true, ele executa e salva na variável $result
-        $result = $all ? $prepared->fetchAll() : ($prepared->fetchAll()[0] ?? null);
+        $result = $op["all"] ? $prepared->fetchAll() : ($prepared->fetchAll()[0] ?? null);
 
         return $result;
     }

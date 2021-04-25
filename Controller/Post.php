@@ -4,6 +4,7 @@ include("../View/message.php");
 
 class Post{
     private $db;
+    private $select_options;
     
     public function __construct(){
         $this->db = new Database;
@@ -23,7 +24,15 @@ class Post{
             }
         }
 
-        $result = $this->db->select(false, "ID_post", "post", $data, ["post_title"]);
+        $this->select_options = [
+            "all" => false,
+            "id" => "ID_post",
+            "entity" => "post",
+            "data" => $data,
+            "conditional" => ["post_title"]
+        ];
+
+        $result = $this->db->select($this->select_options);
 
         if ($result['post_title'] == $data['post_title']){
             (new View("Já existe uma postagem com este título"))->warning();

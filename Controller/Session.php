@@ -10,10 +10,12 @@ class Session{
         if (!isset($_SESSION["user"]) || !isset($_SESSION["id"])){
             return false;
         }
-        if (time() - $_SESSION["last_activity"] > (1 * 3600)){
+        if (!$_SESSION["keep_logged"] && time() - $_SESSION["last_activity"] > (1 * 3600)){
             $this->killSession();
             return false;
         }
+
+        $_SESSION["last_activity"] = time();
         
         return true;
     }

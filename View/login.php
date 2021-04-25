@@ -17,6 +17,8 @@
         if (!isset($info)) $pass = false;
     }
 
+    $data["keep_logged"] = $_POST["keep_logged"] ?? null;
+
     if ($pass == true){
         if ((new User())->login($data)) {
             header("location: ../index.php");
@@ -29,10 +31,9 @@
 
 <head>
     <title>CodePlay :: Login</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
-    <script src="../assets/js/script.js"></script>
 </head>
 
 <body class="color">
@@ -49,6 +50,9 @@
 
                 <input class="color input_style" type="password" name="password" placeholder="Senha" required>
 
+                <input class="checkbox" type="checkbox" name="keep_logged">
+                <label>Me manter logado</label>
+
                 <div class="btn-rgst">
                     <a class="color" href="register.php">Criar uma conta</a>
                 </div>
@@ -59,6 +63,8 @@
             </div>
         </form>
     </div>
+
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

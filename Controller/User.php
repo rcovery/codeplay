@@ -4,6 +4,7 @@ include(__DIR__ . "/../View/message.php");
 
 class User{
     private $db;
+    private $select_options;
     
     public function __construct(){
         $this->db = new Database;
@@ -25,7 +26,15 @@ class User{
             }
         }
 
-        $result = $this->db->select(false, "ID_user", "user", $data, ["username", "email"]);
+        $this->select_options = [
+            "all" => false,
+            "id" => "ID_user",
+            "entity" => "user",
+            "data" => $data,
+            "conditional" => ["username", "email"]
+        ];
+
+        $result = $this->db->select($this->select_options);
         
         if ($result['email'] == $data['email']){
             echo "Este email já existe! Tente utilizar outro email!";
@@ -36,6 +45,7 @@ class User{
         }
         
         $this->db->insert("user", $data);
+        $this->getSession($result["ID_user"], $data["username"]);
         
         return true; 
     }
@@ -49,12 +59,22 @@ class User{
     */
     public function login($data){
         $data["password"] = hash("sha512", $data["password"]);
+        $keep_logged = $data["keep_logged"];
+        unset($data["keep_logged"]);
 
         foreach(array_values($data) as $index=>$value){
             $data[$index] = filter_var($value, FILTER_SANITIZE_STRING);
         }
         
-        $result = $this->db->select(false, "ID_user", "user", $data, ["username", "password"]);
+        $this->select_options = [
+            "all" => false,
+            "id" => "ID_user",
+            "entity" => "user",
+            "data" => $data,
+            "conditional" => ["username", "password"]
+        ];
+
+        $result = $this->db->select($this->select_options);
         
         if ($result['username'] != $data['username']
         || $result['password'] != $data['password']){
@@ -62,7 +82,7 @@ class User{
             return false;
         }
 
-        $this->getSession($result["ID_user"], $data["username"]);
+        $this->getSession($result["ID_user"], $data["username"], $keep_logged);
         return true; 
     }
     
@@ -74,10 +94,11 @@ class User{
     * @return boolean
     * @author Ryan
     */
-    public function getSession($ID_user, $username){
+    public function getSession($ID_user, $username, $keep_logged){
         $_SESSION["user"] = $username;
         $_SESSION["id"] = $ID_user;
         $_SESSION["last_activity"] = time();
+        $_SESSION["keep_logged"] = $keep_logged;
     }
 }
 ?>

@@ -31,10 +31,9 @@
 
 <head>
     <title>CodePlay :: Registro</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
-    <script src="../assets/js/script.js"></script>
 </head>
 
 <body class="color">
@@ -65,6 +64,8 @@
             </div>
         </form>
     </div>
+
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
