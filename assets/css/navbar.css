@@ -82,7 +82,7 @@
 }.dropdown_menu.active {
 	transform: translateX(0);
 }.dropdown_menu > a {
-	color: var(--dark_text);
+	color: var(--dark-text);
 	padding: 10px 25px;
     text-align: center;
     text-decoration: none;
@@ -101,19 +101,19 @@
 
 /*----------------dark mode-----------------*/
 #navbar1991.dark {
-	background: var(--bg_dark);
+	background: var(--bg-dark);
 }#navbar1991.dark .dropdown {
 	background: var(--primary-dark);
 }#navbar1991.dark .search_box {
 	color: var(--light-text);
 }.dropdown_menu.dark {
-	background: var(--bg_dark);
+	background: var(--bg-dark);
 }.dropdown_menu.dark > a {
 	color: var(--primary-dark);
 }.dropdown_menu.dark svg {
 	fill: var(--primary-dark);
 }#navbar1991 input.dark {
-	background: var(--bg_dark2);
+	background: var(--bg-dark2);
 }
 /*------------------------------------------*/
 

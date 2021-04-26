@@ -39,7 +39,7 @@
 	padding: 30px;
 	border-radius: 10px;
 }#logged {
-	color: var(--dark_text);
+	color: var(--dark-text);
 }
 
 .input_style {
@@ -115,6 +115,16 @@ textarea.description {
 }.upload_buttons > div {
 	width: 100%;
 	text-align: center;
+}.upload_buttons .source_list {
+	display: none;
+}.upload_buttons .source_list.active {
+	display: initial;
+	list-style: none;
+    background: var(--bg-dark2);
+    height: 100px;
+    max-height: 100px;
+    padding: 10px;
+    border-radius: 6px;
 }
 
 .upload_btn {
@@ -138,8 +148,7 @@ textarea.description {
 	background: var(--bg-dark);
 	border-bottom-color: var(--primary-dark);
 }.input_style.dark:focus {
-	border: 1px var(--primary-dark) solid;
-	border-bottom: 5px var(--primary-dark) solid;
+	border-color: var(--primary-dark);
 }.btn-rgst a.dark {
 	color: var(--primary-dark);
 }.card.dark {
@@ -156,7 +165,6 @@ textarea.description {
 }textarea.description.dark{
 	resize: vertical;
 	background: rgba(0,0,0,0.2);
-	min-height: 100px;
 }.file_label.dark {
 	color: var(--light-text);
 }

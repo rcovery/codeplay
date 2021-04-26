@@ -10,12 +10,12 @@ html {
 }
 
 body {
-	background-color: var(--bg);
+	background: var(--bg);
 	transition: 0.2s;
 }
 
 /*-------------dark mode--------------*/
 body.dark {
-	background-color: var(--bg_dark);
+	background: var(--bg-dark);
 }
 /*------------------------------------*/

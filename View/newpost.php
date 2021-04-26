@@ -65,16 +65,20 @@
                             <p class="color file_label">Upload files!</p>
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
-                            update_file_input(this.value, 'file_names')
+                            update_file_input(this, 'sources')
                         " required/>
+                        <ul class="color source_list">
+                            <li>file one</li>
+                            <li>file two</li>
+                        </ul>
                     </div>
                     <div>
                         <label for="thumb" class="upload_btn">
                             <img class="upload_icons" src="../assets/images/thumb.png">
-                            <p class="color file_label">Upload thumb!</p>
+                            <p class="color file_label" id="thumb_name">Upload thumb!</p>
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
-                            update_file_input(this.value, 'file_name')
+                            update_file_input(this.value, 'thumb')
                         " required/>
                     </div>
                 </div>

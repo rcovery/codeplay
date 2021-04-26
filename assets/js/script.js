@@ -21,11 +21,13 @@ function toggle_theme(){
 	sessionStorage.setItem("is_dark", dark_on)
 }
 
-function update_file_input(value, id){
-    // document.getElementById("tmp_thumb").src = el.value
-    // Caso eu queira usar imagem carregada do computador.
-    // Pesquisar por FileReader()
-    document.getElementById(id).innerHTML = value.split('\\')[2]
+function update_file_input(el, type){
+    if (type == "sources") {
+        el.style.display = "none"
+        document.getElementsByClassName("source_list")[0].classList.add("active")
+    } else {
+        document.getElementById(id).innerHTML = el.value.split('\\')[2]    
+    }
 }
 
 function dropdown_on(el){
