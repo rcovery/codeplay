@@ -36,30 +36,30 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
 </head>
 
-<body class="color">
+<body>
     <?php include("navbar.php"); ?>
     
     <div id="main_form">
         <form method="POST" action="register.php">
-            <div class="card color">
+            <div class="card  ">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
-                    <p class="color pixel large title">CodePlay</p>
+                    <p class="pixel large title">CodePlay</p>
                 </div>
 
-                <input class="color input_style" type="text" name="email"
+                <input class="input_style" type="text" name="email"
                 value="<?= ($_POST["email"] ?? '');?>" placeholder="Email" required>
 
-                <input class="color input_style" type="text" name="user"
+                <input class="input_style" type="text" name="user"
                 value="<?= ($_POST["user"] ?? '');?>" placeholder="Login" required>
 
-                <input class="color input_style" type="password" name="password" placeholder="Senha" required>
+                <input class="input_style" type="password" name="password" placeholder="Senha" required>
 
                 <div class="btn-rgst">
-                    <a class="color" href="login.php">Já tem uma conta? Faça login</a>
+                    <a href="login.php">Já tem uma conta? Faça login</a>
                 </div>
 
-                <div class="btn color">
+                <div class="btn">
                     <button type="submit">REGISTRAR</button>
                 </div>
             </div>

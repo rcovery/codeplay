@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 </head>
 
-<body class="color">
+<body>
     <?php include("View/navbar.php"); ?>
 
     <script src="assets/js/script.js"></script>

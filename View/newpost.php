@@ -41,33 +41,33 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
 </head>
 
-<body class="color">
+<body>
     <?php include("navbar.php"); ?>
     
     <div id="main_form">
         <form method="POST" action="newpost.php" enctype="multipart/form-data">
-            <div class="card color">
+            <div class="card >
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
-                    <p class="color pixel large title">CodePlay</p>
+                    <p class="pixel large title">CodePlay</p>
                 </div>
                 
-                <input class="color input_style" type="text" name="title"
+                <input class="input_style" type="text" name="title"
                 value="" placeholder="Título da postagem" required>
                 
-                <textarea class="color input_style description" type="text" name="description"
+                <textarea class="input_style description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required></textarea>
                 
                 <div class="upload_buttons">
                     <div>
                         <label for="file" class="upload_btn">
                             <img title="Logo" class="upload_icons" src="../assets/images/file.png">
-                            <p class="color file_label">Upload files!</p>
+                            <p class="file_label">Upload files!</p>
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
                             update_file_input(this, 'sources')
                         " required/>
-                        <ul class="color source_list">
+                        <ul class="source_list">
                             <li>file one</li>
                             <li>file two</li>
                         </ul>
@@ -75,7 +75,7 @@
                     <div>
                         <label for="thumb" class="upload_btn">
                             <img class="upload_icons" src="../assets/images/thumb.png">
-                            <p class="color file_label" id="thumb_name">Upload thumb!</p>
+                            <p class="file_label" id="thumb_name">Upload thumb!</p>
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
                             update_file_input(this.value, 'thumb')
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 
-                <div class="btn color">
+                <div class="btn">
                     <button type="submit">POSTAR</button>
                 </div>
             </div>

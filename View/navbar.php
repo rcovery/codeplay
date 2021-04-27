@@ -2,11 +2,11 @@
 
 <span id="rgb_top_bar"></span>
 
-<div id="navbar1991" class="color">
+<div id="navbar1991" class=" ">
 	<a href="/codeclub/"><img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img></a>
 
 	<form action="" method="GET">
-		<input class="color search_box" type="text" name="search" placeholder="Search"></input>
+		<input class=search_box" type="text" name="search" placeholder="Search"></input>
 	</form>
 
 	<div id="btn" onclick="dropdown_on(this)">
@@ -16,7 +16,7 @@
 	</div>
 </div>
 
-<div class="color dropdown_menu">
+<div class="dropdown_menu">
 	<div style="text-align: right;">
 		<div class="theme_switcher" onclick="toggle_theme()"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		viewBox="0 0 292.299 292.299"
