@@ -100,19 +100,19 @@
 }
 
 /*----------------dark mode-----------------*/
-#navbar1991.dark {
+.dark #navbar1991 {
 	background: var(--bg-dark);
-}#navbar1991.dark .dropdown {
+}.dark #navbar1991 .dropdown {
 	background: var(--primary-dark);
-}#navbar1991.dark .search_box {
+}.dark .search_box {
 	color: var(--light-text);
-}.dropdown_menu.dark {
+}.dark .dropdown_menu{
 	background: var(--bg-dark);
-}.dropdown_menu.dark > a {
+}.dark .dropdown_menu > a {
 	color: var(--primary-dark);
-}.dropdown_menu.dark svg {
+}.dark .dropdown_menu svg {
 	fill: var(--primary-dark);
-}#navbar1991 input.dark {
+}.dark #navbar1991 input{
 	background: var(--bg-dark2);
 }
 /*------------------------------------------*/

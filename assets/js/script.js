@@ -8,11 +8,7 @@ function toggle_theme(){
 	let icon = document.getElementsByClassName("theme_switcher")[0]
 	icon.classList.toggle("active")
 
-    let els = document.getElementsByClassName("color")
-
-    for (let i = 0; i < els.length; i++){
-        els[i].classList.toggle("dark")
-    }
+    document.body.classList.toggle('dark')
 
     dark_on = !dark_on
 

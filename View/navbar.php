@@ -6,7 +6,7 @@
 	<a href="/codeclub/"><img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img></a>
 
 	<form action="" method="GET">
-		<input class=search_box" type="text" name="search" placeholder="Search"></input>
+		<input class="search_box" type="text" name="search" placeholder="Search"></input>
 	</form>
 
 	<div id="btn" onclick="dropdown_on(this)">
@@ -18,7 +18,7 @@
 
 <div class="dropdown_menu">
 	<div style="text-align: right;">
-		<div class="theme_switcher" onclick="toggle_theme()"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		<div class="theme_switcher" onclick="toggle_theme(this)"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		viewBox="0 0 292.299 292.299"
 		 xml:space="preserve"><path d="M153.699,292.138C68.95,292.138,0,223.185,0,138.439C0,79.742,32.675,27.002,85.28,0.807
 				c2.369-1.174,5.215-0.718,7.077,1.144c1.864,1.864,2.345,4.711,1.183,7.074C83.941,28.527,79.077,49.496,79.077,71.33

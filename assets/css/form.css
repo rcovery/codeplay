@@ -143,29 +143,29 @@ textarea.description {
 }
 
 /*---------DARK COLORS---------*/
-.input_style.dark{
+.dark .input_style {
 	color: var(--light-text);
 	background: var(--bg-dark);
 	border-bottom-color: var(--primary-dark);
-}.input_style.dark:focus {
+}.dark .input_style:focus {
 	border-color: var(--primary-dark);
-}.btn-rgst a.dark {
+}.dark .btn-rgst a {
 	color: var(--primary-dark);
-}.card.dark {
+}.dark .card {
 	border-color: var(--primary-dark);
-}#logged.dark {
+}.dark #logged {
 	color: var(--light-text);
-}.btn.dark button {
+}.dark .btn button {
 	color: black;
 	background: linear-gradient(to left, var(--secondary-dark), var(--primary-dark));
-}.btn.dark button:hover {
+}.dark .btn button:hover {
 	background: linear-gradient(to right, var(--secondary-dark), var(--primary-dark));
-}.title.dark{
+}.dark .title{
 	color: var(--primary-dark);
-}textarea.description.dark{
+}.dark textarea.description {
 	resize: vertical;
 	background: rgba(0,0,0,0.2);
-}.file_label.dark {
+}.dark .file_label {
 	color: var(--light-text);
 }
 
