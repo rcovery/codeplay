@@ -46,14 +46,14 @@
     
     <div id="main_form">
         <form method="POST" action="newpost.php" enctype="multipart/form-data">
-            <div class="card >
+            <div class="card">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
                     <p class="pixel large title">CodePlay</p>
                 </div>
                 
                 <input class="input_style" type="text" name="title"
-                value="" placeholder="Título da postagem" required>
+                value="" placeholder="Título da postagem" required maxlength="150">
                 
                 <textarea class="input_style description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required></textarea>
@@ -61,24 +61,20 @@
                 <div class="upload_buttons">
                     <div>
                         <label for="file" class="upload_btn">
-                            <img title="Logo" class="upload_icons" src="../assets/images/file.png">
+                            <img title="Logo" id="src_files" class="upload_icons" src="../assets/images/file.png">
                             <p class="file_label">Upload files!</p>
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
-                            update_file_input(this, 'sources')
+                            update_file_input('sources')
                         " required/>
-                        <ul class="source_list">
-                            <li>file one</li>
-                            <li>file two</li>
-                        </ul>
                     </div>
                     <div>
                         <label for="thumb" class="upload_btn">
-                            <img class="upload_icons" src="../assets/images/thumb.png">
+                            <img class="upload_icons" id="thumb_logo" src="../assets/images/thumb.png">
                             <p class="file_label" id="thumb_name">Upload thumb!</p>
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
-                            update_file_input(this.value, 'thumb')
+                            update_file_input('thumb')
                         " required/>
                     </div>
                 </div>

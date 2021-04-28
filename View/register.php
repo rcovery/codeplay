@@ -21,7 +21,7 @@
     if ($pass == true){
         $register = new User();
         if($register->createUser($data)){
-            header("location: ../index.php");
+            // header("location: ../index.php");
         }
     }
 ?>

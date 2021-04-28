@@ -45,7 +45,6 @@ class User{
         }
         
         $this->db->insert("user", $data);
-        $this->getSession($result["ID_user"], $data["username"]);
         
         return true; 
     }

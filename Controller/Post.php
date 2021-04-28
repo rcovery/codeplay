@@ -39,6 +39,10 @@ class Post{
             return false;
         }
 
+        if (strlen($data["post_title"]) > 150) {
+            (new View("O título da postagem deve ter menos de  150 caracteres!"))->warning();
+            return false;
+        }
         $data["ID_user_FK"] = $_SESSION["id"];
 
         if ($this->validateFiles($files)){

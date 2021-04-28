@@ -2,14 +2,14 @@
 
 <span id="rgb_top_bar"></span>
 
-<div id="navbar1991" class=" ">
+<div id="navbar1991">
 	<a href="/codeclub/"><img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img></a>
 
 	<form action="" method="GET">
 		<input class="search_box" type="text" name="search" placeholder="Search"></input>
 	</form>
 
-	<div id="btn" onclick="dropdown_on(this)">
+	<div id="btn" onclick="dropdown()">
 		<span class="dropdown"></span>
 		<span class="dropdown"></span>
 		<span class="dropdown"></span>
@@ -36,3 +36,5 @@
         <a href="/codeclub/View/logout.php">Logout</a>
     <?php endif ?>
 </div>
+
+<div class="fade disabled" onclick="dropdown()"></div>

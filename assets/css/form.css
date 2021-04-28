@@ -132,6 +132,8 @@ textarea.description {
 	border: none;
 }.upload_btn:hover {
 	cursor: pointer;
+}.upload_btn .has_files {
+	filter: drop-shadow(0 0 10px white);
 }
 
 .upload_icons {

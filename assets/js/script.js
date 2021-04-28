@@ -17,18 +17,18 @@ function toggle_theme(){
 	sessionStorage.setItem("is_dark", dark_on)
 }
 
-function update_file_input(el, type){
+function update_file_input(type){
     if (type == "sources") {
-        el.style.display = "none"
-        document.getElementsByClassName("source_list")[0].classList.add("active")
-    } else {
-        document.getElementById(id).innerHTML = el.value.split('\\')[2]    
+        document.getElementById("src_files").classList.add("has_files")
+    } else if (type == "thumb") {
+        document.getElementById("thumb_logo").classList.add("has_files")
     }
 }
 
-function dropdown_on(el){
-	el.classList.toggle("active")
-	document.getElementsByClassName("dropdown_menu")[0].classList.toggle("active")
+function dropdown(){
+    document.querySelector(".fade").classList.toggle("disabled")
+	document.querySelector("#btn").classList.toggle("active")
+	document.querySelector(".dropdown_menu").classList.toggle("active")
 }
 
 if (sessionStorage.getItem("is_dark") === "true") toggle_theme()
