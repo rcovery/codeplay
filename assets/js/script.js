@@ -31,4 +31,11 @@ function dropdown(){
 	document.querySelector(".dropdown_menu").classList.toggle("active")
 }
 
+function destroy_message(el) {
+    el.classList.add("closing")
+    setTimeout(() => {
+        el.remove()
+    }, 500)
+}
+    
 if (sessionStorage.getItem("is_dark") === "true") toggle_theme()

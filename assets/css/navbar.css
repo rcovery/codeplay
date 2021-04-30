@@ -115,6 +115,9 @@
 .message_box {
 	display: flex;
     justify-content: center;
+    animation: fade_on 0.5s forwards;
+}.message_box.closing {
+	animation: fade_off 0.5s forwards;
 }
 .message {
 	position: fixed;
@@ -126,7 +129,7 @@
 	box-sizing: border-box;
 	border-radius: 15px;
 	font-family: monospace;
-}.message:hover{
+}.message:hover {
 	cursor: pointer;
 }.message.warning {
 	background: rgba(250,100,100,1);
@@ -174,4 +177,22 @@
     60%{box-shadow: 0 4px 0 #2b1de8;}
     70%{box-shadow: 0 4px 0 #dd00f3;}
     80%{box-shadow: 0 4px 0 #dd00f3;}
+}
+
+@keyframes fade_on {
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@keyframes fade_off {
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
 }
