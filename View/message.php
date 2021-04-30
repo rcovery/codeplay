@@ -9,7 +9,9 @@ class View
     
     public function warning(){
         $this->message = "
-        <h1>{$this->message}</h1>
+        <div class='message_box' onclick='this.remove()'>
+            <h1 class='warning message'>{$this->message}</h1>
+        </div>
         ";
 
         $this->render();
