@@ -37,10 +37,10 @@ class User{
         $result = $this->db->select($this->select_options);
         
         if ($result['email'] == $data['email']){
-            echo "Este email já existe! Tente utilizar outro email!";
+            (new View("Este email já existe! Tente utilizar outro email!"))->warning();
             return false;
         } else if ($result['username'] == $data["username"]){
-            echo "Este nome de usuário já existe! Escolha outro!";
+            (new View("Este nome de usuário já existe! Escolha outro!"))->warning();
             return false;
         }
         
