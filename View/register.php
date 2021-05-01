@@ -1,31 +1,4 @@
-<?php
-	require("../Controller/User.php");
-    include("../Controller/Session.php");
-    session_start();
-
-    if((new Session())->loadSession()){
-        header("location: ../index.php");
-    }
-    
-    $pass = true;
-    $data = [
-        "email" => $_POST["email"] ?? null,
-        "username" => $_POST["user"] ?? null,
-        "password" => $_POST["password"] ?? null
-    ];
-
-    foreach (array_values($data) as $info){
-        if (!isset($info)) $pass = false;
-    }
-
-    if ($pass == true){
-        $register = new User();
-        if($register->createUser($data)){
-            // header("location: ../index.php");
-        }
-    }
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +10,33 @@
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php
+        include("navbar.php");
+        require("../Controller/User.php");
+        include("../Controller/Session.php");
+
+        if((new Session())->loadSession()){
+            header("location: ../index.php");
+        }
+        
+        $pass = true;
+        $data = [
+            "email" => $_POST["email"] ?? null,
+            "username" => $_POST["user"] ?? null,
+            "password" => $_POST["password"] ?? null
+        ];
+
+        foreach (array_values($data) as $info){
+            if (!isset($info)) $pass = false;
+        }
+
+        if ($pass == true){
+            $register = new User();
+            if($register->createUser($data)){
+                // header("location: ../index.php");
+            }
+        }
+    ?>
     
     <div id="main_form">
         <form method="POST" action="register.php">

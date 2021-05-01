@@ -1,31 +1,4 @@
-<?php
-    require("../Controller/User.php");
-    include("../Controller/Session.php");
-    session_start();
-
-    if((new Session())->loadSession()){
-        header("location: /codeclub/index.php");
-    }
-    
-    $pass = true;
-    $data = [
-        "username" => $_POST["user"] ?? null,
-        "password" => $_POST["password"] ?? null
-    ];
-
-    foreach (array_values($data) as $info){
-        if (!isset($info)) $pass = false;
-    }
-
-    $data["keep_logged"] = $_POST["keep_logged"] ?? null;
-
-    if ($pass == true){
-        if ((new User())->login($data)) {
-            header("location: ../index.php");
-        }
-    }
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +10,33 @@
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php
+        include("navbar.php");
+        require("../Controller/User.php");
+        include("../Controller/Session.php");
+
+        if((new Session())->loadSession()){
+            header("location: /codeclub/index.php");
+        }
+        
+        $pass = true;
+        $data = [
+            "username" => $_POST["user"] ?? null,
+            "password" => $_POST["password"] ?? null
+        ];
+
+        foreach (array_values($data) as $info){
+            if (!isset($info)) $pass = false;
+        }
+
+        $data["keep_logged"] = $_POST["keep_logged"] ?? null;
+
+        if ($pass == true){
+            if ((new User())->login($data)) {
+                header("location: ../index.php");
+            }
+        }
+    ?>
 
     <div id="main_form">
         <form method="POST" action="login.php">

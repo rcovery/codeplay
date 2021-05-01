@@ -1,36 +1,4 @@
-<?php
-    require("../Controller/Post.php");
-    include("../Controller/Session.php");
-    session_start();
-
-    if(!(new Session())->loadSession()){
-        header("location: ../View/login.php");
-    }
-    
-    $pass = true;
-    $data = [
-        "post_title" => $_POST["title"] ?? null,
-        "post_content" => $_POST["description"] ?? null
-    ];
-
-    $files = [
-        "thumb" => $_FILES["thumb"] ?? null,
-        "source" => $_FILES["source_files"] ?? null
-    ];
-
-    foreach (array_values($data) as $info){
-        if (empty($info)) $pass = false;
-    }
-
-    foreach (array_values($files) as $info){
-        if (empty($info)) $pass = false;
-    }
-
-    if ($pass){
-        (new Post())->createPost($data, $files);
-    }
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -42,7 +10,38 @@
 </head>
 
 <body>
-    <?php include("navbar.php"); ?>
+    <?php
+        include("navbar.php");
+        require("../Controller/Post.php");
+        include("../Controller/Session.php");
+
+        if(!(new Session())->loadSession()){
+            header("location: ../View/login.php");
+        }
+        
+        $pass = true;
+        $data = [
+            "post_title" => $_POST["title"] ?? null,
+            "post_content" => $_POST["description"] ?? null
+        ];
+
+        $files = [
+            "thumb" => $_FILES["thumb"] ?? null,
+            "source" => $_FILES["source_files"] ?? null
+        ];
+
+        foreach (array_values($data) as $info){
+            if (empty($info)) $pass = false;
+        }
+
+        foreach (array_values($files) as $info){
+            if (empty($info)) $pass = false;
+        }
+
+        if ($pass){
+            (new Post())->createPost($data, $files);
+        }
+    ?>
     
     <div id="main_form">
         <form method="POST" action="newpost.php" enctype="multipart/form-data">

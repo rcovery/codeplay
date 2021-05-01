@@ -120,21 +120,20 @@
 	animation: fade_off 0.5s forwards;
 }
 .message {
-	position: fixed;
-	z-index: 12;
+	position: absolute;
+	top: 75px;
 	text-align: center;
 	font-size: 20px;
-	top: 40px;
 	padding: 13px 60px;
 	box-sizing: border-box;
-	border-radius: 15px;
+	border-radius: 5px;
 	font-family: monospace;
 }.message:hover {
 	cursor: pointer;
 }.message.warning {
 	background: rgba(250,100,100,1);
-	border: solid 2px rgba(250,150,150,1);
-	color: rgb(255, 220, 220);
+	border: solid 2px rgb(128, 48, 48);
+	color: black;
 }
 
 /*----------------dark mode-----------------*/

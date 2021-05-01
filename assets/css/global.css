@@ -14,6 +14,23 @@ body {
 	transition: 0.2s;
 }
 
+::-webkit-scrollbar {
+ width: 10px;
+ height: 10px;
+}
+::-webkit-scrollbar-thumb {
+ background: linear-gradient(13deg, var(--primary-color) 14%,#c7ceff 55%);
+ border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover{
+ background: linear-gradient(13deg, #c7ceff 14%,#f9d4ff 64%);
+}
+::-webkit-scrollbar-track{
+ background: #ffffff;
+ border-radius: 10px;
+ box-shadow: inset 7px 10px 12px #f0f0f0;
+}
+
 /*-------------dark mode--------------*/
 body.dark {
 	background: var(--bg-dark);

@@ -10,7 +10,7 @@ class View
     public function warning(){
         $this->message = "
         <div class='message_box' onclick='destroy_message(this)'>
-            <h1 class='warning message'>{$this->message}</h1>
+            <p class='warning message'>{$this->message}</p>
         </div>
         ";
 
