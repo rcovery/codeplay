@@ -134,6 +134,10 @@
 	background: rgba(250,100,100,1);
 	border: solid 2px rgb(128, 48, 48);
 	color: black;
+}.message.success {
+	background: #dcf0e2;
+	border: solid 2px #cae8d4;
+	color: black;
 }
 
 /*----------------dark mode-----------------*/
