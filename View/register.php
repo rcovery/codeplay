@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 </head>
 
 <body>
@@ -46,13 +48,13 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
 
-                <input class="input_style" type="text" name="email"
+                <input class="input_7huy5" type="text" name="email"
                 value="<?= ($_POST["email"] ?? '');?>" placeholder="Email" required>
 
-                <input class="input_style" type="text" name="user"
+                <input class="input_7huy5" type="text" name="user"
                 value="<?= ($_POST["user"] ?? '');?>" placeholder="Login" required>
 
-                <input class="input_style" type="password" name="password" placeholder="Senha" required>
+                <input class="input_7huy5" type="password" name="password" placeholder="Senha" required>
 
                 <div class="btn-rgst">
                     <a href="login.php">Já tem uma conta? Faça login</a>

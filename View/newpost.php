@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodePlay :: Nova postagem</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 </head>
 
 <body>
@@ -51,10 +53,10 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
                 
-                <input class="input_style" type="text" name="title"
+                <input class="input_7huy5" type="text" name="title"
                 value="" placeholder="Título da postagem" required maxlength="150">
                 
-                <textarea class="input_style description" type="text" name="description"
+                <textarea class="input_7huy5 description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required></textarea>
                 
                 <div class="upload_buttons">
