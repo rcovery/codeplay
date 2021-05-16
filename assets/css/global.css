@@ -1,3 +1,4 @@
+@import url("fonts.css");
 @import url("colors.css");
 
 * {
@@ -14,25 +15,168 @@ body {
 	transition: 0.2s;
 }
 
-::-webkit-scrollbar {
+.pixel {
+	font-family: 'Pixel Font', sans-serif;
+}.small {
+	font-size: 20px;
+}.medium {
+	font-size: 25px;
+}.large {
+	font-size: 30px;
+}
+
+.relative_block {
+	position: relative;
+}.flex_block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header_landing {
+	height: 80vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: linear-gradient(to right, transparent, var(--blue)), url('../images/game_wallpaper.jpg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: var(--header-blue);
+}.header_landing > div {
+	position: absolute;
+	right: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}.header_text {
+	z-index: 1;
+	font-size: 60px;
+	color: white;
+}.header_text.italic_text {
+	font-style: italic;
+	font-family: 'Quicksand', sans-serif;
+	filter: drop-shadow(-2px 2px 0 #e362e1) drop-shadow(-1px 1px 0 #e356e1);
+	margin-top: -20px;
+}.custom_shadow {
+	position: absolute;
+	top: 3px;
+	left: -3px;
+	background: -webkit-linear-gradient(var(--light-pink), var(--light-blue));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: var(--blue);
+	-webkit-text-stroke: 4px transparent;
+}.cshadow {
+	margin-top: 10px;
+}.emoji {
+	font-size: 30px;
+}
+
+.gradient_line {
+	display: block;
+	background: linear-gradient(to right, var(--light-pink), var(--light-blue));
+	width: 80%;
+	height: 6px;
+	opacity: 0.5;
+	margin: 20px 0;
+}
+
+.block {
+	font-family: 'Quicksand', sans-serif;
+	padding: 40px 100px;
+	color: var(--blue2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}.block.reverse {
+	background: var(--blue2);
+	color: var(--white-text);
+}.block.quote {
+	padding: 40px 300px;
+}.block h1 {
+	font-family: 'Poppins', sans-serif;
+	font-style: italic;
+	font-size: 40px;
+	margin-bottom: 20px;
+}.block p {
+	font-size: 20px;
+}.block img {
+	width: 250px;
+}
+
+.showcase {
+	display: flex;
+	flex-direction: row;
+}.game_item {
+	text-align: center;
+	width: 250px;
+}.game_item p {
+	font-size: 18px;
+	margin-bottom: 20px;
+}.game_item img {
+	margin-bottom: 25px;
+}.game_item + .game_item {
+	margin-left: 50px;
+}
+
+.gradient_button {
+	background: linear-gradient(to right, var(--light-pink), var(--light-blue));
+	padding: 10px 30px;
+	box-sizing: border-box;
+	display: inline-block;
+	border-radius: 50px;
+}
+
+.who_quote {
+	display: flex;
+	flex-direction: column;
+	margin-left: 50px;
+	justify-content: space-between;
+	height: 230px;
+}
+
+.quote_icon {
+	fill: white;
+	width: 90px;
+	align-self: start;
+}.quote_icon.flipped {
+	transform: rotate(180deg);
+	align-self: end;
+}
+
+footer {
+	font-family: 'Quicksand', sans-serif;
+	padding: 40px 100px;
+	background: var(--blue2);
+	color: var(--white-text);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+::scrollbar {
  width: 10px;
  height: 10px;
 }
-::-webkit-scrollbar-thumb {
+::scrollbar-thumb {
  background: linear-gradient(13deg, var(--primary-color) 14%,#c7ceff 55%);
  border-radius: 6px;
 }
-::-webkit-scrollbar-thumb:hover{
+::scrollbar-thumb:hover{
  background: linear-gradient(13deg, #c7ceff 14%,#f9d4ff 64%);
 }
-::-webkit-scrollbar-track{
+::scrollbar-track{
  background: #ffffff;
  border-radius: 10px;
  box-shadow: inset 7px 10px 12px #f0f0f0;
 }
 
-/*-------------dark mode--------------*/
-body.dark {
-	background: var(--bg-dark);
+@media only screen and (max-width: 800px) {
+	.header_landing {
+		background-image: linear-gradient(to right, transparent, var(--blue));
+	}.header_landing > div {
+		position: initial;
+	}.header_text {
+		font-size: 40px;
+	}
 }
-/*------------------------------------*/
