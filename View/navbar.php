@@ -1,7 +1,7 @@
 <span id="rgb_top_bar"></span>
 
 <div id="navbar1991">
-	<a href="/codeclub/"><img title="Logo" alt="Logo" src="/codeclub/assets/images/logo.png"></img></a>
+	<a href="/"><img title="Logo" alt="Logo" src="/assets/images/logo.png"></img></a>
 
 	<form action="" method="GET">
 		<input class="search_box" type="text" name="search" placeholder="Search"></input>
@@ -26,12 +26,12 @@
 		</div>
 	</div>
     <?php if(!isset($_SESSION["id"])) : ?>
-        <a href="/codeclub/View/register.php">Registro</a>
-        <a href="/codeclub/View/login.php">Login</a>
+        <a href="/View/register.php">Registro</a>
+        <a href="/View/login.php">Login</a>
     <?php endif ?>
     <?php if(isset($_SESSION["id"])) : ?>
-    	<a href="/codeclub/View/newpost.php">Criar uma postagem</a>
-        <a href="/codeclub/View/logout.php">Logout</a>
+    	<a href="/View/newpost.php">Criar uma postagem</a>
+        <a href="/View/logout.php">Logout</a>
     <?php endif ?>
 </div>
 

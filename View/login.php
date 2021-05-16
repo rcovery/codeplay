@@ -18,7 +18,7 @@
         include("../Controller/Session.php");
 
         if((new Session())->loadSession()){
-            header("location: /codeclub/index.php");
+            header("location: ../index.php");
         }
         
         $pass = true;
