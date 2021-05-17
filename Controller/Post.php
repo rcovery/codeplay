@@ -1,6 +1,6 @@
 <?php
 require("../Model/DB.php");
-include("../View/message.php");
+include("../pages/message.php");
 
 class Post{
     private $db;

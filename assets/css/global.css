@@ -136,15 +136,26 @@ body {
 	-webkit-text-fill-color: transparent;
 	width: 170px;
 }.contact form {
+	width: 70%;
 	flex-direction: column;
-}.contact form > input[type="text"], textarea {
+}.contact form > .contact_input, textarea {
 	width: 100%;
 	margin-top: 10px;
 }.contact input, textarea {
 	padding: 5px;
 	box-sizing: border-box;
-	border-radius: 5px;
+	border-image: linear-gradient(to right, var(--primary-color), var(--secondary-color)) 1;
+	border-radius: 0;
+}.contact input[type="button"] {
 	border: solid 1px black;
+	border-radius: 5px;
+}.contact form > div {
+	display: flex;
+	width: 100%;
+}.contact form > div .contact_input {
+	width: 100%;
+}.contact form > div .contact_input + .contact_input {
+	margin-left: 10px;
 }
 
 .who_quote {
@@ -211,5 +222,7 @@ footer {
 		position: initial;
 	}.header_text {
 		font-size: 40px;
+	}.contact form {
+		width: 100%;
 	}
 }

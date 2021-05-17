@@ -1,6 +1,6 @@
 <?php
 require(__DIR__ . "/../Model/DB.php");
-include(__DIR__ . "/../View/message.php");
+include(__DIR__ . "/../pages/message.php");
 
 class User{
     private $db;

@@ -18,7 +18,7 @@
         include("../Controller/Session.php");
 
         if(!(new Session())->loadSession()){
-            header("location: ../View/login.php");
+            header("location: ../pages/login.php");
         }
         
         $pass = true;

@@ -26,12 +26,12 @@
 		</div>
 	</div>
     <?php if(!isset($_SESSION["id"])) : ?>
-        <a href="/View/register.php">Registro</a>
-        <a href="/View/login.php">Login</a>
+        <a href="/pages/register.php">Registro</a>
+        <a href="/pages/login.php">Login</a>
     <?php endif ?>
     <?php if(isset($_SESSION["id"])) : ?>
-    	<a href="/View/newpost.php">Criar uma postagem</a>
-        <a href="/View/logout.php">Logout</a>
+    	<a href="/pages/newpost.php">Criar uma postagem</a>
+        <a href="/pages/logout.php">Logout</a>
     <?php endif ?>
 </div>
 

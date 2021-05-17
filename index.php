@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php include("View/navbar.php"); ?>
+    <?php include("pages/navbar.php"); ?>
     <div class="header_landing">
     	<div>
     		<span class="gradient_line"></span>
@@ -102,11 +102,11 @@
         <h1>Contato</h1>
         <form class="flex_block" name="contact_form">
             <div>
-                <input type="email" name="from" placeholder="E-MAIL"/>
-                <input type="tel" name="phone" placeholder="CELULAR"/>
+                <input class="contact_input" type="email" name="from" placeholder="E-MAIL"/>
+                <input class="contact_input" type="tel" name="phone" placeholder="CELULAR"/>
             </div>
-            <input type="text" name="subject" placeholder="ASSUNTO"/>
-            <textarea name="text" placeholder="MENSAGEM" style="resize: none;height: 200px"></textarea>
+            <input class="contact_input" type="text" name="subject" placeholder="ASSUNTO"/>
+            <textarea class="contact_input" name="text" placeholder="MENSAGEM" style="resize: none;height: 200px"></textarea>
             <input type="button" class="gradient_button send_email_btn" value="Send" onclick="sendMail('contact_form', 'ryanczpereira@gmail.com')"/>
         </form>
     </div>
