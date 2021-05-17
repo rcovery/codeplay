@@ -1,0 +1,6 @@
+Para rodar o docker, instale o docker no computador.
+
+Entre na pasta docker utilizando um CMD ou um TERMINAL e digite *docker-compose up -d* (sem os *)
+
+Este comando irá compilar o docker, e executar o servidor, para acessar, basta ir no navegador e entrar em localhost:8080
+Para configurar o banco de dados, vá em localhost:8080/phpmyadmin e faça a importação do banco de dados (codeplay.sql) que está no google drive
