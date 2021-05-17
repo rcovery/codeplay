@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  codeplay:
+    build: .
+    environment:
+      - TERM=xterm
+    ports:
+      - "8080:80"
+      - "2222:22"
+    volumes:
+      - ..:/opt/lampp/htdocs
