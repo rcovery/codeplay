@@ -12,8 +12,10 @@
     --header-blue: #5e61ee;
     --light-pink: #db39db;
     --light-blue: #44b9ff;
-    --blue2: rgb(55, 56, 255);
+
     --blue: rgba(0,0,255,0.5);
+    --blue2: rgb(55, 56, 255);
+    --blue_for_text: rgb(55, 56, 255);
 }
 
 /* ----- Dark colors ----- */
@@ -23,6 +25,8 @@ body.dark {
     --bg2: #444;
 
     --text: rgb(255, 254, 255);
+
+    --blue_for_text: #44b9ff;
 
     --primary-color: #e291e2;
     --secondary-color: #29589a;

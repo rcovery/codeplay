@@ -28,7 +28,7 @@
 	    </div>
     </div>
 
-    <div class="block">
+    <div class="block normal">
         <h1>Venha ser um gamer!</h1>
         <p>A Codeplay é uma plataforma de ensino de programação de jogos digitais!</p>
     </div>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="block">
+    <div class="block normal">
         <h1>Quem somos?</h1>
         <div class="flex_block">
             <img src="assets/images/default_pic.png">
@@ -98,9 +98,17 @@
         </span>
     </div>
 
-    <div class="block">
+    <div class="block contact">
         <h1>Contato</h1>
-        form
+        <form class="flex_block" name="contact_form">
+            <div>
+                <input type="email" name="from" placeholder="E-MAIL"/>
+                <input type="tel" name="phone" placeholder="CELULAR"/>
+            </div>
+            <input type="text" name="subject" placeholder="ASSUNTO"/>
+            <textarea name="text" placeholder="MENSAGEM" style="resize: none;height: 200px"></textarea>
+            <input type="button" class="gradient_button send_email_btn" value="Send" onclick="sendMail('contact_form', 'ryanczpereira@gmail.com')"/>
+        </form>
     </div>
 
     <footer>
@@ -108,6 +116,7 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="http://rcovery-mailer.herokuapp.com/rcoveryMail.js"></script>
 </body>
 
 </html>
