@@ -3,7 +3,7 @@
 <div id="navbar1991">
 	<a href="/"><img title="Logo" alt="Logo" src="/assets/images/logo.png"></img></a>
 
-	<form action="" method="GET">
+	<form action="/" method="GET">
 		<input class="search_box" type="text" name="search" placeholder="Search"></input>
 	</form>
 

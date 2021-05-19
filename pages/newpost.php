@@ -14,8 +14,8 @@
 <body>
     <?php
         include("navbar.php");
-        require("../Controller/Post.php");
-        include("../Controller/Session.php");
+        require(dirname(__FILE__) . "/../Controller/Post.php");
+        include(dirname(__FILE__) . "/../Controller/Session.php");
 
         if(!(new Session())->loadSession()){
             header("location: ../pages/login.php");

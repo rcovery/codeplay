@@ -5,7 +5,7 @@ class Database{
     private $query;
 
     public function __construct(){
-        $this->conn = Connection::getInstance('../database.ini');
+        $this->conn = Connection::getInstance(dirname(__FILE__) . '/../database.ini');
     }
 
     /**
@@ -103,6 +103,28 @@ class Database{
         $prepared->fetch();
 
         return true; */
+    }
+
+    /**
+     * Função para fazer buscar por nome no banco de dados
+     *
+     * @param array $op
+     * @return $result
+     */
+    public function findByName($op){
+        $condition = $op['conditional'];
+        $data_parameters = $op['data'];
+
+        // Gera uma query SELECT com a condição
+        $this->query = "SELECT * FROM {$op["entity"]} WHERE {$condition}";
+
+        $prepared = $this->conn->prepare($this->query);
+        $prepared->execute($data_parameters);
+
+        // Se o parâmetro de selecionar todos os dados for true, ele executa e salva na variável $result
+        $result = $prepared->fetchAll();
+
+        return $result;
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
-require("../Model/DB.php");
-include("../pages/message.php");
+require(dirname(__FILE__) . "/../Model/DB.php");
+include(dirname(__FILE__) . "/../pages/message.php");
 
 class Post{
     private $db;
@@ -103,20 +103,20 @@ class Post{
                 case "text/html":
                     if ($files["source"]["name"][$key] == "index.html") $options["has_html"] = true;
 
-                    if ($files["source"]["size"][$key] > 10240){
-                        (new View("Arquivos html devem ter menos que 10kb!"))->warning();
+                    if ($files["source"]["size"][$key] > 20480){
+                        (new View("Arquivos html devem ter menos que 20kb!"))->warning();
                         return false;
                     }
                     break;
                 case "text/javascript":
                     if ($files["source"]["size"][$key] > 10240){
-                        (new View("Arquivos html devem ter menos que 10kb!"))->warning();
+                        (new View("Arquivos javascript devem ter menos que 10kb!"))->warning();
                         return false;
                     }
                     break;
                 case "text/css":
                     if ($files["source"]["size"][$key] > 15360){
-                        (new View("Arquivos html devem ter menos que 15kb!"))->warning();
+                        (new View("Arquivos css devem ter menos que 15kb!"))->warning();
                         return false;
                     }
                     break;
@@ -133,6 +133,29 @@ class Post{
         }
         
         return true;
+    }
+
+    /**
+    * Função para buscar posts
+    *
+    * @param string
+    * @return array
+    * @author Ryan
+    */
+    public function search($word){
+        $data = [
+            ":post_title" => $word
+        ];
+
+        $this->select_options = [
+            "entity" => "post",
+            "data" => $data,
+            "conditional" => "post_title = :post_title"
+        ];
+
+        $result = $this->db->findByName($this->select_options);
+
+        var_dump($result);
     }
 }
 ?>

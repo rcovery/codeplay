@@ -5,7 +5,7 @@ class Connection{
 	private function __construct(){}
 	private function __clone(){}
 	public function __wakeup(){
-		self::getInstance("../database.ini");
+		self::getInstance(dirname(__FILE__) . "/../database.ini");
 	}
 
 	/**

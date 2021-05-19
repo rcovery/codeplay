@@ -1,6 +1,6 @@
 <?php
-require(__DIR__ . "/../Model/DB.php");
-include(__DIR__ . "/../pages/message.php");
+require(dirname(__FILE__) . "/../Model/DB.php");
+include(dirname(__FILE__) . "/../pages/message.php");
 
 class User{
     private $db;
@@ -62,7 +62,9 @@ class User{
         unset($data["keep_logged"]);
 
         foreach(array_values($data) as $index=>$value){
-            $data[$index] = filter_var($value, FILTER_SANITIZE_STRING);
+            if (gettype($index) != "integer"){
+                $data[$index] = filter_var($value, FILTER_SANITIZE_STRING);
+            }
         }
         
         $this->select_options = [
@@ -74,6 +76,8 @@ class User{
         ];
 
         $result = $this->db->select($this->select_options);
+
+        echo $result["username"];
         
         if ($result['username'] != $data['username']
         || $result['password'] != $data['password']){
