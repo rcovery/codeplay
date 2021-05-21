@@ -16,30 +16,17 @@ class Database{
 	 * @return $result
      */
     public function select($op){
-        $imploded_fields = implode(",", array_keys($op["data"]));
-        $data_parameters = [];
-        $condition = "";
-        
         // Se tiver parâmetros condicionais
+
         if (isset($op["conditional"])){
-            foreach ($op["conditional"] as $i=>$value){
-                $data_parameters[":$value"] = $op["data"][$value];
-                $condition .= "$value = :$value";
-
-                // if length array - 1 < index
-                if ($i < sizeof($op["conditional"]) - 1){
-                    $condition .= " OR ";
-                }
-            }
-
             // Gera uma query SELECT com a condição
-            $this->query = "SELECT {$op["id"]}, {$imploded_fields} FROM {$op["entity"]} WHERE {$condition}";
+            $this->query = "SELECT {$op['fields']} FROM {$op["entity"]} WHERE {$op['conditional']}";
 
             $prepared = $this->conn->prepare($this->query);
-            $prepared->execute($data_parameters);
+            $prepared->execute($op['data']);
         } else {
             // Gera uma query sem condição
-            $this->query = "SELECT {$op["id"]}, {$imploded_fields} FROM {$op["entity"]}";
+            $this->query = "SELECT {$op['fields']} FROM {$op["entity"]}";
         }
 
         // Se o parâmetro de selecionar todos os dados for true, ele executa e salva na variável $result
@@ -53,21 +40,18 @@ class Database{
      *
      * @param string $entity
      * @param array $data
+     * @param string $fields
 	 * @return $result
      */
-    public function insert($entity, $data){
+    public function insert($entity, $data, $fields){
         $imploded_fields = implode(",", array_keys($data));
-        $data_parameters = [];
 
-        foreach ($data as $key=>$value){
-            $data_parameters[":$key"] = $value;
-        }
+        $values = implode(",", array_keys($data));
 
-        $values = implode(",", array_keys($data_parameters));
+        $this->query = "INSERT INTO {$entity} ($fields) VALUES ({$values})";
 
-        $this->query = "INSERT INTO {$entity} ($imploded_fields) VALUES ({$values})";
         $prepared = $this->conn->prepare($this->query);
-        $prepared->execute($data_parameters);
+        $prepared->execute($data);
     }
 
     /**
