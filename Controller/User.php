@@ -80,10 +80,13 @@ class User{
             "fields" => "*",
             "entity" => "user",
             "data" => $data,
-            "conditional" => "username = :username OR password = :password"
+            "conditional" => "username = :username AND password = :password"
         ];
 
         $result = $this->db->select($this->select_options);
+
+        echo $result["username"];
+        echo $data[":username"];
 
         if (!isset($result['username']) || $result['username'] != $data[':username']
         || !isset($result['password']) || $result['password'] != $data[':password']){

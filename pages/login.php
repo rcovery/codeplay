@@ -35,8 +35,7 @@
 
         if ($pass == true){
             if ((new User())->login($data)) {
-                // header("location: ../index.php");
-                var_dump($_SESSION);
+                header("location: ../index.php");
             }
         }
     ?>

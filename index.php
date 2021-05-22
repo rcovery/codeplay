@@ -1,6 +1,5 @@
 <?php
     session_start();
-    var_dump($_SESSION);
     include(dirname(__FILE__) . "/Controller/Post.php");
     include(dirname(__FILE__) . "/Controller/User.php");
 ?>
