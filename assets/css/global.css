@@ -25,6 +25,43 @@ body {
 	font-size: 30px;
 }
 
+/*
+--> MESSAGES
+*/
+
+.message_box {
+	display: flex;
+    justify-content: center;
+    animation: fade_on 0.5s forwards;
+    position: fixed;
+    top: 40px;
+    z-index: 10;
+}.message_box.closing {
+	animation: fade_off 0.5s forwards;
+}
+.message {
+	text-align: center;
+	font-size: 20px;
+	padding: 13px 60px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	font-family: monospace;
+}.message:hover {
+	cursor: pointer;
+}.message.warning {
+	background: rgba(250,100,100,1);
+	border: solid 2px rgb(128, 48, 48);
+	color: black;
+}.message.success {
+	background: #dcf0e2;
+	border: solid 2px #cae8d4;
+	color: black;
+}
+
+/*
+------------
+*/
+
 .relative_block {
 	position: relative;
 }.flex_block {
@@ -258,5 +295,12 @@ footer {
 		width: 100%;
 	}.flex_block.who {
 		flex-direction: column;
+	}.block {
+		padding: 40px 20px;
+	}.block.quote {
+		padding: 40px 20px;
+	}.who_quote {
+		margin-left: 0;
+		margin-top: 20px;
 	}
 }
