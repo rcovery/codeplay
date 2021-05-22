@@ -1,5 +1,6 @@
 <?php
     session_start();
+    var_dump($_SESSION);
     include(dirname(__FILE__) . "/Controller/Post.php");
     include(dirname(__FILE__) . "/Controller/User.php");
 ?>
@@ -132,7 +133,7 @@
                     echo "<a href='#' class='game_item'>";
                     echo "<img src=" . str_replace(" ", "%20", $value["post_thumb"]) . ">";
                     echo "<p>" . $value["post_title"] . "</p>";
-                    echo "<p>" . substr($value["post_content"], 0, 25) . "...</p>";
+                    echo "<p>Criado por *nome criador*</p>";
                     echo "</a>";
                 }
                 echo "</div>";

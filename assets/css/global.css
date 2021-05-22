@@ -35,6 +35,8 @@ body {
     animation: fade_on 0.5s forwards;
     position: fixed;
     top: 40px;
+    left: 0;
+    right: 0;
     z-index: 10;
 }.message_box.closing {
 	animation: fade_off 0.5s forwards;
