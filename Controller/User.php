@@ -85,8 +85,8 @@ class User{
 
         $result = $this->db->select($this->select_options);
 
-        if ($result['username'] != $data[':username']
-        || $result['password'] != $data[':password']){
+        if (!isset($result['username']) || $result['username'] != $data[':username']
+        || !isset($result['password']) || $result['password'] != $data[':password']){
             (new View("Usuário ou senha incorretos!"))->warning();
             return false;
         }
