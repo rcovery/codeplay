@@ -23,9 +23,9 @@
         
         $pass = true;
         $data = [
-            "email" => $_POST["email"] ?? null,
-            "username" => $_POST["user"] ?? null,
-            "password" => $_POST["password"] ?? null
+            ":email" => $_POST["email"] ?? null,
+            ":username" => $_POST["user"] ?? null,
+            ":password" => $_POST["password"] ?? null
         ];
 
         foreach (array_values($data) as $info){

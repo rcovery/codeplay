@@ -23,8 +23,8 @@
         
         $pass = true;
         $data = [
-            "post_title" => $_POST["title"] ?? null,
-            "post_content" => $_POST["description"] ?? null
+            ":post_title" => $_POST["title"] ?? null,
+            ":post_content" => $_POST["description"] ?? null
         ];
 
         $files = [

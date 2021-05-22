@@ -112,13 +112,13 @@ body {
 	width: 100%;
 	justify-items: center;
 	grid-row-gap: 40px;
-}.game_item {
+}.showcase .game_item {
 	text-align: center;
 	width: 250px;
-}.game_item p {
+}.showcase .game_item p {
 	font-size: 18px;
 	margin-bottom: 20px;
-}.game_item img {
+}.showcase .game_item img {
 	margin-bottom: 25px;
 }
 
@@ -198,6 +198,38 @@ footer {
 	align-items: center;
 }
 
+.no_result {
+	background: var(--bg);
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 95vh;
+	font-family: mono;
+}
+
+.game_search {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	justify-items: center;
+}.game_search .game_item img {
+	width: 150px;
+}.game_search .game_item {
+	display: flex;
+	text-decoration: none;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--bg2);
+	box-sizing: border-box;
+	padding: 20px;
+	color: var(--text);
+	transition: 0.2s;
+}.game_search .game_item:hover {
+	transform: scale(1.1);
+	box-shadow: 2px 5px 0 var(--primary-color), 5px 10px 0 var(--secondary-color);
+}
+
 ::scrollbar {
  width: 10px;
  height: 10px;
@@ -224,5 +256,7 @@ footer {
 		font-size: 40px;
 	}.contact form {
 		width: 100%;
+	}.flex_block.who {
+		flex-direction: column;
 	}
 }

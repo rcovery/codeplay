@@ -1,6 +1,7 @@
 <?php
     session_start();
     include(dirname(__FILE__) . "/Controller/Post.php");
+    include(dirname(__FILE__) . "/Controller/User.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,13 +12,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="assets/css/global.css">
     <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
     <?php include("pages/navbar.php"); ?>
  
     <?php if (empty($_GET["search"])) : ?>
-        <div class="header_landing">
+        <div class="header_landing" data-aos="fade-up">
         	<div>
         		<span class="gradient_line"></span>
     	    	<span class="flex_block emoji">&#10024;
@@ -31,25 +33,25 @@
     	    </div>
         </div>
 
-        <div class="block normal">
+        <div class="block normal" data-aos="fade-up">
             <h1>Venha ser um gamer!</h1>
             <p>A Codeplay é uma plataforma de ensino de programação de jogos digitais!</p>
         </div>
 
-        <div class="block reverse">
+        <div class="block reverse" data-aos="fade-up">
             <h1>O que você vai aprender</h1>
             <div class="showcase">
-              <div class="game_item">
+              <div class="game_item" data-aos="flip-up">
                 <img src="assets/images/default_pic.png">
                 <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
                 <a class="gradient_button">JOGAR AGORA</a>
               </div>
-              <div class="game_item">
+              <div class="game_item" data-aos="flip-up">
                 <img src="assets/images/default_pic.png">
                 <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
                 <a class="gradient_button">JOGAR AGORA</a>
               </div>
-              <div class="game_item">
+              <div class="game_item" data-aos="flip-up">
                 <img src="assets/images/default_pic.png">
                 <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
                 <a class="gradient_button">JOGAR AGORA</a>
@@ -57,9 +59,9 @@
             </div>
         </div>
 
-        <div class="block normal">
+        <div class="block normal" data-aos="fade-up">
             <h1>Quem somos?</h1>
-            <div class="flex_block">
+            <div class="flex_block who">
                 <img src="assets/images/default_pic.png">
                 <div class="who_quote">
                     <p>"Aqui é Body Builder Ipsum! Eu quero esse 13 daqui a pouquinho aí. Tá saindo da jaula o monstro! Sabe o que é isso daí? Trapézio descendente é o nome disso aí. É verão o ano todo vem cumpadi. Aqui nóis constrói fibra, não é água com músculo. Não vai dá não. É esse que a gente quer, é ele que nóis vamo buscar. Boraaa, Hora do Show."
@@ -70,7 +72,7 @@
             </div>
         </div>
 
-        <div class="block quote reverse">
+        <div class="block quote reverse" data-aos="fade-up">
             <span class="quote_icon">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 475.1 475.1" style="enable-background:new 0 0 475.1 475.1;" xml:space="preserve"><path class="st0" d="M164.4,219.3h-64c-7.6,0-14.1-2.7-19.4-8c-5.3-5.3-8-11.8-8-19.4v-9.1c0-20.2,7.1-37.4,21.4-51.7
         c14.3-14.3,31.5-21.4,51.7-21.4h18.3c4.9,0,9.2-1.8,12.8-5.4c3.6-3.6,5.4-7.9,5.4-12.8V54.8c0-4.9-1.8-9.2-5.4-12.8
@@ -114,8 +116,28 @@
             </form>
         </div> -->
     <?php else : ?>
-        <?php echo $_GET["search"];
-            (new Post())->search($_GET["search"]);
+        <?php
+            $result = (new Post())->search($_GET["search"]);
+
+            if ($result == []) {
+                echo "
+                    <div class='no_result'>
+                        Nenhum resultado encontrado!
+                    </div>
+                ";
+            } else {
+                echo "<br>";
+                echo "<div class='game_search'>";
+                foreach ($result as $key => $value) {
+                    echo "<a href='#' class='game_item'>";
+                    echo "<img src=" . str_replace(" ", "%20", $value["post_thumb"]) . ">";
+                    echo "<p>" . $value["post_title"] . "</p>";
+                    echo "<p>" . substr($value["post_content"], 0, 25) . "...</p>";
+                    echo "</a>";
+                }
+                echo "</div>";
+                echo "<br>";
+            }
         ?>
     <?php endif ?>
 
@@ -124,6 +146,10 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <!-- <script src="http://rcovery-mailer.herokuapp.com/rcoveryMail.js"></script> -->
 </body>
 
