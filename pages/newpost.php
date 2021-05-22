@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -46,7 +48,7 @@
     ?>
     
     <div id="main_form">
-        <form method="POST" action="newpost.php" enctype="multipart/form-data">
+        <form id="post_form" method="POST" action="newpost.php" enctype="multipart/form-data">
             <div class="card">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
@@ -56,7 +58,7 @@
                 <input class="input_7huy5" type="text" name="title"
                 value="" placeholder="Título da postagem" required maxlength="150">
                 
-                <textarea class="input_7huy5 description" type="text" name="description"
+                <textarea id="editor" class="input_7huy5 description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required></textarea>
                 
                 <div class="upload_buttons">
@@ -88,6 +90,10 @@
     </div>
 
     <script src="../assets/js/script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        new FroalaEditor('textarea');
+    </script>
 </body>
 
 </html>
