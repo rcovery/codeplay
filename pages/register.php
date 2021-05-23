@@ -33,10 +33,7 @@
         }
 
         if ($pass == true){
-            $register = new User();
-            if($register->createUser($data)){
-                // header("location: ../index.php");
-            }
+            (new User())->createUser($data);
         }
     ?>
     

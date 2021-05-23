@@ -94,7 +94,7 @@
     <script src="../assets/js/script.js"></script>
     <script>
         $('#editor').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: 'Fale sobre seu código',
         tabsize: 2,
         height: 120,
         toolbar: [
