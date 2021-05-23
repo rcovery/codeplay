@@ -16,17 +16,19 @@ class Database{
 	 * @return $result
      */
     public function select($op){
+        $this->query = "SELECT {$op['fields']} FROM {$op["entity"]}";
         // Se tiver parâmetros condicionais
 
         if (isset($op["conditional"])){
             // Gera uma query SELECT com a condição
-            $this->query = "SELECT {$op['fields']} FROM {$op["entity"]} WHERE {$op['conditional']}";
+            $this->query .= " WHERE {$op['conditional']}";
 
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute($op['data']);
         } else {
-            // Gera uma query sem condição
-            $this->query = "SELECT {$op['fields']} FROM {$op["entity"]}";
+            // Executa uma query sem condição
+            $prepared = $this->conn->prepare($this->query);
+            $prepared->execute();
         }
 
         // Se o parâmetro de selecionar todos os dados for true, ele executa e salva na variável $result
@@ -73,20 +75,24 @@ class Database{
     /**
      * Função para atualizar informações do banco de dados
      *
-     * ---> [IMCOMPLETO]
+     *
      * @param string $entity
      * @param string $id
 	 * @return $result
      */
-    public function update($entity, $id){
-        /* $this->query = "DELETE * FROM {$entity} WHERE id = {$id}";
+    public function update($op){
+        $this->query = "UPDATE {$op['entity']} SET {$op['set']}";
+
+        if (isset($op['conditional'])) {
+            $this->query .= " WHERE {$op['conditional']}";
+        }
         
         $prepared = $this->conn->prepare($this->query);
-        $prepared->execute();
+        $prepared->execute($op['data']);
         
         $prepared->fetch();
 
-        return true; */
+        return true;
     }
 
     /**

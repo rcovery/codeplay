@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . "/../pages/message.php");
 
 class User{
     private $db;
-    private $select_options;
+    private $options;
     
     public function __construct(){
         $this->db = new Database;
@@ -32,7 +32,7 @@ class User{
             }
         }
 
-        $this->select_options = [
+        $this->options = [
             "all" => false,
             "fields" => "*",
             "entity" => "user",
@@ -40,7 +40,7 @@ class User{
             "conditional" => "username = :username OR email = :email"
         ];
 
-        $result = $this->db->select($this->select_options);
+        $result = $this->db->select($this->options);
         
         if (isset($result['email']) && $result['email'] == $data[':email']){
             (new View("Este email já existe! Tente utilizar outro email!"))->warning();
@@ -54,6 +54,8 @@ class User{
         $fields = "email, username, password";
         
         $this->db->insert("user", $data, $fields);
+
+        (new View("Conta criada com sucesso!"))->success();
         
         return true; 
     }
@@ -75,7 +77,7 @@ class User{
             return false;
         }
         
-        $this->select_options = [
+        $this->options = [
             "all" => false,
             "fields" => "*",
             "entity" => "user",
@@ -83,7 +85,7 @@ class User{
             "conditional" => "username = :username AND password = :password"
         ];
 
-        $result = $this->db->select($this->select_options);
+        $result = $this->db->select($this->options);
 
         echo $result["username"];
         echo $data[":username"];
@@ -124,7 +126,7 @@ class User{
     public function getUser($ID_user){
         $data[":ID_user"] = $ID_user;
 
-        $this->select_options = [
+        $this->options = [
             "all" => false,
             "fields" => "*",
             "entity" => "user",
@@ -132,7 +134,7 @@ class User{
             "conditional" => "ID_user = :ID_user"
         ];
 
-        $result = $this->db->select($this->select_options);
+        $result = $this->db->select($this->options);
 
         return $result;
     }

@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . "/../pages/message.php");
 
 class Post{
     private $db;
-    private $select_options;
+    private $options;
     
     public function __construct(){
         $this->db = new Database;
@@ -28,7 +28,7 @@ class Post{
         $content = $data[":post_content"];
         unset($data[":post_content"]);
 
-        $this->select_options = [
+        $this->options = [
             "all" => false,
             "fields" => "*",
             "entity" => "post",
@@ -36,7 +36,7 @@ class Post{
             "conditional" => "post_title = :post_title"
         ];
 
-        $result = $this->db->select($this->select_options);
+        $result = $this->db->select($this->options);
 
         $data[":post_content"] = $content;
 
@@ -154,15 +154,30 @@ class Post{
             ":post_title" => "%" . $word . "%"
         ];
 
-        $this->select_options = [
+        $this->options = [
             "entity" => "post",
             "data" => $data,
             "conditional" => "post_title LIKE :post_title"
         ];
 
-        $result = $this->db->findByName($this->select_options);
+        $result = $this->db->findByName($this->options);
 
         return $result;
+    }
+
+    public function view($id){
+        $data = [
+            ":ID_post" => $id
+        ];
+
+        $this->options = [
+            "data" => $data,
+            "entity" => "post",
+            "conditional" => "ID_post = :ID_post",
+            "set" => "post_views = post_views + 1"
+        ];
+
+        $this->db->update($this->options);
     }
 }
 ?>
