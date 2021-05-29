@@ -19,13 +19,17 @@ class Database{
         $this->query = "SELECT {$op['fields']} FROM {$op["entity"]}";
         // Se tiver parâmetros condicionais
 
+        if (isset($op["custom"])){
+            $this->query .= " {$op['custom']}";
+        }
+        
         if (isset($op["conditional"])){
             // Gera uma query SELECT com a condição
             $this->query .= " WHERE {$op['conditional']}";
 
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute($op['data']);
-        } else {
+        }else {
             // Executa uma query sem condição
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute();

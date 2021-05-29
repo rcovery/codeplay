@@ -228,7 +228,7 @@ body {
 
 footer {
 	font-family: 'Quicksand', sans-serif;
-	padding: 40px 100px;
+	padding: 40px 50px;
 	background: linear-gradient(var(--light-pink), var(--secondary-color));
 	color: var(--white-text);
 	display: flex;
@@ -251,6 +251,7 @@ footer {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	justify-items: center;
+	grid-row-gap: 30px;
 }.game_search .game_item img {
 	width: 150px;
 }.game_search .game_item {
@@ -267,6 +268,66 @@ footer {
 }.game_search .game_item:hover {
 	transform: scale(1.1);
 	box-shadow: 2px 5px 0 var(--primary-color), 5px 10px 0 var(--secondary-color);
+}
+
+.game_category {
+	font-family: 'KoHo', sans-serif;
+	font-size: 34px;
+	color: var(--text);
+	margin: 20px 0 20px 30px;
+}
+
+.splide .game_item {
+	background: var(--bg2);
+	border-radius: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 230px;
+	margin-bottom: 3px;
+}.splide .game_item img {
+	height: 140px;
+	border-radius: 10px;
+}.splide .game_item .creator {
+	color: var(--text);
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 20px;
+	margin-bottom: 60px;
+}.splide .game_item .game_title {
+	font-family: 'KoHo', sans-serif;
+	color: var(--text);
+	font-size: 20px;
+	margin: 20px 0;
+}.gameboy.controller {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	filter: drop-shadow(1px 1px 0 black) drop-shadow(1px 1px 0 black);
+}.gameboy.controller > span {
+	background: #313131;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	clip-path: polygon(0 35%, 35% 35%, 35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 66%, 65% 66%, 65% 100%, 35% 100%, 35% 65%, 0 65%);
+	border-radius: 100%;
+}
+
+.gameboy.btn {
+	background: #602675;
+	box-shadow: 2px 2px 0 #3e0b2a;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	bottom: 30px;
+	right: 10px;
+	border-radius: 100%;
+}.gameboy.btn + .gameboy.btn {
+	background: #a538cc;
+	box-shadow: 2px 2px 0 #602675;
+	bottom: 18px;
+	right: 40px;
 }
 
 ::scrollbar {

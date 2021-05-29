@@ -165,6 +165,12 @@ class Post{
         return $result;
     }
 
+    /**
+    * Função para adicionar visualizações
+    *
+    * @param string
+    * @author Ryan
+    */
     public function view($id){
         $data = [
             ":ID_post" => $id
@@ -179,5 +185,30 @@ class Post{
 
         $this->db->update($this->options);
     }
+
+    /**
+    * Função para selecionar jogos para o showcase
+    *
+    * @param string
+    * @param string
+    * @return array
+    * @author Ryan
+    */
+    public function showcase($column, $order){
+        // $order = ASC|DESC
+
+        $this->options = [
+            "all" => true,
+            "fields" => "*",
+            "entity" => "post",
+            "custom" => "ORDER BY {$column} {$order} LIMIT 10"
+        ];
+
+        $result = $this->db->select($this->options);
+
+        return $result;
+    }
+
+
 }
 ?>

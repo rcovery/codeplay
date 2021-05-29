@@ -12,65 +12,130 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="assets/css/global.css">
     <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+
+    <!-- AOS JS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- SPLIDE JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 </head>
 
 <body>
     <?php include("pages/navbar.php"); ?>
  
     <?php if (empty($_GET["search"])) : ?>
-        <div class="header_landing" data-aos="fade-up">
-        	<div>
-        		<span class="gradient_line"></span>
-    	    	<span class="flex_block emoji">&#10024;
-                    <p class="header_text italic_text">&nbsp;somos a&nbsp;</p>
-                &#10024;</span>
-                <div class="cshadow relative_block">
-                    <p class="header_text pixel custom_shadow">CODEPLAY</p>
-    	    	    <p class="header_text pixel" style="position: relative;">CODEPLAY</p>
-                </div>
-    	    	<span class="gradient_line"></span>
-    	    </div>
-        </div>
-
-        <div class="block normal" data-aos="fade-up">
-            <h1>Venha ser um gamer!</h1>
-            <p>A Codeplay é uma plataforma de ensino de programação de jogos digitais!</p>
-        </div>
-
-        <div class="block reverse" data-aos="fade-up">
-            <h1>O que você vai aprender</h1>
-            <div class="showcase">
-              <div class="game_item" data-aos="flip-up">
-                <img src="assets/images/default_pic.png">
-                <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                <a class="gradient_button">JOGAR AGORA</a>
-              </div>
-              <div class="game_item" data-aos="flip-up">
-                <img src="assets/images/default_pic.png">
-                <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                <a class="gradient_button">JOGAR AGORA</a>
-              </div>
-              <div class="game_item" data-aos="flip-up">
-                <img src="assets/images/default_pic.png">
-                <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                <a class="gradient_button">JOGAR AGORA</a>
-              </div>
+        <?php if (empty($_SESSION['id'])) : ?>
+            <div class="header_landing" data-aos="fade-up">
+            	<div>
+            		<span class="gradient_line"></span>
+        	    	<span class="flex_block emoji">&#10024;
+                        <p class="header_text italic_text">&nbsp;somos a&nbsp;</p>
+                    &#10024;</span>
+                    <div class="cshadow relative_block">
+                        <p class="header_text pixel custom_shadow">CODEPLAY</p>
+        	    	    <p class="header_text pixel" style="position: relative;">CODEPLAY</p>
+                    </div>
+        	    	<span class="gradient_line"></span>
+        	    </div>
             </div>
-        </div>
 
-        <div class="block normal" data-aos="fade-up">
-            <h1>Quem somos?</h1>
-            <div class="flex_block who">
-                <img src="assets/images/default_pic.png">
-                <div class="who_quote">
-                    <p>"Aqui é Body Builder Ipsum! Eu quero esse 13 daqui a pouquinho aí. Tá saindo da jaula o monstro! Sabe o que é isso daí? Trapézio descendente é o nome disso aí. É verão o ano todo vem cumpadi. Aqui nóis constrói fibra, não é água com músculo. Não vai dá não. É esse que a gente quer, é ele que nóis vamo buscar. Boraaa, Hora do Show."
-                    </p>
-                    <p>"Brownie topping chocolate powder caramels dragée. Chupa chups tiramisu pastry jelly beans jelly beans chocolate pastry. Macaroon chupa chups donut lollipop apple pie. Jujubes tart candy canes soufflé."
-                    </p>
+            <div class="block normal" data-aos="fade-up">
+                <h1>Venha ser um gamer!</h1>
+                <p>A Codeplay é uma plataforma de ensino de programação de jogos digitais!</p>
+            </div>
+
+            <div class="block reverse" data-aos="fade-up">
+                <h1>O que você vai aprender</h1>
+                <div class="showcase">
+                  <div class="game_item" data-aos="flip-up">
+                    <img src="assets/images/default_pic.png">
+                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
+                    <a class="gradient_button">JOGAR AGORA</a>
+                  </div>
+                  <div class="game_item" data-aos="flip-up">
+                    <img src="assets/images/default_pic.png">
+                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
+                    <a class="gradient_button">JOGAR AGORA</a>
+                  </div>
+                  <div class="game_item" data-aos="flip-up">
+                    <img src="assets/images/default_pic.png">
+                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
+                    <a class="gradient_button">JOGAR AGORA</a>
+                  </div>
                 </div>
             </div>
-        </div>
+
+            <div class="block normal" data-aos="fade-up">
+                <h1>Quem somos?</h1>
+                <div class="flex_block who">
+                    <img src="assets/images/default_pic.png">
+                    <div class="who_quote">
+                        <p>"Aqui é Body Builder Ipsum! Eu quero esse 13 daqui a pouquinho aí. Tá saindo da jaula o monstro! Sabe o que é isso daí? Trapézio descendente é o nome disso aí. É verão o ano todo vem cumpadi. Aqui nóis constrói fibra, não é água com músculo. Não vai dá não. É esse que a gente quer, é ele que nóis vamo buscar. Boraaa, Hora do Show."
+                        </p>
+                        <p>"Brownie topping chocolate powder caramels dragée. Chupa chups tiramisu pastry jelly beans jelly beans chocolate pastry. Macaroon chupa chups donut lollipop apple pie. Jujubes tart candy canes soufflé."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <?php else : ?>
+            <?php
+                $viewed = (new Post())->showcase("post_views", "DESC");
+                $date = (new Post())->showcase("post_date", "ASC");
+                $likes = (new Post())->showcase("post_views", "DESC");
+            ?>
+            <h2 class="game_category">Jogos mais vistos</h2>
+            <div class="splide" id="slide_one">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <?php foreach($viewed as $game) : ?>
+                            <li class="splide__slide game_item">
+                                <img src="<?= $game['post_thumb']; ?>">
+                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <span class="gameboy controller"><span></span></span>
+                                <span class="gameboy btn"></span>
+                                <span class="gameboy btn"></span>
+                            </li>
+                        <?php endforeach ; ?>
+                    </ul>
+                </div>
+            </div>
+            <h2 class="game_category">Jogos postados recentemente</h2>
+            <div class="splide" id="slide_two">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <?php foreach($date as $game) : ?>
+                            <li class="splide__slide game_item">
+                                <img src="<?= $game['post_thumb']; ?>">
+                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <span class="gameboy controller"><span></span></span>
+                                <span class="gameboy btn"></span>
+                                <span class="gameboy btn"></span>
+                            </li>
+                        <?php endforeach ; ?>
+                    </ul>
+                </div>
+            </div>
+            <h2 class="game_category">Jogos mais curtidos</h2>
+            <div class="splide" id="slide_three">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <?php foreach($likes as $game) : ?>
+                            <li class="splide__slide game_item">
+                                <img src="<?= $game['post_thumb']; ?>">
+                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <span class="gameboy controller"><span></span></span>
+                                <span class="gameboy btn"></span>
+                                <span class="gameboy btn"></span>
+                            </li>
+                        <?php endforeach ; ?>
+                    </ul>
+                </div>
+            </div>
+        <?php endif ; ?>
 
         <div class="block quote reverse" data-aos="fade-up">
             <span class="quote_icon">
@@ -102,19 +167,6 @@
                 </svg>
             </span>
         </div>
-
-        <!-- <div class="block contact">
-            <h1>Contato</h1>
-            <form class="flex_block" name="contact_form">
-                <div>
-                    <input class="contact_input" type="email" name="from" placeholder="E-MAIL"/>
-                    <input class="contact_input" type="tel" name="phone" placeholder="CELULAR"/>
-                </div>
-                <input class="contact_input" type="text" name="subject" placeholder="ASSUNTO"/>
-                <textarea class="contact_input" name="text" placeholder="MENSAGEM" style="resize: none;height: 200px"></textarea>
-                <input type="button" class="gradient_button send_email_btn" value="Send" onclick="sendMail('contact_form', 'ryanczpereira@gmail.com')"/>
-            </form>
-        </div> -->
     <?php else : ?>
         <?php
             $result = (new Post())->search($_GET["search"]);
@@ -149,6 +201,24 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+        new Splide( '#slide_one', {
+            perPage: 4,
+            gap: 30,
+            autoWidth: true,
+            type: 'loop'
+        }).mount();
+        new Splide( '#slide_two', {
+            perPage: 4,
+            gap: 30,
+            autoWidth: true,
+            type: 'loop'
+        }).mount();
+        new Splide( '#slide_three', {
+            perPage: 4,
+            gap: 30,
+            autoWidth: true,
+            type: 'loop'
+        }).mount();
     </script>
     <!-- <script src="http://rcovery-mailer.herokuapp.com/rcoveryMail.js"></script> -->
 </body>
