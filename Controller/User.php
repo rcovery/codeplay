@@ -21,11 +21,6 @@ class User{
         $password = hash("sha512", $data[":password"]);
         unset($data[":password"]);
 
-        if(preg_match('/[\'\/~`\!#\$%\^&\*\(\)@\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $data[":username"])){
-            (new View("Não é permitido símbolos especiais!"))->warning();
-            return false;
-        }
-
         foreach(array_values($data) as $index=>$value){
             if (gettype($index) != "integer"){
                 $data[$index] = $value;
@@ -72,11 +67,6 @@ class User{
         $keep_logged = $data["keep_logged"];
         unset($data["keep_logged"]);
 
-        if(preg_match('/[\'\/~`\!#\$%\^&\*\(\)@\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $data[":username"])){
-            (new View("Não é permitido caracteres especiais!"))->warning();
-            return false;
-        }
-        
         $this->options = [
             "all" => false,
             "fields" => "*",

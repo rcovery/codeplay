@@ -11,7 +11,7 @@ class Post{
     }
     
     /**
-    * Função para criar um usuário no banco de dados
+    * Função para criar uma postagem no banco de dados
     *
     * @param array $data
     * @return boolean
@@ -19,11 +19,6 @@ class Post{
     */
     public function createPost($data, $files){
         str_replace("<", "&#60;", $data[':post_content']);
-
-        if(preg_match('/[\/~`\!#\$%\^&\*\(\)@\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $data[":post_title"])){
-            (new View("Não é permitido caracteres especiais no título!"))->warning();
-            return false;
-        }
 
         $content = $data[":post_content"];
         unset($data[":post_content"]);
@@ -55,23 +50,80 @@ class Post{
         if ($this->validateFiles($files)){
             $game_folder = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
 
-            if (!file_exists($game_folder)) mkdir($game_folder, 0777, true);
+            if (!file_exists("../games")) mkdir("../games", 0777);
+            mkdir($game_folder . "thumb/", 0777, true);
 
-            $new_path = $game_folder . "{$files["thumb"]["name"]}";
+            $new_path = $game_folder . "thumb/thumbnail.dat";
             move_uploaded_file($files["thumb"]["tmp_name"], $new_path);
-            $data[":post_thumb"] = $new_path;
 
             foreach ($files["source"]["name"] as $key=>$value){
                 $new_path = $game_folder . "{$files["source"]["name"][$key]}";
                 move_uploaded_file($files["source"]["tmp_name"][$key], $new_path);
             }
             $data[":post_files"] = $game_folder;
-            $fields = "post_title, post_content, ID_user_FK, post_thumb, post_files";
+            $fields = "post_title, post_content, ID_user_FK, post_files";
 
             $this->db->insert("post", $data, $fields);
         }
 
         return true;
+    }
+
+    /**
+    * Função para atualizar postagem no banco de dados
+    *
+    * @param array $data
+    * @param array $files
+    * @return boolean
+    * @author Ryan
+    */
+    public function updatePost($data, $files = null){
+        str_replace("<", "&#60;", $data[':post_content']);
+
+        $set = "post_title = :post_title, post_content = :post_content";
+        $game_folder = "../games/{$_SESSION["id"]}/";
+        $current = $game_folder . $data["original_title"];
+
+        if ($data["original_title"] != $data[":post_title"]) {
+            $new_folder = $game_folder . $data[":post_title"];
+            rename(dirname(__FILE__) . "/$current/", dirname(__FILE__) . "/$new_folder/");
+
+            $current = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
+            $data[":post_files"] = $current;
+            $set .= ", post_files = :post_files";
+        }
+
+        if (isset($files)) {
+            $has_thumb = !empty($files["thumb"]["name"]) ? true : false;
+            $has_files = !empty($files["source"]["name"][0]) ? true : false;
+
+            if ($this->validateFiles($files, $has_thumb, $has_files)){
+
+                if ($has_thumb) {
+                    $new_path = $current . "/thumb/thumbnail.dat";
+                    move_uploaded_file($files["thumb"]["tmp_name"], $new_path);
+                }
+                if ($has_files) {
+                    exec("rm -rf {$current}/*.*");
+                    foreach ($files["source"]["name"] as $key=>$value){
+                        $new_path = $current . "/{$files["source"]["name"][$key]}";
+                        move_uploaded_file($files["source"]["tmp_name"][$key], $new_path);
+                    }
+                }
+            }
+        }
+
+        unset($data["edit"]);
+        unset($data["original_title"]);
+
+        $this->options = [
+            "data" => $data,
+            "entity" => "post",
+            "conditional" => "ID_post = :ID_post",
+            "set" => $set
+        ];
+
+        $this->db->update($this->options);
     }
 
     /**
@@ -81,62 +133,65 @@ class Post{
     * @return boolean
     * @author Ryan
     */
-    public function validateFiles($files){
+    public function validateFiles($files, $has_thumb = true, $has_files = true){
         $options = [
             "has_html" => false
         ];
 
         // Validate thumb
-        if (!in_array($files["thumb"]["type"], ["image/png", "image/jpg", "image/jpeg"])){
-            (new View("Sua thumb deve ser uma imagem!"))->warning();
-            return false;
-        } else if ($files["thumb"]["size"] > 102400){
-            (new View("Sua thumb deve ter no máximo 100kb!"))->warning();
-            return false;
-        }
-
-        // Validate sources
-        foreach ($files["source"]["name"] as $key=>$value) {
-            // Filtrar arquivos do game
-            switch ($files["source"]["type"][$key]) {
-                case "image/png":
-                case "image/jpg":
-                case "image/jpeg":
-                    if ($files["source"]["size"][$key] > 40960){
-                        (new View("Arquivos de imagem devem ter menos que 40kb!"))->warning();
-                        return false;
-                    }
-                    break;
-                case "text/html":
-                    if ($files["source"]["name"][$key] == "index.html") $options["has_html"] = true;
-
-                    if ($files["source"]["size"][$key] > 20480){
-                        (new View("Arquivos html devem ter menos que 20kb!"))->warning();
-                        return false;
-                    }
-                    break;
-                case "text/javascript":
-                    if ($files["source"]["size"][$key] > 20480){
-                        (new View("Arquivos javascript devem ter menos que 20kb!"))->warning();
-                        return false;
-                    }
-                    break;
-                case "text/css":
-                    if ($files["source"]["size"][$key] > 20480){
-                        (new View("Arquivos css devem ter menos que 20kb!"))->warning();
-                        return false;
-                    }
-                    break;
-                default:
-                    (new View("O arquivo {$files["source"]["name"][$key]} não é suportado!"))->warning();
-                    return false;
+        if ($has_thumb) {
+            if (!in_array($files["thumb"]["type"], ["image/png", "image/jpg", "image/jpeg"])){
+                (new View("Sua thumb deve ser uma imagem!"))->warning();
+                return false;
+            } else if ($files["thumb"]["size"] > 102400){
+                (new View("Sua thumb deve ter no máximo 100kb!"))->warning();
+                return false;
             }
         }
 
-        // Verifica se possui um arquivo index.html
-        if (!$options["has_html"]){
-            (new View("Você deve ter um arquivo index.html!"))->warning();
-            return false;
+        // Validate sources
+        if ($has_files) {
+            foreach ($files["source"]["name"] as $key=>$value) {
+                // Filtrar arquivos do game
+                switch ($files["source"]["type"][$key]) {
+                    case "image/png":
+                    case "image/jpg":
+                    case "image/jpeg":
+                        if ($files["source"]["size"][$key] > 102400){
+                            (new View("Arquivos de imagem devem ter menos que 100kb!"))->warning();
+                            return false;
+                        }
+                        break;
+                    case "text/html":
+                        if ($files["source"]["name"][$key] == "index.html") $options["has_html"] = true;
+
+                        if ($files["source"]["size"][$key] > 20480){
+                            (new View("Arquivos html devem ter menos que 20kb!"))->warning();
+                            return false;
+                        }
+                        break;
+                    case "text/javascript":
+                        if ($files["source"]["size"][$key] > 20480){
+                            (new View("Arquivos javascript devem ter menos que 20kb!"))->warning();
+                            return false;
+                        }
+                        break;
+                    case "text/css":
+                        if ($files["source"]["size"][$key] > 20480){
+                            (new View("Arquivos css devem ter menos que 20kb!"))->warning();
+                            return false;
+                        }
+                        break;
+                    default:
+                        (new View("O arquivo {$files["source"]["name"][$key]} não é suportado!"))->warning();
+                        return false;
+                }
+            }
+            // Verifica se possui um arquivo index.html
+            if (!$options["has_html"]){
+                (new View("Você deve ter um arquivo index.html!"))->warning();
+                return false;
+            }
         }
         
         return true;
@@ -209,6 +264,27 @@ class Post{
         return $result;
     }
 
+    /**
+    * Função para selecionar a postagem pelo ID
+    *
+    * @param string
+    * @return array
+    * @author Ryan
+    */
+    public function getPost($ID_post){
+        $data[":ID_post"] = $ID_post;
 
+        $this->options = [
+            "all" => false,
+            "fields" => "*",
+            "entity" => "post",
+            "data" => $data,
+            "conditional" => "ID_post = :ID_post"
+        ];
+
+        $result = $this->db->select($this->options);
+
+        return $result;
+    }
 }
 ?>

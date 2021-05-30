@@ -39,3 +39,11 @@ function destroy_message(el) {
 }
     
 if (sessionStorage.getItem("is_dark") === "true") toggle_theme()
+
+function openModal(id_modal) {
+    document.getElementById(id_modal).classList.add('active')
+}
+
+function closeModal(id_modal) {
+    document.getElementById(id_modal).classList.remove('active')
+}

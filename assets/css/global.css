@@ -279,6 +279,7 @@ footer {
 
 .splide .game_item {
 	background: var(--bg2);
+	border: 1px solid var(--text);
 	border-radius: 10px;
 	padding: 10px;
 	display: flex;
@@ -289,6 +290,7 @@ footer {
 	margin-bottom: 3px;
 }.splide .game_item img {
 	height: 140px;
+	max-width: 100%;
 	border-radius: 10px;
 }.splide .game_item .creator {
 	color: var(--text);
@@ -346,6 +348,8 @@ footer {
  border-radius: 10px;
  box-shadow: inset 7px 10px 12px #f0f0f0;
 }
+
+
 
 @media only screen and (max-width: 800px) {
 	.header_landing {

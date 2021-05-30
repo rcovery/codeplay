@@ -81,7 +81,7 @@
         <?php else : ?>
             <?php
                 $viewed = (new Post())->showcase("post_views", "DESC");
-                $date = (new Post())->showcase("post_date", "ASC");
+                $date = (new Post())->showcase("post_date", "DESC");
                 $likes = (new Post())->showcase("post_views", "DESC");
             ?>
             <h2 class="game_category">Jogos mais vistos</h2>
@@ -90,8 +90,8 @@
                     <ul class="splide__list">
                         <?php foreach($viewed as $game) : ?>
                             <li class="splide__slide game_item">
-                                <img src="<?= $game['post_thumb']; ?>">
-                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
@@ -107,8 +107,8 @@
                     <ul class="splide__list">
                         <?php foreach($date as $game) : ?>
                             <li class="splide__slide game_item">
-                                <img src="<?= $game['post_thumb']; ?>">
-                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
@@ -124,8 +124,8 @@
                     <ul class="splide__list">
                         <?php foreach($likes as $game) : ?>
                             <li class="splide__slide game_item">
-                                <img src="<?= $game['post_thumb']; ?>">
-                                <p class="game_title"><?= $game["post_title"]; ?></p>
+                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
@@ -182,7 +182,7 @@
                 echo "<div class='game_search'>";
                 foreach ($result as $key => $value) {
                     echo "<a href='#' class='game_item'>";
-                    echo "<img src=" . str_replace(" ", "%20", $value["post_thumb"]) . ">";
+                    echo "<img src=" . str_replace(" ", "%20", $value["post_files"]) . "/thumb/thumbnail.dat" . ">";
                     echo "<p>" . $value["post_title"] . "</p>";
                     echo "<p>Criado por *nome criador*</p>";
                     echo "</a>";

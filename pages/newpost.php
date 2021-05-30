@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,12 +26,24 @@
         if(!(new Session())->loadSession()){
             header("location: ../pages/login.php");
         }
-        
+
         $pass = true;
         $data = [
             ":post_title" => $_POST["title"] ?? null,
             ":post_content" => $_POST["description"] ?? null
         ];
+
+        if (isset($_GET["edit"]) && !empty($_GET['edit'])) {
+            $postdata = (new Post())->getPost($_GET['edit']);
+
+            if ($_SESSION['id'] != $postdata['ID_user_FK']) {
+                header("location: newpost.php");
+            }
+
+            $data[":ID_post"] = $_GET['edit'];
+            $data["original_title"] = $postdata['post_title'];
+            $data["edit"] = true;
+        }
 
         $files = [
             "thumb" => $_FILES["thumb"] ?? null,
@@ -40,17 +54,26 @@
             if (empty($info)) $pass = false;
         }
 
-        foreach (array_values($files) as $info){
-            if (empty($info)) $pass = false;
+        if (!isset($data['edit'])){
+            foreach (array_values($files) as $info){
+                if (empty($info)) $pass = false;
+            }
         }
 
         if ($pass){
-            (new Post())->createPost($data, $files);
+            if (empty($files['thumb']['name']) && empty($files['source']['name'][0])) $files = null;
+
+            !isset($data['edit'])
+            ? (new Post())->createPost($data, $files)
+            : (new Post())->updatePost($data, $files);
+
+            // header("location: ../index.php");
         }
     ?>
     
     <div id="main_form">
-        <form id="post_form" method="POST" action="newpost.php" enctype="multipart/form-data">
+        <form id="post_form" method="POST" action="newpost.php<?= isset($data['edit']) ? '?edit='.$_GET["edit"] : '' ?>" enctype="multipart/form-data">
+            <span class="information_btn" onclick="openModal('information')"><b>i</b></span>
             <div class="card">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
@@ -58,10 +81,10 @@
                 </div>
                 
                 <input class="input_7huy5" type="text" name="title"
-                value="" placeholder="Título da postagem" required maxlength="150">
+                value="<?= $postdata['post_title'] ?? ''; ?>" placeholder="Título da postagem" required maxlength="150">
                 
                 <textarea id="editor" class="input_7huy5 description" type="text" name="description"
-                value="" placeholder="Fale sobre seu código" required></textarea>
+                value="" placeholder="Fale sobre seu código" required><?= $postdata['post_content'] ?? ''; ?></textarea>
                 
                 <div class="upload_buttons">
                     <div>
@@ -71,7 +94,7 @@
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
                             update_file_input('sources')
-                        " required/>
+                        " <?= !isset($data['edit']) ? 'required' : ''; ?>/>
                     </div>
                     <div>
                         <label for="thumb" class="upload_btn">
@@ -80,7 +103,7 @@
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
                             update_file_input('thumb')
-                        " required/>
+                        " <?= !isset($data['edit']) ? 'required' : ''; ?>/>
                     </div>
                 </div>
                 
@@ -89,6 +112,19 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div id='information'>
+        <span class="information_btn" onclick="closeModal('information')">&#10006;</span>
+        <br>
+        <p>[+] Tamanhos de arquivos suportados:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;.html/.css/.js > 20kb<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 100kb
+        </p>
+        <br>
+        <p>[+] O código fonte deve conter um arquivo "index.html".</p>
+        <br>
+        <p>[+] Ao atualizar os arquivos da postagem, os arquivos antigos serão removidos!</p>
     </div>
 
     <script src="../assets/js/script.js"></script>
