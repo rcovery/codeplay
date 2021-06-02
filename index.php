@@ -1,7 +1,12 @@
 <?php
     session_start();
+    include(dirname(__FILE__) . "/Controller/Session.php");
     include(dirname(__FILE__) . "/Controller/Post.php");
     include(dirname(__FILE__) . "/Controller/User.php");
+    $state = "on";
+    if(!(new Session())->loadSession()){
+        $state = "off";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,7 +30,7 @@
     <?php include("pages/navbar.php"); ?>
  
     <?php if (empty($_GET["search"])) : ?>
-        <?php if (empty($_SESSION['id'])) : ?>
+        <?php if ($state == 'off') : ?>
             <div class="header_landing" data-aos="fade-up">
             	<div>
             		<span class="gradient_line"></span>
@@ -42,11 +47,11 @@
 
             <div class="block normal" data-aos="fade-up">
                 <h1>Venha ser um gamer!</h1>
-                <p>A Codeplay é uma plataforma de ensino de programação de jogos digitais!</p>
+                <p>A Codeplay vai te ensinar a programar jogos digitais!</p>
             </div>
 
             <div class="block reverse" data-aos="fade-up">
-                <h1>O que você vai aprender</h1>
+                <h1>Aqui você pode jogar e aprender!</h1>
                 <div class="showcase">
                   <div class="game_item" data-aos="flip-up">
                     <img src="assets/images/default_pic.png">
@@ -71,9 +76,9 @@
                 <div class="flex_block who">
                     <img src="assets/images/default_pic.png">
                     <div class="who_quote">
-                        <p>"Aqui é Body Builder Ipsum! Eu quero esse 13 daqui a pouquinho aí. Tá saindo da jaula o monstro! Sabe o que é isso daí? Trapézio descendente é o nome disso aí. É verão o ano todo vem cumpadi. Aqui nóis constrói fibra, não é água com músculo. Não vai dá não. É esse que a gente quer, é ele que nóis vamo buscar. Boraaa, Hora do Show."
+                        <p>"A Codeplay é uma plataforma de ensino, planejada para o compartilhamento de conhecimento sobre programação focada em jogos digitais! Somos jovens desenvolvedores buscando abrir portas para os iniciantes em programação, criando um ambiente facil e estimulante para se programar jogos."
                         </p>
-                        <p>"Brownie topping chocolate powder caramels dragée. Chupa chups tiramisu pastry jelly beans jelly beans chocolate pastry. Macaroon chupa chups donut lollipop apple pie. Jujubes tart candy canes soufflé."
+                        <p>"A plataforma em si não é apenas para iniciantes, aqui você pode divulgar toda sua experiência em relação aos jogos digitais! A Codeplay pode mostrar para todos que não precisa ter algum "Super-Poder" para programar! 😁"
                         </p>
                     </div>
                 </div>
@@ -150,10 +155,10 @@
         c-7.7,18-11.6,36.9-11.6,56.7v201c0,15.2,5.3,28.2,16,38.8c10.7,10.7,23.6,16,38.8,16h109.6c15.2,0,28.2-5.3,38.8-16 c10.7-10.7,16-23.6,16-38.8V274.1C475.1,258.9,469.8,245.9,459.1,235.3z"/>
                 </svg>
             </span>
-            <p><b>Prepare for Pokem! Make it Ipsum! To protect the world from devastation!</b></p>
-            <p><b>Prepare for Pokem! Make it Ipsum! To protect the world from devastation!</b></p>
-            <p><b>Prepare for Pokem! Make it Ipsum! To protect the world from devastation!</b></p>
-            <p><b>Prepare for Pokem! Make it Ipsum! To protect the world from devastation!</b></p>
+            <p><b>Graças a essa plataforma, eu consegui criar o meu 1° jogo! - Cleitin</b></p>
+            <p><b>A codeplay me ajudou a evoluir minha programação! 😃 - Fabrício</b></p>
+            <p><b>Enfim um site onde eu possa aprender a desenvolver jogos gratuitamente! - Maria</b></p>
+            <p><b>Antes de conhecer a codeplay eu enxergava a programação fora do meu alcance! 😍 - Fernanda</b></p>
             <span class="quote_icon flipped">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 475.1 475.1" style="enable-background:new 0 0 475.1 475.1;" xml:space="preserve"><path class="st0" d="M164.4,219.3h-64c-7.6,0-14.1-2.7-19.4-8c-5.3-5.3-8-11.8-8-19.4v-9.1c0-20.2,7.1-37.4,21.4-51.7
         c14.3-14.3,31.5-21.4,51.7-21.4h18.3c4.9,0,9.2-1.8,12.8-5.4c3.6-3.6,5.4-7.9,5.4-12.8V54.8c0-4.9-1.8-9.2-5.4-12.8

@@ -210,10 +210,10 @@ body {
 .quote_icon {
 	fill: white;
 	width: 90px;
-	align-self: start;
+	align-self: flex-start;
 }.quote_icon.flipped {
 	transform: rotate(180deg);
-	align-self: end;
+	align-self: flex-end;
 }
 
 .send_email_btn {

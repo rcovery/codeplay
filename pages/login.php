@@ -52,8 +52,8 @@
 
                 <input class="input_7huy5" type="password" name="password" placeholder="Senha" required>
 
-                <input class="checkbox" type="checkbox" name="keep_logged">
-                <label id="logged" class=" ">Me manter logado</label>
+                <input class="checkbox" type="checkbox" name="keep_logged" hidden>
+                <label id="logged" hidden>Me manter logado</label>
 
                 <div class="btn-rgst">
                     <a href="register.php">Criar uma conta</a>
