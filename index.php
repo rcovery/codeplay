@@ -94,14 +94,14 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($viewed as $game) : ?>
-                            <li class="splide__slide game_item">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
                                 <span class="gameboy btn"></span>
-                            </li>
+                            </a>
                         <?php endforeach ; ?>
                     </ul>
                 </div>
@@ -111,14 +111,14 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($date as $game) : ?>
-                            <li class="splide__slide game_item">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
                                 <span class="gameboy btn"></span>
-                            </li>
+                            </a>
                         <?php endforeach ; ?>
                     </ul>
                 </div>
@@ -128,14 +128,14 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($likes as $game) : ?>
-                            <li class="splide__slide game_item">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy btn"></span>
                                 <span class="gameboy btn"></span>
-                            </li>
+                            </a>
                         <?php endforeach ; ?>
                     </ul>
                 </div>
