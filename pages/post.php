@@ -40,10 +40,11 @@
 					</div>
 				</div>
 				<div>
-					<a href="<?= $result['post_files']; ?>" target="_blank" class="act_button" id="playgame"><span class="play_emoji">▶</span> JOGAR</a>
-					<?php if($_SESSION['id'] == $user['ID_user']): ?>
-						<a class="act_button" id="editgame" href="newpost.php?edit=<?= $result['ID_post']; ?>" target="_blank"><span class="play_emoji"></span>EDIT</a>
+					<a href="<?= $result['post_files']; ?>" target="_blank" class="act_button" id="playgame"><i class="bi bi-play-fill"></i> JOGAR</a>
+					<?php if(isset($_SESSION['id']) && $_SESSION['id'] == $user['ID_user'] || isset($_SESSION['id']) && $_SESSION['is_admin'] == 1): ?>
+						<a class="act_button" id="editgame" href="newpost.php?edit=<?= $result['ID_post']; ?>" target="_blank"><i class="bi bi-pencil"></i> EDIT</a>
 					<?php endif; ?>
+					<a href="<?= $result['post_files']; ?>/source_code.zip" target="_blank" class="act_button" id="downloadgame"><i class="bi bi-cloud-download"></i></a>
 				</div>
 			</div>
 		</div>

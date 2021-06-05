@@ -86,7 +86,7 @@ class User{
             return false;
         }
 
-        $this->getSession($result["ID_user"], $data[":username"], $keep_logged);
+        $this->getSession($result["ID_user"], $data[":username"], $keep_logged, $result['is_admin']);
         return true; 
     }
     
@@ -99,11 +99,14 @@ class User{
     * @return boolean
     * @author Ryan
     */
-    public function getSession($ID_user, $username, $keep_logged){
+    public function getSession($ID_user, $username, $keep_logged, $admin = null){
         $_SESSION["user"] = $username;
         $_SESSION["id"] = $ID_user;
         $_SESSION["last_activity"] = time();
         $_SESSION["keep_logged"] = $keep_logged;
+        if ($admin == 1) {
+            $_SESSION['is_admin'] = true;
+        }
     }
 
     /**

@@ -40,7 +40,7 @@
         if (isset($_GET["edit"]) && !empty($_GET['edit'])) {
             $postdata = (new Post())->getPost($_GET['edit']);
 
-            if ($_SESSION['id'] != $postdata['ID_user_FK']) {
+            if ($_SESSION['id'] != $postdata['ID_user_FK'] && !isset($_SESSION['is_admin'])) {
                 header("location: newpost.php");
             }
 
@@ -67,7 +67,7 @@
         if ($pass){
             if (empty($files['thumb']['name']) && empty($files['source']['name'][0])) $files = null;
 
-            if (isset($data['edit'])) {
+            if (!isset($data['edit'])) {
                 (new Post())->createPost($data, $files);
                 header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
             } else {

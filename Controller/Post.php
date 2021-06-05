@@ -5,9 +5,11 @@ require_once(dirname(__FILE__) . "/../pages/message.php");
 class Post{
     private $db;
     private $options;
+    private $zip;
     
     public function __construct(){
         $this->db = new Database;
+        $this->zip = new ZipArchive;
     }
     
     /**
@@ -49,6 +51,7 @@ class Post{
 
         if ($this->validateFiles($files)){
             $game_folder = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
+            $file = [];
 
             if (!file_exists("../games")) mkdir("../games", 0777);
             mkdir($game_folder . "thumb/", 0777, true);
@@ -58,12 +61,14 @@ class Post{
 
             foreach ($files["source"]["name"] as $key=>$value){
                 $new_path = $game_folder . "{$files["source"]["name"][$key]}";
+                array_push($file, $files["source"]["name"][$key]);
                 move_uploaded_file($files["source"]["tmp_name"][$key], $new_path);
             }
             $data[":post_files"] = $game_folder;
             $fields = "post_title, post_content, ID_user_FK, post_files";
 
             $this->db->insert("post", $data, $fields);
+            $this->createZip($game_folder, $file);
         }
 
         return true;
@@ -82,11 +87,12 @@ class Post{
 
         $set = "post_title = :post_title, post_content = :post_content";
         $game_folder = "../games/{$_SESSION["id"]}/";
-        $current = $game_folder . $data["original_title"];
+        $current = $game_folder . $data["original_title"] . "/";
+        $file = [];
 
         if ($data["original_title"] != $data[":post_title"]) {
             $new_folder = $game_folder . $data[":post_title"];
-            rename(dirname(__FILE__) . "/$current/", dirname(__FILE__) . "/$new_folder/");
+            rename(dirname(__FILE__) . "/$current", dirname(__FILE__) . "/$new_folder/");
 
             $current = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
             $data[":post_files"] = $current;
@@ -105,10 +111,14 @@ class Post{
                 }
                 if ($has_files) {
                     exec("rm -rf {$current}/*.*");
+                    
                     foreach ($files["source"]["name"] as $key=>$value){
                         $new_path = $current . "/{$files["source"]["name"][$key]}";
+                        array_push($file, $files["source"]["name"][$key]);
                         move_uploaded_file($files["source"]["tmp_name"][$key], $new_path);
                     }
+
+                    $this->createZip($current, $file);
                 }
             }
         }
@@ -285,6 +295,28 @@ class Post{
         $result = $this->db->select($this->options);
 
         return $result;
+    }
+
+    /**
+    * Função para gerar arquivo de download
+    *
+    * @param string
+    * @param array
+    * @return boolean
+    * @author Ryan
+    */
+    public function createZip($dir, $files) {
+        echo "init";
+        if ($this->zip->open($dir . 'source_code.zip', ZipArchive::CREATE) === TRUE) {
+            echo "create zip<br>";
+
+            foreach($files as $filename) {
+                $this->zip->addFile($dir.$filename);
+            }
+
+            $this->zip->close();
+        }
+        echo "endzip";
     }
 }
 ?>
