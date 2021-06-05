@@ -94,7 +94,7 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($viewed as $game) : ?>
-                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
@@ -111,7 +111,7 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($date as $game) : ?>
-                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
@@ -128,7 +128,7 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($likes as $game) : ?>
-                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item" target="_blank">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
@@ -175,28 +175,24 @@
     <?php else : ?>
         <?php
             $result = (new Post())->search($_GET["search"]);
-
-            if ($result == []) {
-                echo "
-                    <div class='no_result'>
-                        Nenhum resultado encontrado!
-                    </div>
-                ";
-            } else {
-                echo "<br>";
-                echo "<div class='game_search'>";
-                foreach ($result as $key => $value) {
-                    echo "<a href='#' class='game_item'>";
-                    echo "<img src=" . str_replace(" ", "%20", $value["post_files"]) . "/thumb/thumbnail.dat" . ">";
-                    echo "<p>" . $value["post_title"] . "</p>";
-                    echo "<p>Criado por *nome criador*</p>";
-                    echo "</a>";
-                }
-                echo "</div>";
-                echo "<br>";
-            }
         ?>
-    <?php endif ?>
+        <?php if ($result == []): ?>
+            <div class='no_result'>
+                Nenhum resultado encontrado!
+            </div>
+        <?php else: ?>
+            <br>
+            <div class='game_search'>
+                <?php foreach ($result as $key => $value): ?>
+                    <a href='pages/post.php?id=<?= $value["ID_post"] ?>' class='cartridge'>
+                        <img src="<?= str_replace(" ", "%20", $value["post_files"]) ?>/thumb/thumbnail.dat">
+                        <p><?= $value["post_title"] ?></p>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+            <br>
+        <?php endif; ?>
+    <?php endif; ?>
 
     <footer>
         foooter end

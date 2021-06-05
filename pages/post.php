@@ -30,17 +30,20 @@
 
 	<div class="flex_block">
 		<div class="main_page">
-			<img id="game_thumb" src="<?= $result['post_files'] . "/thumb/thumbnail.dat" ?>">
+			<div class="block_image_78ajoe"><img id="game_thumb" src="<?= $result['post_files'] . "/thumb/thumbnail.dat" ?>"></div>
 			<div class="game_infos">
 				<div>
-					<img class="profile_pic postpage" src="<?= $user["pic_path"]; ?>">
+					<a class="postpage" target="_blank" href="profile.php?id=<?= $user['ID_user'] ?>"><img class="profile_pic postpage" src="<?= $user["pic_path"]; ?>"></a>
 					<div>
 						<p class="postpage info"><?= $result["post_title"] ?></p>
 						<p class="postpage info"><?= $user["username"] ?></p>
 					</div>
 				</div>
 				<div>
-					<a href="<?= $result['post_files']; ?>" target="_blank" id="playgame"><span class="play_emoji">▶</span> JOGAR</a>
+					<a href="<?= $result['post_files']; ?>" target="_blank" class="act_button" id="playgame"><span class="play_emoji">▶</span> JOGAR</a>
+					<?php if($_SESSION['id'] == $user['ID_user']): ?>
+						<a class="act_button" id="editgame" href="newpost.php?edit=<?= $result['ID_post']; ?>" target="_blank"><span class="play_emoji"></span>EDIT</a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

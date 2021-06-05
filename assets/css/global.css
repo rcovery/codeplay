@@ -252,9 +252,15 @@ footer {
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	justify-items: center;
 	grid-row-gap: 30px;
-}.game_search .game_item img {
-	width: 150px;
-}.game_search .game_item {
+	font-family: 'KoHo', sans-serif;
+	font-size: 20px;
+}.game_search .cartridge img {
+	max-width: 300px;
+	max-height: 150px;
+	border-radius: 10px;
+}.game_search .cartridge p {
+	margin-top: 10px;
+}.game_search .cartridge {
 	display: flex;
 	text-decoration: none;
 	flex-direction: column;
@@ -265,7 +271,8 @@ footer {
 	padding: 20px;
 	color: var(--text);
 	transition: 0.2s;
-}.game_search .game_item:hover {
+	border-radius: 5px;
+}.game_search .cartridge:hover {
 	transform: scale(1.1);
 	box-shadow: 2px 5px 0 var(--primary-color), 5px 10px 0 var(--secondary-color);
 }
@@ -290,7 +297,7 @@ footer {
 	margin-bottom: 3px;
 	text-decoration: none;
 }.splide .game_item img {
-	height: 140px;
+	max-height: 150px;
 	max-width: 100%;
 	border-radius: 10px;
 }.splide .game_item .creator {
@@ -353,12 +360,13 @@ footer {
 .main_page {
 	height: 100vh;
 	width: 75vw;
-	background: #d9d7d7;
 	text-align: center;
 }#game_thumb {
 	background: black;
 	max-height: 400px;
 	max-width: 100%;
+}.block_image_78ajoe {
+	background: var(--bg2);
 }
 .game_infos {
 	padding: 0 30px;
@@ -373,7 +381,8 @@ footer {
 	width: 100px;
 	height: 100px;
 	border-radius: 100px;
-}.profile_pic.postpage + div {
+	border: solid 3px var(--bg);
+}a.postpage + div {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -387,16 +396,23 @@ footer {
 	margin-top: 15px;
 }
 
-#playgame {
-	padding: 10px 40px;
+.act_button {
 	box-sizing: border-box;
-	background: #27c427;
 	border-radius: 5px;
 	border: none;
 	color: white;
 	font-size: 20px;
 	font-family: mono;
 	text-decoration: none;
+}.act_button + .act_button {
+	margin-left: 10px;
+}
+#playgame {
+	padding: 10px 40px;
+	background: #27c427;
+}#editgame {
+	padding: 10px 20px;
+	background: #f09e00;
 }
 
 .play_emoji {
@@ -427,7 +443,7 @@ footer {
 }
 
 @media only screen and (max-width:  500px) {
-	#playgame {
-		display: none;
+	.game_infos {
+		flex-direction: column;
 	}
 }

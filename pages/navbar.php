@@ -4,7 +4,7 @@
 	<a href="/"><img title="Logo" alt="Logo" src="/assets/images/logo.png"></img></a>
 
 	<form action="/" method="GET">
-		<input class="search_box" type="text" name="search" placeholder="Search"></input>
+		<input class="search_box" type="text" name="search" value="<?= isset($_GET["search"]) ? $_GET['search'] : '' ?>" placeholder="Search"></input>
 	</form>
 
 	<div id="btn" onclick="dropdown()">
@@ -30,6 +30,7 @@
         <a href="/pages/login.php">Login</a>
     <?php endif ?>
     <?php if(isset($_SESSION["id"])) : ?>
+    	<a href="/pages/profile.php?id=<?= $_SESSION['id'] ?>">Meu perfil</a>
     	<a href="/pages/newpost.php">Criar uma postagem</a>
         <a href="/pages/logout.php">Logout</a>
     <?php endif ?>

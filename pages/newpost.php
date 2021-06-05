@@ -23,6 +23,10 @@
         require(dirname(__FILE__) . "/../Controller/Post.php");
         include(dirname(__FILE__) . "/../Controller/Session.php");
 
+        if (isset($_GET['success']) && $_GET['success']='1') {
+            (new View("Sucesso!"))->success();
+        }
+
         if(!(new Session())->loadSession()){
             header("location: ../pages/login.php");
         }
@@ -63,11 +67,13 @@
         if ($pass){
             if (empty($files['thumb']['name']) && empty($files['source']['name'][0])) $files = null;
 
-            !isset($data['edit'])
-            ? (new Post())->createPost($data, $files)
-            : (new Post())->updatePost($data, $files);
-
-            // header("location: ../index.php");
+            if (isset($data['edit'])) {
+                (new Post())->createPost($data, $files);
+                header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
+            } else {
+                (new Post())->updatePost($data, $files);
+                header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&success=1");
+            }
         }
     ?>
     
