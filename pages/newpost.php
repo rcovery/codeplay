@@ -87,7 +87,7 @@
                 </div>
                 
                 <input class="input_7huy5" type="text" name="title"
-                value="<?= $postdata['post_title'] ?? ''; ?>" placeholder="Título da postagem" required maxlength="150">
+                value="<?= $postdata['post_title'] ?? ''; ?>" placeholder="Título da postagem" required maxlength="60">
                 
                 <textarea id="editor" class="input_7huy5 description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required><?= $postdata['post_content'] ?? ''; ?></textarea>
@@ -125,12 +125,14 @@
         <br>
         <p>[+] Tamanhos de arquivos suportados:<br>
         &nbsp;&nbsp;&nbsp;&nbsp;.html/.css/.js > 20kb<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 100kb
+        &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 1mb
         </p>
         <br>
         <p>[+] O código fonte deve conter um arquivo "index.html".</p>
         <br>
         <p>[+] Ao atualizar os arquivos da postagem, os arquivos antigos serão removidos!</p>
+        <br>
+        <p>[+] Dimensões de thumbnail recomendadas: 700x400</p>
     </div>
 
     <script src="../assets/js/script.js"></script>

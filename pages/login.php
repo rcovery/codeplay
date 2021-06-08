@@ -48,7 +48,7 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
 
-                <input class="input_7huy5" type="text" name="user" placeholder="Usuário" required>
+                <input class="input_7huy5" maxlength="25" type="text" name="user" placeholder="Usuário" required>
 
                 <input class="input_7huy5" type="password" name="password" placeholder="Senha" required>
 

@@ -2,6 +2,10 @@
 @import url("colors.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
+:root {
+	--limitarea: 800px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -298,8 +302,8 @@ footer {
 	margin-bottom: 3px;
 	text-decoration: none;
 }.splide .game_item img {
-	max-height: 150px;
-	max-width: 100%;
+	max-height: 120px;
+	max-width: 210px;
 	border-radius: 10px;
 }.splide .game_item .creator {
 	color: var(--text);
@@ -360,7 +364,7 @@ footer {
 
 .main_page {
 	height: 100vh;
-	width: 75vw;
+	width: var(--limitarea);
 	text-align: center;
 }#game_thumb {
 	background: black;
@@ -370,19 +374,44 @@ footer {
 	background: var(--bg2);
 }
 .game_infos {
-	padding: 0 30px;
+	padding: 0 15px;
 	box-sizing: border-box;
-	transform:  translateY(-55px);
-	height:  100px;width: 100%;display: flex;
-	justify-content: space-between;align-items: center;
+	transform: translateY(-50px);
+	height: 100px;width: 100%;
+	justify-content: space-between;
 }.game_infos > div {
 	display: flex;align-items: center;
 }
+.game_content {
+	justify-content: space-between;
+	align-items: flex-start;
+}#game_9ka83l {
+	color: var(--text);
+	width: 500px;
+}
+
+#game_9ka83l > p {
+	text-align: right;
+	font-family: monospace;
+}
+
+#game_description {
+	color: var(--text);
+	background: var(--bg2);
+    border-radius: 10px;
+    min-height: 400px;
+    padding: 10px;
+    border: solid 1px var(--text);
+	margin-top: 10px;
+	text-align: left;
+	font-family: monospace;
+}
+
 .profile_pic.postpage {
 	width: 100px;
 	height: 100px;
 	border-radius: 100px;
-	border: solid 3px var(--bg);
+	border: solid 5px var(--bg);
 }a.postpage + div {
 	display: flex;
 	flex-direction: column;
@@ -390,8 +419,9 @@ footer {
 	margin-left: 15px;
 }.info.postpage {
 	color: white;
-	font-family: mono;
+	font-family: monospace;
 	font-size: 20px;
+	text-align: left;
 }.info.postpage + .info.postpage {
 	color: var(--text);
 	margin-top: 15px;
@@ -404,7 +434,7 @@ footer {
 	border: none;
 	color: white;
 	font-size: 20px;
-	font-family: mono;
+	font-family: monospace;
 	text-decoration: none;
 }.act_button + .act_button {
 	margin-left: 10px;
@@ -419,6 +449,31 @@ footer {
 
 .play_emoji {
 	font-size: 25px;
+}
+
+.recomended {
+	list-style: none;
+	text-align: left;
+	font-family: monospace;
+	width: 350px;
+    margin-left: 10px;
+} .recomended img {
+    width: 175px;
+    height: 100px;
+} .recomended .game_item {
+	display: flex;
+	margin-top: 10px;
+	color: var(--text);
+} .recomended > p {
+	color: var(--grey-light);
+	text-align: right;
+} .recomended .views {
+	color: var(--grey-light);
+} .recomended .game_item > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-left: 10px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -447,5 +502,18 @@ footer {
 @media only screen and (max-width:  500px) {
 	.game_infos {
 		flex-direction: column;
+		height: auto;
+		transform: translateY(0);
+	}.game_infos > div + div {
+		margin-top: 10px;
+	}.game_content {
+		flex-direction: column;
+		align-items: center;
+	}#game_9ka83l {
+	    width: 95%;
+    	margin-top: 30px;
+	}.recomended {
+		margin-left: 0;
+		margin-top: 15px;
 	}
 }

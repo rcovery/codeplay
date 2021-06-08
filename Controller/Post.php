@@ -153,8 +153,8 @@ class Post{
             if (!in_array($files["thumb"]["type"], ["image/png", "image/jpg", "image/jpeg"])){
                 (new View("Sua thumb deve ser uma imagem!"))->warning();
                 return false;
-            } else if ($files["thumb"]["size"] > 102400){
-                (new View("Sua thumb deve ter no máximo 100kb!"))->warning();
+            } else if ($files["thumb"]["size"] > 1024000){
+                (new View("Sua thumb deve ter no máximo 1mb!"))->warning();
                 return false;
             }
         }
@@ -167,8 +167,8 @@ class Post{
                     case "image/png":
                     case "image/jpg":
                     case "image/jpeg":
-                        if ($files["source"]["size"][$key] > 102400){
-                            (new View("Arquivos de imagem devem ter menos que 100kb!"))->warning();
+                        if ($files["source"]["size"][$key] > 1024000){
+                            (new View("Arquivos de imagem devem ter no máximo 1mb!"))->warning();
                             return false;
                         }
                         break;
@@ -176,19 +176,19 @@ class Post{
                         if ($files["source"]["name"][$key] == "index.html") $options["has_html"] = true;
 
                         if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos html devem ter menos que 20kb!"))->warning();
+                            (new View("Arquivos html devem ter no máximo 20kb!"))->warning();
                             return false;
                         }
                         break;
                     case "text/javascript":
                         if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos javascript devem ter menos que 20kb!"))->warning();
+                            (new View("Arquivos javascript devem ter no máximo 20kb!"))->warning();
                             return false;
                         }
                         break;
                     case "text/css":
                         if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos css devem ter menos que 20kb!"))->warning();
+                            (new View("Arquivos css devem ter no máximo 20kb!"))->warning();
                             return false;
                         }
                         break;
@@ -259,14 +259,14 @@ class Post{
     * @return array
     * @author Ryan
     */
-    public function showcase($column, $order){
+    public function showcase($column, $order, $limit = 10){
         // $order = ASC|DESC
 
         $this->options = [
             "all" => true,
             "fields" => "*",
             "entity" => "post",
-            "custom" => "ORDER BY {$column} {$order} LIMIT 10"
+            "custom" => "ORDER BY {$column} {$order} LIMIT {$limit}"
         ];
 
         $result = $this->db->select($this->options);
