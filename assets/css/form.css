@@ -139,31 +139,27 @@ textarea.description {
 	position: absolute;
 	right: 15px;
 	top: 15px;
-	width: 22px;
-	border: solid var(--text) 1px;
-	border-radius: 100%;
-	background: white;
-	text-align: center;
 	cursor: pointer;
-	color: black;
 }
 
 /* MODAIS */
 #information {
-	display: none;
-	position: fixed;
-	top: 100px;
+	display: initial;
+	position: absolute;
+	top: 0;
 	background: var(--bg2);
-	bottom: 100px;
-	left: 25%;
-	right: 25%;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	border-radius: 10px;
 	padding: 10px;
 	color: var(--text);
 	border: 1px var(--primary-color) solid;
+	transform: scale(0);
+	transform-origin: top right;
+	transition: 0.1s;
 }#information.active {
-	display: initial;
-	animation: modal_fadein 0.3s forwards linear;
+	transform: scale(1);
 }
 
 /*---------DARK COLORS---------*/
@@ -174,15 +170,6 @@ textarea.description {
 }
 /*-----------------------------*/
 
-@keyframes modal_fadein {
-	0% {
-		display: initial;
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
 
 @media only screen and (max-width: 600px){
 	#main_form > form {

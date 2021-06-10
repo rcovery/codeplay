@@ -147,7 +147,8 @@ body {
 }.block p {
 	font-size: 20px;
 }.block img {
-	width: 250px;
+	max-width: 250px;
+    max-height: 250px;
 }
 
 .showcase {
@@ -172,6 +173,8 @@ body {
 	box-sizing: border-box;
 	display: inline-block;
 	border-radius: 50px;
+	text-decoration: none;
+	color: white;
 }
 
 .contact h1 {
@@ -233,7 +236,7 @@ body {
 
 footer {
 	font-family: 'Quicksand', sans-serif;
-	padding: 40px 50px;
+	padding: 20px 50px;
 	background: linear-gradient(var(--light-pink), var(--secondary-color));
 	color: var(--white-text);
 	display: flex;
@@ -277,13 +280,15 @@ footer {
 	color: var(--text);
 	transition: 0.2s;
 	border-radius: 5px;
+	max-width: 330px;
+	max-height: 350px;
 }.game_search .cartridge:hover {
 	transform: scale(1.1);
 	box-shadow: 2px 5px 0 var(--primary-color), 5px 10px 0 var(--secondary-color);
 }
 
 .game_category {
-	font-family: 'KoHo', sans-serif;
+	font-family: 'Alagard';
 	font-size: 34px;
 	color: var(--text);
 	margin: 20px 0 20px 30px;
@@ -458,8 +463,8 @@ footer {
 	width: 350px;
     margin-left: 10px;
 } .recomended img {
-    width: 175px;
-    height: 100px;
+    max-width: 175px;
+    max-height: 100px;
 } .recomended .game_item {
 	display: flex;
 	margin-top: 10px;

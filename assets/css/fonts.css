@@ -7,3 +7,13 @@
     font-family: 'Pixel Font';
     src:  url('../fonts/pixel.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'Minecraft';
+    src:  url('../fonts/minecraft.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Alagard';
+    src:  url('../fonts/alagard.ttf') format('truetype');
+}
