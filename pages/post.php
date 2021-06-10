@@ -44,7 +44,7 @@
 					<?php if(isset($_SESSION['id']) && $_SESSION['id'] == $user['ID_user'] || isset($_SESSION['id']) && $_SESSION['is_admin'] == 1): ?>
 						<a class="act_button" id="editgame" href="newpost.php?edit=<?= $result['ID_post']; ?>"><i class="bi bi-pencil"></i> EDIT</a>
 					<?php endif; ?>
-					<a href="<?= $result['post_files']; ?>/source_code.zip" target="_blank" class="act_button" id="downloadgame"><i class="bi bi-cloud-download"></i></a>
+					<a href="<?= $result['post_files']; ?>source_code.zip" target="_blank" class="act_button" id="downloadgame"><i class="bi bi-cloud-download"></i></a>
 				</div>
 			</div>
 			<div class="flex_block game_content">

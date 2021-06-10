@@ -79,7 +79,7 @@
     
     <div id="main_form">
         <form id="post_form" method="POST" action="newpost.php<?= isset($data['edit']) ? '?edit='.$_GET["edit"] : '' ?>" enctype="multipart/form-data">
-            <span class="information_btn" onclick="openModal('information')"><b>i</b></span>
+            <span class="information_btn" onclick="openModal('information')"><i class="bi bi-info-circle"></i></span>
             <div class="card">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
@@ -117,22 +117,27 @@
                     <button type="submit">POSTAR</button>
                 </div>
             </div>
+            <div id='information'>
+                <i onclick="closeModal('information')" class="information_btn bi bi-x-circle-fill"></i>
+                <br>
+                <p><i class="bi bi-asterisk"></i> Tamanhos de arquivos suportados:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;.html/.css/.js > 50kb<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 1mb
+                </p>
+                <br>
+                <hr>
+                <br>
+                <p><i class="bi bi-asterisk"></i> O código fonte deve conter um arquivo "index.html".</p>
+                <br>
+                <hr>
+                <br>
+                <p><i class="bi bi-asterisk"></i> Ao atualizar os arquivos da postagem, os arquivos antigos serão removidos!</p>
+                <br>
+                <hr>
+                <br>
+                <p><i class="bi bi-asterisk"></i> Dimensões de thumbnail recomendadas: 700x400</p>
+            </div>
         </form>
-    </div>
-
-    <div id='information'>
-        <span class="information_btn" onclick="closeModal('information')">&#10006;</span>
-        <br>
-        <p>[+] Tamanhos de arquivos suportados:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;.html/.css/.js > 20kb<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 1mb
-        </p>
-        <br>
-        <p>[+] O código fonte deve conter um arquivo "index.html".</p>
-        <br>
-        <p>[+] Ao atualizar os arquivos da postagem, os arquivos antigos serão removidos!</p>
-        <br>
-        <p>[+] Dimensões de thumbnail recomendadas: 700x400</p>
     </div>
 
     <script src="../assets/js/script.js"></script>

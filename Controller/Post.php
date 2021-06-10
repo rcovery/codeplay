@@ -175,20 +175,20 @@ class Post{
                     case "text/html":
                         if ($files["source"]["name"][$key] == "index.html") $options["has_html"] = true;
 
-                        if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos html devem ter no máximo 20kb!"))->warning();
+                        if ($files["source"]["size"][$key] > 51200){
+                            (new View("Arquivos html devem ter no máximo 50kb!"))->warning();
                             return false;
                         }
                         break;
                     case "text/javascript":
-                        if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos javascript devem ter no máximo 20kb!"))->warning();
+                        if ($files["source"]["size"][$key] > 51200){
+                            (new View("Arquivos javascript devem ter no máximo 50kb!"))->warning();
                             return false;
                         }
                         break;
                     case "text/css":
-                        if ($files["source"]["size"][$key] > 20480){
-                            (new View("Arquivos css devem ter no máximo 20kb!"))->warning();
+                        if ($files["source"]["size"][$key] > 51200){
+                            (new View("Arquivos css devem ter no máximo 50kb!"))->warning();
                             return false;
                         }
                         break;
