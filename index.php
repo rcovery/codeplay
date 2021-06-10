@@ -53,21 +53,13 @@
             <div class="block reverse" data-aos="fade-up">
                 <h1>Aqui você pode jogar e aprender!</h1>
                 <div class="showcase">
-                  <div class="game_item" data-aos="flip-up">
-                    <img src="assets/images/default_pic.png">
-                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                    <a class="gradient_button">JOGAR AGORA</a>
-                  </div>
-                  <div class="game_item" data-aos="flip-up">
-                    <img src="assets/images/default_pic.png">
-                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                    <a class="gradient_button">JOGAR AGORA</a>
-                  </div>
-                  <div class="game_item" data-aos="flip-up">
-                    <img src="assets/images/default_pic.png">
-                    <p>"Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus br..."</p>
-                    <a class="gradient_button">JOGAR AGORA</a>
-                  </div>
+                    <?php foreach((new Post())->showcase("post_likes", "DESC", 3) as $game): ?>
+                        <div class="game_item" data-aos="flip-up">
+                            <img src="<?= $game['post_files'] ?>thumb/thumbnail.dat">
+                            <p>"<?= $game['post_title'] ?>"</p>
+                            <a target="_blank" href="<?= $game['post_files'] ?>" class="gradient_button">JOGAR AGORA</a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
@@ -87,9 +79,9 @@
             <?php
                 $viewed = (new Post())->showcase("post_views", "DESC");
                 $date = (new Post())->showcase("post_date", "DESC");
-                $likes = (new Post())->showcase("post_views", "DESC");
+                $likes = (new Post())->showcase("post_likes", "DESC");
             ?>
-            <h2 class="game_category">Jogos mais vistos</h2>
+            <p class="game_category">Em alta:</p>
             <div class="splide" id="slide_one">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -106,7 +98,7 @@
                     </ul>
                 </div>
             </div>
-            <h2 class="game_category">Jogos postados recentemente</h2>
+            <p class="game_category">Mais recentes:</p>
             <div class="splide" id="slide_two">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -123,7 +115,7 @@
                     </ul>
                 </div>
             </div>
-            <h2 class="game_category">Jogos mais curtidos</h2>
+            <p class="game_category">Mais curtidos:</p>
             <div class="splide" id="slide_three">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -195,7 +187,15 @@
     <?php endif; ?>
 
     <footer>
-        foooter end
+        <p>Criadores:</p>
+        <p>Felipe Nicoletti</p>
+        <p>Gabriel Araújo</p>
+        <p>Lucas Sitta</p>
+        <p>Marco Domingues</p>
+        <p>Rafael Gomes</p>
+        <a>Ryan Pereira</a>
+        <br>
+        <p>© CodePlay Team. All rights reserved.</p>
     </footer>
 
     <script src="assets/js/script.js"></script>
@@ -221,7 +221,6 @@
             type: 'loop'
         }).mount();
     </script>
-    <!-- <script src="http://rcovery-mailer.herokuapp.com/rcoveryMail.js"></script> -->
 </body>
 
 </html>
