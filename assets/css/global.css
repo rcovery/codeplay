@@ -288,15 +288,15 @@ footer {
 }
 
 .game_category {
-	font-family: 'Alagard';
-	font-size: 34px;
+	font-family: 'Blockt';
+	font-size: 42px;
 	color: var(--text);
 	margin: 20px 0 20px 30px;
 }
 
 .splide .game_item {
 	background: var(--bg2);
-	border: 1px solid var(--text);
+	border: 2px solid var(--text);
 	border-radius: 10px;
 	padding: 10px;
 	display: flex;
@@ -395,11 +395,6 @@ footer {
 	width: 500px;
 }
 
-#game_9ka83l > p {
-	text-align: right;
-	font-family: monospace;
-}
-
 #game_description {
 	color: var(--text);
 	background: var(--bg2);
@@ -410,6 +405,13 @@ footer {
 	margin-top: 10px;
 	text-align: left;
 	font-family: monospace;
+}
+
+#description_header {
+	font-family: monospace;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .profile_pic.postpage {
@@ -456,29 +458,40 @@ footer {
 	font-size: 25px;
 }
 
-.recomended {
-	list-style: none;
+.recommended {
 	text-align: left;
 	font-family: monospace;
 	width: 350px;
     margin-left: 10px;
-} .recomended img {
+} .recommended .block_image_78ajoe {
+	width: 175px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}.recommended img {
     max-width: 175px;
     max-height: 100px;
-} .recomended .game_item {
+} .recommended .game_item {
+	text-decoration: none;
 	display: flex;
 	margin-top: 10px;
 	color: var(--text);
-} .recomended > p {
+} .recommended > p {
 	color: var(--grey-light);
 	text-align: right;
-} .recomended .views {
+} .recommended .views {
 	color: var(--grey-light);
-} .recomended .game_item > div {
+} .recommended .game_item > .game_info {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding-left: 10px;
+}
+
+#like_star {
+	cursor: pointer;
+	color: var(--primary-color);
 }
 
 @media only screen and (max-width: 800px) {
@@ -517,7 +530,7 @@ footer {
 	}#game_9ka83l {
 	    width: 95%;
     	margin-top: 30px;
-	}.recomended {
+	}.recommended {
 		margin-left: 0;
 		margin-top: 15px;
 	}

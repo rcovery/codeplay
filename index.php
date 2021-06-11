@@ -55,7 +55,7 @@
                 <div class="showcase">
                     <?php foreach((new Post())->showcase("post_likes", "DESC", 3) as $game): ?>
                         <div class="game_item" data-aos="flip-up">
-                            <img src="<?= $game['post_files'] ?>thumb/thumbnail.dat">
+                            <a href="pages/post.php?id=<?= $game['ID_post'] ?>"><img src="<?= $game['post_files'] ?>thumb/thumbnail.dat"></a>
                             <p>"<?= $game['post_title'] ?>"</p>
                             <a target="_blank" href="<?= $game['post_files'] ?>" class="gradient_button">JOGAR AGORA</a>
                         </div>
@@ -81,7 +81,7 @@
                 $date = (new Post())->showcase("post_date", "DESC");
                 $likes = (new Post())->showcase("post_likes", "DESC");
             ?>
-            <p class="game_category">Em alta:</p>
+            <p class="game_category">Em alta</p>
             <div class="splide" id="slide_one">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -98,7 +98,7 @@
                     </ul>
                 </div>
             </div>
-            <p class="game_category">Mais recentes:</p>
+            <p class="game_category">Mais recentes</p>
             <div class="splide" id="slide_two">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -115,7 +115,7 @@
                     </ul>
                 </div>
             </div>
-            <p class="game_category">Mais curtidos:</p>
+            <p class="game_category">Mais curtidos</p>
             <div class="splide" id="slide_three">
                 <div class="splide__track">
                     <ul class="splide__list">

@@ -1,8 +1,13 @@
 #main_form {
 	display: flex;
-	height: calc(100vh - 16px);
+	height: 100vh;
 	justify-content: center;
 	align-items: center;
+	background-image: url(../images/wallpaper.jpg);
+	background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 #form_title {
 	position: relative;
@@ -15,9 +20,7 @@
 
 #main_form > form {
 	width: 600px;
-}#main_form > #post_form {
-	position: absolute;
-	top: 100px;
+	background: var(--bg);
 }
 
 .logo_form {
@@ -124,7 +127,7 @@ textarea.description {
 }.upload_btn:hover {
 	cursor: pointer;
 }.upload_btn .has_files {
-	filter: drop-shadow(0 0 10px white);
+	filter: drop-shadow(0 0 10px var(--primary-color));
 }
 
 .upload_icons {
@@ -167,6 +170,8 @@ textarea.description {
 	color: black;
 }.dark textarea.description {
 	background: rgba(0,0,0,0.2);
+}.dark #main_form {
+	background-image: url("../images/wallpaperdark.jpg");
 }
 /*-----------------------------*/
 

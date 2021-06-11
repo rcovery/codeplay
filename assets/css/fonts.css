@@ -17,3 +17,14 @@
     font-family: 'Alagard';
     src:  url('../fonts/alagard.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'Blockt';
+    src:  url('../fonts/blockt.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Odin';
+    src:  url('../fonts/odin.otf') format('truetype');
+}
+

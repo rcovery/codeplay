@@ -2,6 +2,7 @@
 	session_start();
 	require_once(dirname(__FILE__) . "/../Controller/Post.php");
 	require_once(dirname(__FILE__) . "/../Controller/User.php");
+	require_once(dirname(__FILE__) . "/../Controller/Likes.php");
 	require_once(dirname(__FILE__) . "/message.php");
 ?>
 
@@ -20,11 +21,13 @@
 	<?php
 		if (!isset($_GET["id"])) {
 			(new View("Ocorreu um erro!"))->warning();
+			header("location: newpost.php");
 		} else {
 			(new Post())->view($_GET["id"]);
 
 			$result = (new Post())->getPost($_GET["id"]);
 			$user = (new User())->getUser($result["ID_user_FK"]);
+			$is_liked = (new Likes())->isLiked($_GET["id"], $result["ID_user_FK"]);
 		}
 	?>
 
@@ -49,26 +52,40 @@
 			</div>
 			<div class="flex_block game_content">
 				<div id="game_9ka83l">
-					<p>Nº de visualizações <?= $result['post_views'] ?></p>
+					<div id="description_header">
+						<p>Nº de visualizações <?= $result['post_views'] ?></p>
+						<p>
+							<i onclick="like_toggle(<?= $_GET['id'] ?>, <?= $_SESSION['id'] ?>, <?= $is_liked ?>)" id="like_star" class="bi bi-star-fill <?= $is_liked ? '' : 'bi-star' ?>"></i>
+							<span id="like_number">
+								<?= $result['post_likes'] ?>
+							</span>
+							likes
+						</p>
+					</div>
 					<div id="game_description"><?= $result['post_content'] ?></div>
 				</div>
-				<ul class="recomended">
+				<div class="recommended">
 					<p>Outros jogos</p>
 					<?php foreach((new Post())->showcase("post_date", 'ASC', 15) as $game): ?>
-						<li class="game_item">
-							<img src="<?= $game['post_files'] ?>thumb/thumbnail.dat">
-							<div>
+						<a href="post.php?id=<?= $game['ID_post'] ?>" class="game_item">
+							<div class="block_image_78ajoe">
+								<img src="<?= $game['post_files'] ?>thumb/thumbnail.dat">
+							</div>
+							<div class="game_info">
 								<strong><?= substr($game['post_title'], 0, 40) ?>...</strong>
 								<p><?= $user['username'] ?></p>
 								<p class="views"><?= $game["post_views"] ?> views</p>
 							</div>
-						</li>
+						</a>
 					<?php endforeach; ?>
-				</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<script src="../assets/js/script.js"></script>
+	<script>
+		var is_liked = <?= empty($is_liked) ? 0 : 1 ?>
+	</script>
 </body>
 </html>
