@@ -87,7 +87,7 @@
                     <ul class="splide__list">
                         <?php foreach($viewed as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
-                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
@@ -104,7 +104,7 @@
                     <ul class="splide__list">
                         <?php foreach($date as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
-                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
@@ -121,7 +121,7 @@
                     <ul class="splide__list">
                         <?php foreach($likes as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
-                                <img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>">
+                                <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
                                 <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
                                 <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
