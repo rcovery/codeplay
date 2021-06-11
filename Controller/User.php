@@ -77,16 +77,12 @@ class User{
 
         $result = $this->db->select($this->options);
 
-        echo $result["username"];
-        echo $data[":username"];
-
-        if (!isset($result['username']) || $result['username'] != $data[':username']
-        || !isset($result['password']) || $result['password'] != $data[':password']){
+        if (!isset($result['username']) || !isset($result['password'])) {
             (new View("Usuário ou senha incorretos!"))->warning();
             return false;
         }
 
-        $this->getSession($result["ID_user"], $data[":username"], $keep_logged, $result['is_admin']);
+        $this->getSession($result["ID_user"], $result["username"], $keep_logged, $result['is_admin']);
         return true; 
     }
     

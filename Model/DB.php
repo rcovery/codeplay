@@ -63,15 +63,14 @@ class Database{
     /**
      * Função para deletar informações do banco de dados
      *
-     * @param string $entity
-     * @param string $id
+     * @param array $op
 	 * @return $result
      */
-    public function delete($entity, $id){
-        $this->query = "DELETE * FROM {$entity} WHERE id = {$id}";
+    public function delete($op){
+        $this->query = "DELETE FROM {$op['entity']} WHERE {$op['conditional']}";
         
         $prepared = $this->conn->prepare($this->query);
-        $prepared->execute();
+        $prepared->execute($op['data']);
 
         return true;
     }
