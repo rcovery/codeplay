@@ -32,15 +32,12 @@
 	border-color: var(--primary-color);
 	padding: 30px;
 	border-radius: 10px;
-}#logged {
-	color: var(--text);
 }
 
 .input_7huy5 {
 	background: var(--bg);
 	border: none;
 	border-bottom: 3px var(--primary-color) solid;
-	color: var(--text);
 	outline: 0;
 	width: 100%;
 	height: 25px;
@@ -74,22 +71,6 @@ textarea.description {
 }.btn-rgst a {
 	color: var(--primary-color);
 	text-decoration: none;
-}
-
-.btn button{
-	width: 100%;
-	border-radius: 30px;
-	padding: 15px;
-	color: white;
-	border: 0px;
-	outline: 0;
-	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
-	margin-top: 10px;
-}
-
-.btn button:hover {
-	background: linear-gradient(to right, var(--secondary-color), var(--primary-color));;
-	cursor: pointer;
 }
 
 #imglogo {

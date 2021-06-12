@@ -256,6 +256,7 @@ class Post{
     *
     * @param string
     * @param string
+    * @param number
     * @return array
     * @author Ryan
     */
@@ -267,6 +268,32 @@ class Post{
             "fields" => "*",
             "entity" => "post",
             "custom" => "ORDER BY {$column} {$order} LIMIT {$limit}"
+        ];
+
+        $result = $this->db->select($this->options);
+
+        return $result;
+    }
+
+    /**
+    * Função para selecionar histórico de postagens do usuário
+    *
+    * @param string
+    * @param string
+    * @param number
+    * @return array
+    * @author Ryan
+    */
+    public function history($column, $order, $id){
+        // $order = ASC|DESC
+
+        $this->options = [
+            "all" => true,
+            "fields" => "*",
+            "entity" => "post",
+            "data" => [":ID_user_FK" => $id],
+            "conditional" => "ID_user_FK = :ID_user_FK",
+            "custom" => "ORDER BY {$column} {$order}"
         ];
 
         $result = $this->db->select($this->options);

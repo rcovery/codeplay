@@ -17,20 +17,19 @@ class Database{
      */
     public function select($op){
         $this->query = "SELECT {$op['fields']} FROM {$op["entity"]}";
+        
         // Se tiver parâmetros condicionais
-
-        if (isset($op["custom"])){
-            $this->query .= " {$op['custom']}";
-        }
+        $custom = isset($op['custom']) ? $op['custom'] : "";
         
         if (isset($op["conditional"])){
             // Gera uma query SELECT com a condição
-            $this->query .= " WHERE {$op['conditional']}";
+            $this->query .= " WHERE {$op['conditional']} {$custom}";
 
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute($op['data']);
         }else {
             // Executa uma query sem condição
+            $this->query .= " {$custom} ";
             $prepared = $this->conn->prepare($this->query);
             $prepared->execute();
         }

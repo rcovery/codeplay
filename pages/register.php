@@ -45,21 +45,19 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
 
-                <input class="input_7huy5" type="text" name="email"
+                <input class="input_7huy5 color" type="text" name="email"
                 value="<?= ($_POST["email"] ?? '');?>" placeholder="Email" required>
 
-                <input class="input_7huy5" maxlength="25" type="text" name="user"
+                <input class="input_7huy5 color" maxlength="25" type="text" name="user"
                 value="<?= ($_POST["user"] ?? '');?>" placeholder="Login" required>
 
-                <input class="input_7huy5" type="password" name="password" placeholder="Senha" required>
+                <input class="input_7huy5 color" type="password" name="password" placeholder="Senha" required>
 
                 <div class="btn-rgst">
                     <a href="login.php">Já tem uma conta? Faça login</a>
                 </div>
 
-                <div class="btn">
-                    <button type="submit">REGISTRAR</button>
-                </div>
+                <button class="btn full" type="submit">REGISTRAR</button>
             </div>
         </form>
     </div>

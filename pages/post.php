@@ -16,9 +16,9 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 </head>
 <body>
-	<?php include("navbar.php"); ?>
-
 	<?php
+		include("navbar.php");
+		
 		if (!isset($_GET["id"])) {
 			(new View("Ocorreu um erro!"))->warning();
 			header("location: newpost.php");
@@ -36,10 +36,10 @@
 			<div class="block_image_78ajoe"><img id="game_thumb" src="<?= $result['post_files'] . "thumb/thumbnail.dat" ?>"></div>
 			<div class="flex_block game_infos">
 				<div>
-					<a class="postpage" target="_blank" href="profile.php?id=<?= $user['ID_user'] ?>"><img class="profile_pic postpage" src="<?= $user["pic_path"]; ?>"></a>
+					<a class="postpage" href="profile.php?id=<?= $user['ID_user'] ?>"><img class="profile_pic postpage" src="<?= $user["pic_path"]; ?>"></a>
 					<div>
 						<p class="postpage info" title="<?= $result["post_title"] ?>"><?= $result["post_title"] ?></p>
-						<p class="postpage info"><?= $user["username"] ?></p>
+						<p class="postpage info color"><?= $user["username"] ?></p>
 					</div>
 				</div>
 				<div>
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			<div class="flex_block game_content">
-				<div id="game_9ka83l">
+				<div id="game_9ka83l" class="color">
 					<div id="description_header">
 						<p>Nº de visualizações <?= $result['post_views'] ?></p>
 						<p>
@@ -59,10 +59,9 @@
 							<span id="like_number">
 								<?= $result['post_likes'] ?>
 							</span>
-							likes
 						</p>
 					</div>
-					<div id="game_description"><?= $result['post_content'] ?></div>
+					<div id="game_description" class="color"><?= $result['post_content'] ?></div>
 				</div>
 				<div class="recommended">
 					<p>Outros jogos</p>
@@ -72,8 +71,8 @@
 								<img src="<?= $game['post_files'] ?>thumb/thumbnail.dat">
 							</div>
 							<div class="game_info">
-								<strong><?= substr($game['post_title'], 0, 40) ?>...</strong>
-								<p><?= $user['username'] ?></p>
+								<strong class="color"><?= (strlen($game['post_title']) > 40) ? substr($game['post_title'], 0, 40) . "..." : $game['post_title'] ?></strong>
+								<p class="color"><?= $user['username'] ?></p>
 								<p class="views"><?= $game["post_views"] ?> views</p>
 							</div>
 						</a>

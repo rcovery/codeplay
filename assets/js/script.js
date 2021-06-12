@@ -4,6 +4,7 @@ var moon_svg = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg
 
 var dark_on = false
 var is_liked = false
+var delete_modal_last_id = 0
 
 function toggle_theme(){
 	let icon = document.getElementsByClassName("theme_switcher")[0]
@@ -70,4 +71,33 @@ function like_toggle(id_post, id_user) {
     }
 
     is_liked = !is_liked
+}
+
+function delete_info(entity, id) {
+    let formdata = new FormData()
+
+    switch(entity) {
+        case "post":
+            formdata.append("ID_post", id)
+            formdata.append("entity", entity)
+            break
+        case "user":
+            formdata.append("ID_user", id)
+            formdata.append("entity", entity)
+            break
+    }
+
+    fetch('delete.php', {
+        method: 'POST',
+        body: formdata
+    }).then(response => {
+        window.location.href += "&success=1"
+    })
+
+    document.getElementById('black_screen_of_decision').classList.remove('active')
+}
+
+function confirm_modal(id) {
+    document.getElementById('black_screen_of_decision').classList.add('active')
+    delete_modal_last_id = id
 }

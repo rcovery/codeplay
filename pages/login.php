@@ -48,20 +48,18 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
 
-                <input class="input_7huy5" maxlength="25" type="text" name="user" placeholder="Usuário" required>
+                <input class="input_7huy5 color" maxlength="25" type="text" name="user" placeholder="Usuário" required>
 
-                <input class="input_7huy5" type="password" name="password" placeholder="Senha" required>
+                <input class="input_7huy5 color" type="password" name="password" placeholder="Senha" required>
 
                 <input class="checkbox" type="checkbox" name="keep_logged" hidden>
-                <label id="logged" hidden>Me manter logado</label>
+                <label id="logged" class="color">Me manter logado</label>
 
                 <div class="btn-rgst">
                     <a href="register.php">Criar uma conta</a>
                 </div>
 
-                <div class="btn">
-                    <button type="submit">ACESSAR</button>
-                </div>
+                <button class="btn full" type="submit">ACESSAR</button>
             </div>
         </form>
     </div>

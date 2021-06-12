@@ -86,17 +86,17 @@
                     <p class="pixel large title">CodePlay</p>
                 </div>
                 
-                <input class="input_7huy5" type="text" name="title"
+                <input class="input_7huy5 color" type="text" name="title"
                 value="<?= $postdata['post_title'] ?? ''; ?>" placeholder="Título da postagem" required maxlength="60">
                 
-                <textarea id="editor" class="input_7huy5 description" type="text" name="description"
+                <textarea id="editor" class="input_7huy5 color description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required><?= $postdata['post_content'] ?? ''; ?></textarea>
                 
                 <div class="upload_buttons">
                     <div>
                         <label for="file" class="upload_btn">
                             <img title="Logo" id="src_files" class="upload_icons" src="../assets/images/file.png">
-                            <p class="file_label">Upload files!</p>
+                            <p class="file_label color">Upload files!</p>
                         </label>
                         <input id="file" name="source_files[]" type="file" accept=".html, .css, .js, image/png, image/jpeg, image/jpg" hidden multiple onchange="
                             update_file_input('sources')
@@ -105,7 +105,7 @@
                     <div>
                         <label for="thumb" class="upload_btn">
                             <img class="upload_icons" id="thumb_logo" src="../assets/images/thumb.png">
-                            <p class="file_label" id="thumb_name">Upload thumb!</p>
+                            <p class="file_label color" id="thumb_name">Upload thumb!</p>
                         </label>
                         <input id="thumb" name="thumb" type="file" accept="image/png, image/jpeg, image/jpg" hidden onchange="
                             update_file_input('thumb')
@@ -113,9 +113,7 @@
                     </div>
                 </div>
                 
-                <div class="btn">
-                    <button type="submit">POSTAR</button>
-                </div>
+                <button class="btn full" type="submit">POSTAR</button>
             </div>
             <div id='information'>
                 <i onclick="closeModal('information')" class="information_btn bi bi-x-circle-fill"></i>

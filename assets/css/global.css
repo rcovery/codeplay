@@ -82,6 +82,83 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}.flex_block.vertical {
+	flex-direction: column;
+    align-items: flex-start;
+}
+
+.field {
+	font-size: 12px;
+    color: var(--grey-light);
+    font-family: Roboto;
+}
+
+.no_margin {
+	margin: 0 !important;
+}
+
+thead .field {
+	font-size: 20px;
+}
+
+.right-corner {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+.flex_separate {
+	justify-content: space-between;
+}
+
+.flex_block.left {
+	text-align: left;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-left: 10px;
+}
+
+.color {
+	color: var(--text);
+}
+
+.confirm {
+	border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}.confirm.delete {
+	background: #e44a4a;
+}.confirm.delete button {
+	background: #ff6f6f;
+    border: solid 2px #ffd3d3;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}.confirm.delete button:hover {
+	background: white;
+	border: solid 2px white;
+}.confirm p {
+	font-family: 'Quicksand';
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+#black_screen_of_decision {
+	transform: scale(0);
+	display: flex;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	transition: 0.2s;
+}#black_screen_of_decision.active {
+	transform: scale(1);
 }
 
 .header_landing {
@@ -244,7 +321,6 @@ footer {
 
 .no_result {
 	background: var(--bg);
-	color: var(--text);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -274,7 +350,6 @@ footer {
 	background: var(--bg2);
 	box-sizing: border-box;
 	padding: 20px;
-	color: var(--text);
 	transition: 0.2s;
 	border-radius: 5px;
 	max-width: 330px;
@@ -287,7 +362,6 @@ footer {
 .game_category {
 	font-family: 'Blockt';
 	font-size: 42px;
-	color: var(--text);
 	margin: 20px 0 20px 30px;
 }
 
@@ -312,13 +386,11 @@ footer {
 	max-width: 210px;
 	border-radius: 10px;
 }.splide .game_item .creator {
-	color: var(--text);
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 20px;
 	margin-bottom: 60px;
 }.splide .game_item .game_title {
 	font-family: 'KoHo', sans-serif;
-	color: var(--text);
 	font-size: 20px;
 	margin: 20px 0;
 }.gameboy.controller {
@@ -335,7 +407,7 @@ footer {
 	border-radius: 100%;
 }
 
-.gameboy.btn {
+.gameboy.controller_btn {
 	background: #602675;
 	box-shadow: 2px 2px 0 #3e0b2a;
 	width: 25px;
@@ -344,7 +416,7 @@ footer {
 	bottom: 30px;
 	right: 10px;
 	border-radius: 100%;
-}.gameboy.btn + .gameboy.btn {
+}.gameboy.controller_btn + .gameboy.controller_btn {
 	background: #a538cc;
 	box-shadow: 2px 2px 0 #602675;
 	bottom: 18px;
@@ -369,7 +441,6 @@ footer {
 }
 
 .main_page {
-	height: 100vh;
 	width: var(--limitarea);
 	text-align: center;
 }#game_thumb {
@@ -390,12 +461,10 @@ footer {
 	justify-content: space-between;
 	align-items: flex-start;
 }#game_9ka83l {
-	color: var(--text);
 	width: 500px;
 }
 
 #game_description {
-	color: var(--text);
 	background: var(--bg2);
     border-radius: 10px;
     min-height: 400px;
@@ -429,7 +498,6 @@ footer {
 	font-size: 20px;
 	text-align: left;
 }.info.postpage + .info.postpage {
-	color: var(--text);
 	margin-top: 15px;
 }
 
@@ -472,7 +540,6 @@ footer {
 	text-decoration: none;
 	display: flex;
 	margin-top: 10px;
-	color: var(--text);
 } .recommended > p {
 	color: var(--grey-light);
 	text-align: right;
@@ -488,6 +555,28 @@ footer {
 #like_star {
 	cursor: pointer;
 	color: var(--primary-color);
+}
+
+.space {
+	margin: 0 80px;
+}
+
+.btn{
+	width: 100px;
+	border-radius: 100px;
+	padding: 15px;
+	color: white;
+	border: 0px;
+	outline: 0;
+	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
+	cursor: pointer;
+	margin-top: 10px;
+}.btn.full {
+	width: 100%;
+}
+
+.btn:hover {
+	background: linear-gradient(to right, var(--secondary-color), var(--primary-color));;
 }
 
 @media only screen and (max-width: 800px) {

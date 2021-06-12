@@ -81,52 +81,52 @@
                 $date = (new Post())->showcase("post_date", "DESC");
                 $likes = (new Post())->showcase("post_likes", "DESC");
             ?>
-            <p class="game_category">Em alta</p>
+            <p class="game_category color">Em alta</p>
             <div class="splide" id="slide_one">
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($viewed as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
-                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <p class="game_title color"><?= (strlen($game['post_title']) > 20) ? substr($game['post_title'], 0, 20) . "..." : $game['post_title'] ?></p>
+                                <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
-                                <span class="gameboy btn"></span>
-                                <span class="gameboy btn"></span>
+                                <span class="gameboy controller_btn"></span>
+                                <span class="gameboy controller_btn"></span>
                             </a>
                         <?php endforeach ; ?>
                     </ul>
                 </div>
             </div>
-            <p class="game_category">Mais recentes</p>
+            <p class="game_category color">Mais recentes</p>
             <div class="splide" id="slide_two">
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($date as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
-                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <p class="game_title color"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
+                                <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
-                                <span class="gameboy btn"></span>
-                                <span class="gameboy btn"></span>
+                                <span class="gameboy controller_btn"></span>
+                                <span class="gameboy controller_btn"></span>
                             </a>
                         <?php endforeach ; ?>
                     </ul>
                 </div>
             </div>
-            <p class="game_category">Mais curtidos</p>
+            <p class="game_category color">Mais curtidos</p>
             <div class="splide" id="slide_three">
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach($likes as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
-                                <span class="creator">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
+                                <p class="game_title color"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
+                                <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
-                                <span class="gameboy btn"></span>
-                                <span class="gameboy btn"></span>
+                                <span class="gameboy controller_btn"></span>
+                                <span class="gameboy controller_btn"></span>
                             </a>
                         <?php endforeach ; ?>
                     </ul>
@@ -169,14 +169,14 @@
             $result = (new Post())->search($_GET["search"]);
         ?>
         <?php if ($result == []): ?>
-            <div class='no_result'>
+            <div class='color no_result'>
                 Nenhum resultado encontrado!
             </div>
         <?php else: ?>
             <br>
             <div class='game_search'>
                 <?php foreach ($result as $key => $value): ?>
-                    <a href='pages/post.php?id=<?= $value["ID_post"] ?>' class='cartridge'>
+                    <a href='pages/post.php?id=<?= $value["ID_post"] ?>' class='cartridge color'>
                         <img src="<?= str_replace(" ", "%20", $value["post_files"]) ?>/thumb/thumbnail.dat">
                         <p><?= $value["post_title"] ?></p>
                     </a>

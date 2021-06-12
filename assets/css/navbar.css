@@ -46,7 +46,6 @@
 
 #navbar1991 .search_box {
 	background: var(--bg2);
-	color: var(--text);
 	padding: 9px;
     box-sizing: border-box;
     width: 50vw;
@@ -93,7 +92,6 @@
 }.dropdown_menu.active {
 	transform: translateX(0);
 }.dropdown_menu > a {
-	color: var(--text);
 	padding: 10px 25px;
     text-align: center;
     text-decoration: none;
