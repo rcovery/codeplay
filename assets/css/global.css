@@ -965,6 +965,8 @@ thead td.selected {
 	}#information {
 		left: 5%;
 		right: 5%;
+	}.space {
+		margin: 0;
 	}
 }
 

@@ -95,7 +95,7 @@
 				</div>
 			</form>
 
-			<div class="card">
+			<div class="card" style="overflow-x:auto">
 				<table class="history">
 					<thead>
 						<tr>
