@@ -6,9 +6,7 @@
     <title>CodePlay :: Registro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 </head>
 
 <body>
@@ -39,7 +37,7 @@
     
     <div id="main_form">
         <form method="POST" action="register.php">
-            <div class="card  ">
+            <div class="formpage">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
                     <p class="pixel large title">CodePlay</p>

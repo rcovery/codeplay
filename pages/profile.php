@@ -2,6 +2,7 @@
 	session_start();
 	require_once(dirname(__FILE__) . "/../Controller/Post.php");
 	require_once(dirname(__FILE__) . "/../Controller/User.php");
+	require_once(dirname(__FILE__) . "/../Controller/Session.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,72 +11,86 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="perfil.css">
 </head>
 <body>
 	<?php
 		include("navbar.php");
 
-		$id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+		//if (!isset($_GET['id']) || empty($_GET['id'])) header("location: /index.php");
+		if(!(new Session())->loadSession()){
+            header("location: ../pages/login.php");
+        }
+
+        $pass = false;
+        $data = [
+            ":username" => $_POST["username"] ?? null,
+            ":bio" => $_POST["bio"] ?? null
+        ];
+
+        $files = [
+        	"pic" => $_FILES['pic'] ?? null
+        ];
+
+        foreach (array_values($data) as $info){
+            if (!empty($info)) $pass = true;
+        }
+
+        foreach (array_values($files) as $info){
+            if (!empty($info)) $pass = true;
+        }
+
+        if ($pass) {
+        	$data[":ID_user"] = $_GET['id'];
+        	if ((new User())->updateProfile($data, $files)){
+        		header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
+        	}
+        }
 
 		if (isset($_GET['success']) && $_GET['success']='1') {
             (new View("Sucesso!"))->success();
         }
 
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 		$user = (new User())->getUser($_GET['id']);
-
-		if (!isset($_GET['id']) || empty($_GET['id'])) header("location: /index.php");
 	?>
 
 	<div class="flex_block">
 		<div class="main_page">
-			<form method="POST" action="profile.php">
+			<form method="POST" action="profile.php?id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
 				<div class="card">
 					<div class="space">
+						<?php if($_GET['id'] == $id): ?>
+							<a href="javascript:void(0)" onclick="show_form()" class="text_hiddenform"><i class="right-corner color bi bi-pencil-fill"></i></a>
+
+							<a href="javascript:void(0)" onclick="show_form()" class="input_hiddenform hidden"><i class="right-corner color bi bi-x-lg"></i></a>
+						<?php endif; ?>
 						<div class="card-header">
-							<img src="<?= $user['pic_path'] ?>" alt="">
+							<label for="pic" class="upload_btn">
+	                            <img src="<?= $user['pic_path'] ?>" title="profile_pic">
+	                        </label>
+                        	<input id="pic" name="pic" type="file" accept="image/png, image/jpeg, image/jpg" disabled hidden/>
+							
 							<h1 class="username"><?= $user['username'] ?></h1>
 						</div>
 						<div class="card">
-							<?php if($_GET['id'] == $id): ?>
-								<i class="right-corner color bi bi-pencil-fill"></i>
-							<?php endif; ?>
-
 							<div class="card-group">
 								<div class="flex_block vertical">
 									<p class="field">NOME DE USUÁRIO</p>
-									<h2 class="color"><?= $user['username'] ?></h2>
+									<h2 class="color text_hiddenform"><?= $user['username'] ?></h2>
+									<input maxlength="25" value="<?= $user['username'] ?>" class="input_hiddenform hidden input_7huy5 color" type="text" name="username">
 								</div>
 							</div>
 							<br>
 							<div class="card-group">
 								<div class="flex_block vertical">
 									<p class="field">BIO</p>
-									<h2 class="color"><?= $user['bio'] ?></h2>
+									<h2 class="color text_hiddenform"><?= $user['bio'] ?></h2>
+									<input maxlength="100" value="<?= $user['bio'] ?>" class="input_hiddenform hidden input_7huy5 color" type="text" name="bio">
 								</div>
 							</div>
-
-							<!-- <div class="card-group">
-								<div class="flex_block vertical">
-									<p class="field">NOME DE USUÁRIO</p>
-									<h2>Meu Nome</h2>
-								</div>
-								<?php if($_GET['id'] == $id): ?>
-									<button type="submit" class="btn no_margin">Editar</button>
-								<?php endif; ?>
-							</div>
-							<br>
-							<div class="card-group">
-								<div class="flex_block vertical">
-									<p class="field">BIO</p>
-									<h2>Diga mais sobre você</h2>
-								</div>
-								<?php if($_GET['id'] == $id): ?>
-									<button type="submit" class="btn no_margin">Editar</button>
-								<?php endif; ?>
-							</div> -->
 						</div>
+
+						<button id="save_button" type="submit" class="btn hidden">SALVAR</button>
 					</div>
 				</div>
 			</form>

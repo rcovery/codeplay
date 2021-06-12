@@ -6,9 +6,7 @@
     <title>CodePlay :: Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 </head>
 
 <body>
@@ -42,7 +40,7 @@
 
     <div id="main_form">
         <form method="POST" action="login.php">
-            <div class="card">
+            <div class="formpage">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
                     <p class="pixel large title">CodePlay</p>
@@ -52,7 +50,7 @@
 
                 <input class="input_7huy5 color" type="password" name="password" placeholder="Senha" required>
 
-                <input class="checkbox" type="checkbox" name="keep_logged" hidden>
+                <input class="checkbox" type="checkbox" name="keep_logged">
                 <label id="logged" class="color">Me manter logado</label>
 
                 <div class="btn-rgst">

@@ -20,7 +20,8 @@ class Post{
     * @author Ryan
     */
     public function createPost($data, $files){
-        str_replace("<", "&#60;", $data[':post_content']);
+        $data[':post_content'] = str_replace("<scr", "&#60;scr", $data[':post_content']);
+        $data[':post_title'] = str_replace("<", "&#60;", $data[':post_title']);
 
         $content = $data[":post_content"];
         unset($data[":post_content"]);

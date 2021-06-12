@@ -101,3 +101,20 @@ function confirm_modal(id) {
     document.getElementById('black_screen_of_decision').classList.add('active')
     delete_modal_last_id = id
 }
+
+function show_form() {
+    let text = document.getElementsByClassName("text_hiddenform")
+
+    for (let i = 0; i < text.length; i++) {
+        text[i].classList.toggle("hidden")
+    }
+
+    let inputs = document.getElementsByClassName("input_hiddenform")
+
+    for (let i = 0; i < text.length; i++) {
+        inputs[i].classList.toggle("hidden")
+    }
+
+    document.getElementById("save_button").classList.toggle("hidden")
+    document.getElementById('pic').toggleAttribute('disabled')
+}

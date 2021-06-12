@@ -16,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
 
     <!-- AOS JS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

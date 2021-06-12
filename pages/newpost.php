@@ -8,9 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodePlay :: Nova postagem</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/form.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/navbar.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
@@ -80,7 +78,7 @@
     <div id="main_form">
         <form id="post_form" method="POST" action="newpost.php<?= isset($data['edit']) ? '?edit='.$_GET["edit"] : '' ?>" enctype="multipart/form-data">
             <span class="information_btn" onclick="openModal('information')"><i class="bi bi-info-circle"></i></span>
-            <div class="card">
+            <div class="formpage">
                 <div id="form_title">
                     <img id="imglogo" src="../assets/images/logo.png">
                     <p class="pixel large title">CodePlay</p>

@@ -127,5 +127,76 @@ class User{
 
         return $result;
     }
+
+    /**
+    * Função para atualizar perfil no banco de dados
+    *
+    * @param array $data
+    * @param array $files
+    * @return boolean
+    * @author Ryan
+    */
+    public function updateProfile($data, $files = null){
+        $data[':bio'] = str_replace("<", "&#60;", $data[':bio']);
+        $data[':username'] = str_replace("<", "&#60;", $data[':username']);
+
+        if (!file_exists("../assets/uploads")) mkdir("../assets/uploads", 0777);
+        if (!file_exists("../assets/uploads/" . $data[':ID_user'])) mkdir("../assets/uploads/" . $data[':ID_user'], 0777);
+        if (!file_exists("../assets/uploads/" . $data[':ID_user'] . "/profile.dat")) mkdir("../assets/uploads/" . $data[':ID_user'] . "/profile.dat", 0777);
+
+        $set = "username = :username, bio = :bio";
+        $profile_folder = "../assets/uploads/{$_SESSION["id"]}/";
+        $file = [];
+
+        if (isset($files)) {
+            $has_pic = empty($files["pic"]["name"]) ? false : true;
+
+            if ($this->validateFiles($files, $has_pic)){
+                $new_folder = $profile_folder . '/' . $files["pic"]["name"];
+
+                if ($has_pic) {
+                    exec("rm -rf {$profile_folder}/*.*");
+                    move_uploaded_file($files["pic"]["tmp_name"], $new_folder);
+                    $data[":pic_path"] = $new_folder;
+                    
+                    $set .= ", pic_path = :pic_path";
+                }
+            } else {
+                return false;
+            }
+        }
+
+        $this->options = [
+            "data" => $data,
+            "entity" => "user",
+            "conditional" => "ID_user = :ID_user",
+            "set" => $set
+        ];
+
+        $this->db->update($this->options);
+        return true;
+    }
+
+    /**
+    * Função para validar arquivos antes de upar
+    *
+    * @param array $files
+    * @return boolean
+    * @author Ryan
+    */
+    public function validateFiles($files, $has_pic = true){
+        // Validate pic
+        if ($has_pic) {
+            if (!in_array($files["pic"]["type"], ["image/png", "image/jpg", "image/jpeg"])){
+                (new View("Sua foto de perfil deve ser uma imagem!"))->warning();
+                return false;
+            } else if ($files["pic"]["size"] > 1024000){
+                (new View("Sua foto de perfil deve ter no máximo 1mb!"))->warning();
+                return false;
+            }
+        }
+        
+        return true;
+    }
 }
 ?>
