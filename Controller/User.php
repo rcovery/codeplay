@@ -142,7 +142,6 @@ class User{
 
         if (!file_exists("../assets/uploads")) mkdir("../assets/uploads", 0777);
         if (!file_exists("../assets/uploads/" . $data[':ID_user'])) mkdir("../assets/uploads/" . $data[':ID_user'], 0777);
-        if (!file_exists("../assets/uploads/" . $data[':ID_user'] . "/profile.dat")) mkdir("../assets/uploads/" . $data[':ID_user'] . "/profile.dat", 0777);
 
         $set = "username = :username, bio = :bio";
         $profile_folder = "../assets/uploads/{$_SESSION["id"]}/";
@@ -152,10 +151,9 @@ class User{
             $has_pic = empty($files["pic"]["name"]) ? false : true;
 
             if ($this->validateFiles($files, $has_pic)){
-                $new_folder = $profile_folder . '/' . $files["pic"]["name"];
+                $new_folder = $profile_folder . '/profile.dat';
 
                 if ($has_pic) {
-                    exec("rm -rf {$profile_folder}/*.*");
                     move_uploaded_file($files["pic"]["tmp_name"], $new_folder);
                     $data[":pic_path"] = $new_folder;
                     
