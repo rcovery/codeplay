@@ -42,7 +42,7 @@
         if ($pass) {
         	$data[":ID_user"] = $_GET['id'];
         	if ((new User())->updateProfile($data, $files)){
-        		header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
+        		header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&success=1");
         	}
         }
 
