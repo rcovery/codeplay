@@ -112,7 +112,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach((new Post())->history("post_date", 'ASC', $_GET['id']) as $post): ?>
+						<?php foreach((new Post())->history("post_date", 'DESC', $_GET['id']) as $post): ?>
 							<tr>
 								<td class="larger">
 									<a style="text-decoration: none;" class="flex_block color" href="post.php?id=<?= $post['ID_post'] ?>">
