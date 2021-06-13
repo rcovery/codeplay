@@ -16,10 +16,8 @@
 	<?php
 		include("navbar.php");
 
-		//if (!isset($_GET['id']) || empty($_GET['id'])) header("location: /index.php");
-		if(!(new Session())->loadSession()){
-            header("location: ../pages/login.php");
-        }
+		if (!isset($_GET['id']) || empty($_GET['id'])) header("location: /index.php");
+		(new Session())->loadSession();
 
         $pass = false;
         $data = [
@@ -59,7 +57,7 @@
 			<form method="POST" action="profile.php?id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
 				<div class="card">
 					<div class="space">
-						<?php if($_GET['id'] == $id): ?>
+						<?php if(isset($id) && $id == $_GET['id']): ?>
 							<a href="javascript:void(0)" onclick="show_form()" class="text_hiddenform"><i class="right-corner color bi bi-pencil-fill"></i></a>
 
 							<a href="javascript:void(0)" onclick="show_form()" class="input_hiddenform hidden"><i class="right-corner color bi bi-x-lg"></i></a>
@@ -68,7 +66,9 @@
 							<label for="pic" class="upload_btn">
 	                            <img src="<?= $user['pic_path'] ?>" title="profile_pic">
 	                        </label>
-                        	<input id="pic" name="pic" type="file" accept="image/png, image/jpeg, image/jpg" disabled hidden/>
+	                        <?php if (isset($id) && $id == $_GET['id']): ?>
+                        		<input id="pic" name="pic" type="file" accept="image/png, image/jpeg, image/jpg" disabled hidden/>
+                        	<?php endif; ?>
 							
 							<h1 class="username"><?= $user['username'] ?></h1>
 						</div>
@@ -76,16 +76,20 @@
 							<div class="card-group">
 								<div class="flex_block vertical">
 									<p class="field">NOME DE USUÁRIO</p>
-									<h2 class="color text_hiddenform"><?= $user['username'] ?></h2>
-									<input maxlength="25" value="<?= $user['username'] ?>" class="input_hiddenform hidden input_7huy5 color" type="text" name="username">
+									<h2 class="color quick text_hiddenform"><?= $user['username'] ?></h2>
+									<?php if (isset($id) && $id == $_GET['id']): ?>
+										<input maxlength="25" value="<?= $user['username'] ?>" class="input_hiddenform hidden poppins input_7huy5 color" type="text" name="username">
+									<?php endif; ?>
 								</div>
 							</div>
 							<br>
 							<div class="card-group">
 								<div class="flex_block vertical">
 									<p class="field">BIO</p>
-									<h2 class="color text_hiddenform"><?= $user['bio'] ?></h2>
-									<input maxlength="100" value="<?= $user['bio'] ?>" class="input_hiddenform hidden input_7huy5 color" type="text" name="bio">
+									<h2 class="color quick text_hiddenform"><?= $user['bio'] ?></h2>
+									<?php if (isset($id) && $id == $_GET['id']): ?>
+										<input maxlength="100" value="<?= $user['bio'] ?>" class="input_hiddenform hidden poppins input_7huy5 color" type="text" name="bio">
+									<?php endif; ?>
 								</div>
 							</div>
 						</div>
@@ -116,14 +120,14 @@
 											<img src="<?= $post['post_files'] ?>thumb/thumbnail.dat">
 										</div>
 										<div class="flex_block vertical left">
-											<p><?= (strlen($post['post_title']) > 25) ? substr($post['post_title'], 0, 25) . "..." : $post['post_title'] ?></p>
+											<p class="poppins"><?= (strlen($post['post_title']) > 25) ? substr($post['post_title'], 0, 25) . "..." : $post['post_title'] ?></p>
 											<br>
-											<p><?= $post['post_views'] ?> views</p>
+											<p class="quick"><?= $post['post_views'] ?> views</p>
 										</div>
 									</a>
 								</td>
-								<td class="color selected"><?= $post['post_date'] ?></td>
-								<td class="color"><?= $post['post_likes'] ?></td>
+								<td class="color selected odin"><?= $post['post_date'] ?></td>
+								<td class="color odin"><?= $post['post_likes'] ?></td>
 								<?php if($_GET['id'] == $id): ?>
 									<td>
 										<a href="newpost.php?edit=<?= $post['ID_post'] ?>"><i class="color bi bi-pencil-fill"></i></a>

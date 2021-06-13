@@ -87,7 +87,7 @@
                         <?php foreach($viewed as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title color"><?= (strlen($game['post_title']) > 20) ? substr($game['post_title'], 0, 20) . "..." : $game['post_title'] ?></p>
+                                <p class="game_title color"><?= (strlen($game['post_title']) > 30) ? substr($game['post_title'], 0, 30) . "..." : $game['post_title'] ?></p>
                                 <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy controller_btn"></span>
@@ -104,7 +104,7 @@
                         <?php foreach($date as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title color"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
+                                <p class="game_title color"><?= (strlen($game['post_title']) > 30) ? substr($game['post_title'], 0, 30) . "..." : $game['post_title'] ?></p>
                                 <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy controller_btn"></span>
@@ -121,7 +121,7 @@
                         <?php foreach($likes as $game) : ?>
                             <a href="pages/post.php?id=<?= $game['ID_post'] ?>" class="splide__slide game_item">
                                 <div class="block_image_78ajoe"><img src="<?= $game['post_files'] . "/thumb/thumbnail.dat"; ?>"></div>
-                                <p class="game_title color"><?= substr($game["post_title"], 0, 20) . "..."; ?></p>
+                                <p class="game_title color"><?= (strlen($game['post_title']) > 30) ? substr($game['post_title'], 0, 30) . "..." : $game['post_title'] ?></p>
                                 <span class="creator color">By: <?= (new User())->getUser($game['ID_user_FK'])['username']; ?></span>
                                 <span class="gameboy controller"><span></span></span>
                                 <span class="gameboy controller_btn"></span>

@@ -23,7 +23,8 @@
         $data = [
             ":email" => $_POST["email"] ?? null,
             ":username" => $_POST["user"] ?? null,
-            ":password" => $_POST["password"] ?? null
+            ":password" => $_POST["password"] ?? null,
+            ":lgpd" => $_POST["lgpd"] ?? null
         ];
 
         foreach (array_values($data) as $info){
@@ -50,6 +51,9 @@
                 value="<?= ($_POST["user"] ?? '');?>" placeholder="Login" required>
 
                 <input class="input_7huy5 color" type="password" name="password" placeholder="Senha" required>
+
+                <input class="checkbox" type="checkbox" name="lgpd" required>
+                <label id="logged" class="color">Li e aceito os <a href="../termos.docx">Termos de uso</a> e <a href="../privacidade.docx">Política de privacidade</a></label>
 
                 <div class="btn-rgst">
                     <a href="login.php">Já tem uma conta? Faça login</a>

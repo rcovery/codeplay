@@ -18,8 +18,15 @@ class User{
     * @author Ryan
     */
     public function createUser($data){
+        if ($data[':lgpd'] != 'on') {
+            (new View("Você precisa aceitar os termos!"))->warning();
+            return false;
+        }
+
         $password = hash("sha512", $data[":password"]);
+        $consent = $data[':lgpd'];
         unset($data[":password"]);
+        unset($data[":lgpd"]);
 
         foreach(array_values($data) as $index=>$value){
             if (gettype($index) != "integer"){
@@ -46,7 +53,8 @@ class User{
         }
 
         $data[":password"] = $password;
-        $fields = "email, username, password";
+        $data[":lgpd"] = $consent;
+        $fields = "email, username, password, lgpd";
         
         $this->db->insert("user", $data, $fields);
 
@@ -151,9 +159,10 @@ class User{
             $has_pic = empty($files["pic"]["name"]) ? false : true;
 
             if ($this->validateFiles($files, $has_pic)){
-                $new_folder = $profile_folder . '/profile.dat';
+                $new_folder = $profile_folder . 'profile.dat';
 
                 if ($has_pic) {
+                    echo "teste";
                     move_uploaded_file($files["pic"]["tmp_name"], $new_folder);
                     $data[":pic_path"] = $new_folder;
                     
@@ -172,6 +181,7 @@ class User{
         ];
 
         $this->db->update($this->options);
+
         return true;
     }
 

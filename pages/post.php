@@ -54,7 +54,11 @@
 					<div id="description_header">
 						<p>Nº de visualizações <?= $result['post_views'] ?></p>
 						<p>
-							<i onclick="like_toggle(<?= $_GET['id'] ?>, <?= $_SESSION['id'] ?>, <?= $is_liked ?>)" id="like_star" class="bi bi-star-fill <?= $is_liked ? '' : 'bi-star' ?>"></i>
+							<i onclick="
+								<?= empty($_SESSION['id'])
+								? "window.location.href=`login.php`"
+								: "like_toggle({$_GET['id']}, {$_SESSION['id']}, {$is_liked})"; ?>
+							" id="like_star" class="bi bi-star-fill <?= $is_liked ? '' : 'bi-star' ?>"></i>
 							<span id="like_number">
 								<?= $result['post_likes'] ?>
 							</span>
