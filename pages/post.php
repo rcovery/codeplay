@@ -25,8 +25,14 @@
 			(new Post())->view($_GET["id"]);
 
 			$result = (new Post())->getPost($_GET["id"]);
+
+			if (!isset($result["ID_post"])) {
+				(new View("Ocorreu um erro!"))->warning();
+				header("location: newpost.php");
+			}
+
 			$user = (new User())->getUser($result["ID_user_FK"]);
-			$is_liked = (new Likes())->isLiked($_GET["id"], $result["ID_user_FK"]);
+			$is_liked = isset($_SESSION['id']) ? (new Likes())->isLiked($_GET["id"], $_SESSION['id']) : false;
 		}
 	?>
 
@@ -37,12 +43,15 @@
 				<div>
 					<a class="postpage" href="profile.php?id=<?= $user['ID_user'] ?>"><img class="profile_pic postpage" src="<?= $user["pic_path"]; ?>"></a>
 					<div>
-						<p class="postpage info" title="<?= $result["post_title"] ?>"><?= $result["post_title"] ?></p>
+						<p class="postpage info gametitle" title="<?= $result["post_title"] ?>"><?= $result["post_title"] ?></p>
 						<p class="postpage info color"><?= $user["username"] ?></p>
 					</div>
 				</div>
 				<div>
-					<a href="<?= $result['post_files']; ?>" target="_blank" class="act_button" id="playgame"><i class="bi bi-play-fill"></i> JOGAR</a>
+					<?php if($result['language'] == "js"): ?>
+						<a href="<?= $result['post_files']; ?>" target="_blank" class="act_button" id="playgame"><i class="bi bi-play-fill"></i> JOGAR</a>
+					<?php endif; ?>
+					
 					<?php if(isset($_SESSION['id']) && $_SESSION['id'] == $user['ID_user'] || isset($_SESSION['id']) && $_SESSION['is_admin'] == 1): ?>
 						<a class="act_button" id="editgame" href="newpost.php?edit=<?= $result['ID_post']; ?>"><i class="bi bi-pencil"></i> EDIT</a>
 					<?php endif; ?>
@@ -75,7 +84,7 @@
 							</div>
 							<div class="game_info">
 								<strong class="color"><?= (strlen($game['post_title']) > 40) ? substr($game['post_title'], 0, 40) . "..." : $game['post_title'] ?></strong>
-								<p class="color"><?= $user['username'] ?></p>
+								<p class="color"><?= (new User())->getUser($game['ID_user_FK'])['username'] ?></p>
 								<p class="views"><?= $game["post_views"] ?> views</p>
 							</div>
 						</a>

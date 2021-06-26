@@ -39,7 +39,7 @@ class Likes{
     }
 
     /**
-    * Função para verificar se a postagem já foi curtida
+    * Função para curtir
     *
     * @param string
     * @param string

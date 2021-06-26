@@ -53,7 +53,10 @@
                 <input class="input_7huy5 color" type="password" name="password" placeholder="Senha" required>
 
                 <input class="checkbox" type="checkbox" name="lgpd" required>
-                <label id="logged" class="color">Li e aceito os <a href="../termos.docx">Termos de uso</a> e <a href="../privacidade.docx">Política de privacidade</a></label>
+                <label id="logged" class="color">Li e aceito os <a href="../termos.docx">Termos de uso</a> e <a href="../privacidade.docx">Política de privacidade.</a></label>
+                <br>
+                <input class="checkbox" type="checkbox" name="lgpd">
+                <label id="logged" class="color">Aceito receber atualizações de jogos novos.</label>
 
                 <div class="btn-rgst">
                     <a href="login.php">Já tem uma conta? Faça login</a>

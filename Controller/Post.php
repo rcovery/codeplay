@@ -22,9 +22,7 @@ class Post{
     public function createPost($data, $files){
         $data[':post_content'] = str_replace("<scr", "&#60;scr", $data[':post_content']);
         $data[':post_title'] = str_replace("<", "&#60;", $data[':post_title']);
-
-        $content = $data[":post_content"];
-        unset($data[":post_content"]);
+        $data[":ID_user_FK"] = $_SESSION["id"];
 
         $this->options = [
             "all" => false,
@@ -34,24 +32,16 @@ class Post{
             "conditional" => "post_title = :post_title"
         ];
 
-        $result = $this->db->select($this->options);
-
-        $data[":post_content"] = $content;
-
-        if (isset($result['post_title']) && $result['post_title'] == $data[':post_title']){
-            (new View("Já existe uma postagem com este título"))->warning();
-            return false;
-        }
-
         if (strlen($data[":post_title"]) > 150) {
-            (new View("O título da postagem deve ter menos de  150 caracteres!"))->warning();
+            (new View("O título da postagem deve ter menos de 150 caracteres!"))->warning();
             return false;
         }
-        
-        $data[":ID_user_FK"] = $_SESSION["id"];
+
 
         if ($this->validateFiles($files)){
-            $game_folder = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
+            $hash = hash('ripemd160', $data[":post_title"] . time());
+
+            $game_folder = "../games/{$_SESSION["id"]}/{$hash}/";
             $file = [];
 
             if (!file_exists("../games")) mkdir("../games", 0777);
@@ -66,10 +56,12 @@ class Post{
                 move_uploaded_file($files["source"]["tmp_name"][$key], $new_path);
             }
             $data[":post_files"] = $game_folder;
-            $fields = "post_title, post_content, ID_user_FK, post_files";
+            $fields = "post_title, post_content, language, ID_user_FK, post_files";
 
             $this->db->insert("post", $data, $fields);
             $this->createZip($game_folder, $file);
+        } else {
+            return false;
         }
 
         return true;
@@ -84,21 +76,14 @@ class Post{
     * @author Ryan
     */
     public function updatePost($data, $files = null){
-        str_replace("<", "&#60;", $data[':post_content']);
+        $post = $this->getPost($data[":ID_post"]);
+        $data[':post_content'] = str_replace("<scr", "&#60;scr", $data[':post_content']);
+        $data[':post_title'] = str_replace("<", "&#60;", $data[':post_title']);
 
-        $set = "post_title = :post_title, post_content = :post_content";
-        $game_folder = "../games/{$_SESSION["id"]}/";
-        $current = $game_folder . $data["original_title"] . "/";
+        $set = "post_title = :post_title, post_content = :post_content, language = :language";
+
+        $current = $post['post_files'];
         $file = [];
-
-        if ($data["original_title"] != $data[":post_title"]) {
-            $new_folder = $game_folder . $data[":post_title"];
-            rename(dirname(__FILE__) . "/$current", dirname(__FILE__) . "/$new_folder/");
-
-            $current = "../games/{$_SESSION["id"]}/{$data[":post_title"]}/";
-            $data[":post_files"] = $current;
-            $set .= ", post_files = :post_files";
-        }
 
         if (isset($files)) {
             $has_thumb = !empty($files["thumb"]["name"]) ? true : false;
@@ -121,6 +106,8 @@ class Post{
 
                     $this->createZip($current, $file);
                 }
+            } else {
+                return false;
             }
         }
 
@@ -146,7 +133,8 @@ class Post{
     */
     public function validateFiles($files, $has_thumb = true, $has_files = true){
         $options = [
-            "has_html" => false
+            "has_html" => false,
+            "especial" => false
         ];
 
         // Validate thumb
@@ -194,13 +182,18 @@ class Post{
                         }
                         break;
                     default:
-                        (new View("O arquivo {$files["source"]["name"][$key]} não é suportado!"))->warning();
-                        return false;
+                        if (in_array($files["source"]["type"][$key], ["application/octet-stream", "application/bat"])) {
+                            (new View("O arquivo {$files["source"]["name"][$key]} não é suportado!"))->warning();
+                            return false;
+                        } else {
+                            $options['especial'] = true;
+                        }
                 }
             }
+
             // Verifica se possui um arquivo index.html
-            if (!$options["has_html"]){
-                (new View("Você deve ter um arquivo index.html!"))->warning();
+            if (!$options["has_html"] && !$options['especial']){
+                (new View("Você deve ter um arquivo index!"))->warning();
                 return false;
             }
         }
@@ -334,9 +327,7 @@ class Post{
     * @author Ryan
     */
     public function createZip($dir, $files) {
-        echo "init";
         if ($this->zip->open($dir . 'source_code.zip', ZipArchive::CREATE) === TRUE) {
-            echo "create zip<br>";
 
             foreach($files as $filename) {
                 $this->zip->addFile($dir.$filename);
@@ -344,7 +335,6 @@ class Post{
 
             $this->zip->close();
         }
-        echo "endzip";
     }
 }
 ?>

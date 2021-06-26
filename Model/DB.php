@@ -57,6 +57,10 @@ class Database{
 
         $prepared = $this->conn->prepare($this->query);
         $prepared->execute($data);
+
+        $last_id = $this->conn->lastInsertId();
+
+        return $last_id;
     }
 
     /**

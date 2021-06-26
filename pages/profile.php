@@ -50,6 +50,8 @@
 
         $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 		$user = (new User())->getUser($_GET['id']);
+
+		if (!isset($user['ID_user'])) header("location: /index.php");
 	?>
 
 	<div class="flex_block">
@@ -87,7 +89,7 @@
 								<div class="flex_block vertical">
 									<p class="field">BIO</p>
 									<h2 class="color quick text_hiddenform"><?= $user['bio'] ?></h2>
-									<?php if (isset($id) && $id == $_GET['id']): ?>
+									<?php if (isset($id) && $id == $_GET['id'] || $_SESSION['is_admin'] == 1): ?>
 										<input maxlength="100" value="<?= $user['bio'] ?>" class="input_hiddenform hidden poppins input_7huy5 color" type="text" name="bio">
 									<?php endif; ?>
 								</div>
@@ -106,7 +108,7 @@
 							<td class="larger field">Publicação</td>
 							<td class="field selected">Data</td>
 							<td class="field">Curtidas</td>
-							<?php if($_GET['id'] == $id): ?>
+							<?php if($_GET['id'] == $id || $_SESSION['is_admin'] == 1): ?>
 								<td class="field">Ações</td>
 							<?php endif; ?>
 						</tr>
@@ -128,7 +130,7 @@
 								</td>
 								<td class="color selected odin"><?= $post['post_date'] ?></td>
 								<td class="color odin"><?= $post['post_likes'] ?></td>
-								<?php if($_GET['id'] == $id): ?>
+								<?php if($_GET['id'] == $id || $_SESSION['is_admin'] == 1): ?>
 									<td>
 										<a href="newpost.php?edit=<?= $post['ID_post'] ?>"><i class="color bi bi-pencil-fill"></i></a>
 										&nbsp;

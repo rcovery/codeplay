@@ -5,9 +5,13 @@
 <html lang="pt-br">
 
 <head>
+    <?php if (!empty($_GET['edit'])): ?>
+        <title>CodePlay :: Editar postagem</title>
+    <?php else: ?>
+        <title>CodePlay :: Nova postagem</title>
+    <?php endif; ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodePlay :: Nova postagem</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/global.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -32,7 +36,8 @@
         $pass = true;
         $data = [
             ":post_title" => $_POST["title"] ?? null,
-            ":post_content" => $_POST["description"] ?? null
+            ":post_content" => $_POST["description"] ?? null,
+            ":language" => $_POST["language"] ?? null
         ];
 
         if (isset($_GET["edit"]) && !empty($_GET['edit'])) {
@@ -66,11 +71,13 @@
             if (empty($files['thumb']['name']) && empty($files['source']['name'][0])) $files = null;
 
             if (!isset($data['edit'])) {
-                (new Post())->createPost($data, $files);
-                header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
+                if ((new Post())->createPost($data, $files)) {
+                    header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?success=1");
+                }
             } else {
-                (new Post())->updatePost($data, $files);
-                header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&success=1");
+                if ((new Post())->updatePost($data, $files)) {
+                    header("location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&success=1");
+                }
             }
         }
     ?>
@@ -89,6 +96,19 @@
                 
                 <textarea id="editor" class="input_7huy5 color description" type="text" name="description"
                 value="" placeholder="Fale sobre seu código" required><?= $postdata['post_content'] ?? ''; ?></textarea>
+
+                <br>
+                <div class="flex_block start">
+                    <p class="color poppins">Linguagem utilizada:&nbsp;</p>
+                    <select name="language" class="odin color myselect">
+                        <option class="odin color" <?= (isset($postdata['language']) && $postdata['language'] == 'js') ? 'selected' : ''; ?> value="js">JS</option>
+                        <option class="odin color" <?= (isset($postdata['language']) && $postdata['language'] == 'php') ? 'selected' : ''; ?> value="php">PHP</option>
+                        <option class="odin color" <?= (isset($postdata['language']) && $postdata['language'] == 'c') ? 'selected' : ''; ?> value="c">C</option>
+                        <option class="odin color" <?= (isset($postdata['language']) && $postdata['language'] == 'c++') ? 'selected' : ''; ?> value="c++">C++</option>
+                        <option class="odin color" <?= (isset($postdata['language']) && $postdata['language'] == 'java') ? 'selected' : ''; ?> value="java">JAVA</option>
+                    </select>
+                </div>
+
                 
                 <div class="upload_buttons">
                     <div>
@@ -117,13 +137,13 @@
                 <i onclick="closeModal('information')" class="information_btn bi bi-x-circle-fill"></i>
                 <br>
                 <p><i class="bi bi-asterisk"></i> Tamanhos de arquivos suportados:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;.html/.css/.js > 50kb<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg > 1mb
+                &nbsp;&nbsp;&nbsp;&nbsp;Texto < 50kb<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;.png/.jpg/.jpeg < 1mb
                 </p>
                 <br>
                 <hr>
                 <br>
-                <p><i class="bi bi-asterisk"></i> O código fonte deve conter um arquivo "index.html".</p>
+                <p><i class="bi bi-asterisk"></i> Jogos feitos em JAVASCRIPT devem ter um arquivo "index.html".</p>
                 <br>
                 <hr>
                 <br>
