@@ -52,7 +52,6 @@ class Likes{
             ":ID_user_FK" => $id_user
         ];
 
-
         if ($this->isLiked($id_post, $id_user)) {
             $this->options = [
                 "data" => [":ID_post" => $id_post],
