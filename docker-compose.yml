@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    container_name: "codeplay"
+    volumes:
+      - .:/home/user/app
+  db:
+    image: mysql
+    container_name: "codeplay_db"
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: necronomicon
+    ports:
+      - "8001:3306"
