@@ -17,4 +17,4 @@ RUN docker-php-ext-configure intl && \
 USER user
 WORKDIR /home/user/app
 
-ENTRYPOINT src/bin/cake server -H 0.0.0.0 -p 80
+ENTRYPOINT tail -f /dev/null
