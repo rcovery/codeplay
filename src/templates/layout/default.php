@@ -55,3 +55,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </footer>
 </body>
 </html>
+
+<?php $this->start('code_test'); ?>
+<h2>Test code echo</h2>
+<?php $this->end(); ?>
+
+
