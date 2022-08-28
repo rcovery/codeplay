@@ -55,7 +55,7 @@ return static function (RouteBuilder $routes) {
         $builder->get('/profile', ['controller' => 'Users', 'action' => 'profile', 'profile_page']);
         $builder->get('/user/{id}', ['controller' => 'Users', 'action' => 'view', 'user_page']);
 
-        $builder->get('/user', ['controller' => 'Users', 'action' => 'create', 'user_page']);
+        $builder->post('/user', ['controller' => 'Users', 'action' => 'create', 'user_page']);
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

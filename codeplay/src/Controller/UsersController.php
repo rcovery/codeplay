@@ -21,10 +21,10 @@ class UsersController extends AppController
     {
         $users = $this->getTableLocator()->get('Users');
         $user = $users->newEntity([
-            "name" => "RCovery",
-            "username" => "rcovery",
-            "password" => "123",
-            "email" => "rcovery@test.com",
+            "name" => $this->request->getData('name'),
+            "username" => $this->request->getData('username'),
+            "password" => $this->request->getData('password'),
+            "email" => $this->request->getData('email'),
         ]);
         if ($users->save($user)) {
             $this->set(['message' => 'Tudo certo por aqui!']);
