@@ -1,1 +1,1 @@
-src/bin/cake migrations migrate
+codeplay/bin/cake migrations migrate

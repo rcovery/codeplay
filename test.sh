@@ -1,0 +1,1 @@
+codeplay/vendor/bin/phpunit -v ./codeplay/tests
