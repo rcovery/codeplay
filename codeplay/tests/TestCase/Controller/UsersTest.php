@@ -29,4 +29,21 @@ class UsersTest extends TestCase
         $this->assertResponseOk();
         $this->assertResponseContains('Tudo certo');
     }
+
+    public function testCreateDuplicated()
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'name' => 'RCovery',
+            'username' => 'rcovery',
+            'password' => '123',
+            'email' => 'rcovery@test.com',
+        ];
+        $this->post('/user', $data);
+
+        $this->assertResponseError();
+        $this->assertResponseContains('existe um player com este email');
+    }
 }

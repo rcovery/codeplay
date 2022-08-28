@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Http\Response;
+use Exception;
 
 class UsersController extends AppController
 {
@@ -19,6 +20,8 @@ class UsersController extends AppController
 
     public function create()
     {
+        $response = $this->response->withType('application/json');
+
         $users = $this->getTableLocator()->get('Users');
         $user = $users->newEntity([
             "name" => $this->request->getData('name'),
@@ -26,13 +29,23 @@ class UsersController extends AppController
             "password" => $this->request->getData('password'),
             "email" => $this->request->getData('email'),
         ]);
-        if ($users->save($user)) {
-            $this->set(['message' => 'Tudo certo por aqui!']);
-        } else {
-            $this->set(['message' => 'Tudo errado por aqui!']);
-        };
 
-        $this->viewBuilder()->setOption('serialize', true);
-        $this->RequestHandler->renderAs($this, 'json');
+        try {
+            if ($users->save($user)) {
+                $response = $response->withStringBody(json_encode(['message' => 'Tudo certo por aqui!']));
+            } else {
+                $response = $response->withStringBody(json_encode(['message' => 'Tudo errado por aqui!']));
+            };
+        } catch (Exception $error) {            
+            if (str_contains($error->getMessage(), "for key 'users.email'")) {
+                $response = $response->withStringBody(json_encode(['message' => 'Já existe um player com este email!']));
+            } else {
+                $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
+            }
+
+            $response = $response->withStatus(400);
+        }
+
+        return $response;
     }
 }
