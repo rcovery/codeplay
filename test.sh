@@ -1,1 +1,1 @@
-codeplay/vendor/bin/phpunit -v ./codeplay/tests
+cd codeplay && vendor/bin/phpunit -v tests/

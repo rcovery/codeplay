@@ -8,6 +8,6 @@ use Cake\TestSuite\TestCase;
 /**
  * UserTest class
  */
-class UserTest extends TestCase
+class UsersTest extends TestCase
 {
 }

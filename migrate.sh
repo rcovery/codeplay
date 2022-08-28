@@ -1,1 +1,1 @@
-codeplay/bin/cake migrations migrate
+cd codeplay && bin/cake migrations migrate
