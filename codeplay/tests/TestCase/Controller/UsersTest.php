@@ -13,7 +13,10 @@ class UsersTest extends TestCase
 {
     use IntegrationTestTrait;
 
-    public function testCreate()
+    /**
+     * User Creation
+     */
+    public function testCreateWithoutConsent()
     {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
@@ -26,11 +29,29 @@ class UsersTest extends TestCase
         ];
         $this->post('/user', $data);
 
+        $this->assertResponseError();
+        $this->assertResponseContains('Aceite os termos');
+    }
+
+    public function testCreate()
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        
+        $data = [
+            'name' => 'RCovery',
+            'username' => 'rcovery',
+            'password' => '123',
+            'email' => 'rcovery@test.com',
+            'consent' => true
+        ];
+        $this->post('/user', $data);
+
         $this->assertResponseOk();
         $this->assertResponseContains('Tudo certo');
     }
 
-    public function testCreateDuplicated()
+    public function testCreateDuplicatedUser()
     {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
@@ -39,11 +60,32 @@ class UsersTest extends TestCase
             'name' => 'RCovery',
             'username' => 'rcovery',
             'password' => '123',
+            'email' => 'rcovery2@test.com',
+        ];
+        $this->post('/user', $data);
+
+        $this->assertResponseError();
+        $this->assertResponseContains(utf8_encode('existe um usuário com este nick'));
+    }
+
+    public function testCreateDuplicatedEmail()
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'name' => 'RCovery',
+            'username' => 'rcovery2',
+            'password' => '123',
             'email' => 'rcovery@test.com',
         ];
         $this->post('/user', $data);
 
         $this->assertResponseError();
-        $this->assertResponseContains('existe um player com este email');
+        $this->assertResponseContains(utf8_encode('existe um usuário com este email'));
     }
+
+    /**
+     * User Login
+     */
 }

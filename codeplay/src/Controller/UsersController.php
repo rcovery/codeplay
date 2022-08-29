@@ -38,7 +38,7 @@ class UsersController extends AppController
             };
         } catch (Exception $error) {            
             if (str_contains($error->getMessage(), "for key 'users.email'")) {
-                $response = $response->withStringBody(json_encode(['message' => 'Já existe um player com este email!']));
+                $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este email!']));
             } else {
                 $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
             }
