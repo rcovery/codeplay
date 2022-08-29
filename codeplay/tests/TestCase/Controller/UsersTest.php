@@ -61,6 +61,7 @@ class UsersTest extends TestCase
             'username' => 'rcovery',
             'password' => '123',
             'email' => 'rcovery2@test.com',
+            'consent' => true
         ];
         $this->post('/user', $data);
 
@@ -78,6 +79,7 @@ class UsersTest extends TestCase
             'username' => 'rcovery2',
             'password' => '123',
             'email' => 'rcovery@test.com',
+            'consent' => true
         ];
         $this->post('/user', $data);
 
@@ -88,4 +90,18 @@ class UsersTest extends TestCase
     /**
      * User Login
      */
+    public function testLogin()
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        
+        $data = [
+            'password' => '1234',
+            'email' => 'rcovery@test.com',
+        ];
+        $this->post('/login', $data);
+
+        $this->assertResponseError();
+        $this->assertResponseContains(utf8_encode('Usuário ou senha incorretos!'));
+    }
 }
