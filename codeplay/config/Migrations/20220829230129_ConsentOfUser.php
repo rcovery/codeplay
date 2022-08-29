@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CommentLike extends AbstractMigration
+class ConsentOfUser extends AbstractMigration
 {
     /**
      * Change Method.
@@ -14,11 +14,10 @@ class CommentLike extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('likes');
-        $table->addColumn('comment_id', 'integer', [
+        $table = $this->table('users');
+        $table->addColumn('consent', 'boolean', [
             'default' => null,
-            'limit' => 11,
-            'null' => true,
+            'null' => false,
         ])->update();
     }
 }
