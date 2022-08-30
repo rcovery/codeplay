@@ -55,7 +55,7 @@ class UsersTest extends TestCase
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
-            'password' => '123',
+            'password' => '12345678',
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
@@ -70,7 +70,7 @@ class UsersTest extends TestCase
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
-            'password' => '123',
+            'password' => '12345678',
             'email' => 'rcovery2@test.com',
             'consent' => true
         ];
@@ -85,7 +85,7 @@ class UsersTest extends TestCase
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery2',
-            'password' => '123',
+            'password' => '12345678',
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
@@ -101,7 +101,7 @@ class UsersTest extends TestCase
     public function testLogin()
     {
         $data = [
-            'password' => '1234',
+            'password' => '123456784',
             'username' => 'rcovery@test.com',
         ];
         $this->post('/login', $data);
