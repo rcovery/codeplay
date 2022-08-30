@@ -13,14 +13,17 @@ class UsersTest extends TestCase
 {
     use IntegrationTestTrait;
 
+    protected function setUp(): void
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+    }
+
     /**
      * User Creation
      */
     public function testCreateWithoutConsent()
-    {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        
+    {        
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
@@ -35,9 +38,6 @@ class UsersTest extends TestCase
 
     public function testCreate()
     {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
@@ -53,9 +53,6 @@ class UsersTest extends TestCase
 
     public function testCreateDuplicatedUser()
     {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
@@ -66,14 +63,11 @@ class UsersTest extends TestCase
         $this->post('/user', $data);
 
         $this->assertResponseError();
-        $this->assertResponseContains(utf8_encode('existe um usuário com este nick'));
+        $this->assertResponseContains(json_encode(['message' => 'Já existe um usuário com este nick!']));
     }
 
     public function testCreateDuplicatedEmail()
     {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery2',
@@ -84,7 +78,7 @@ class UsersTest extends TestCase
         $this->post('/user', $data);
 
         $this->assertResponseError();
-        $this->assertResponseContains(utf8_encode('existe um usuário com este email'));
+        $this->assertResponseContains(json_encode(['message' => 'Já existe um usuário com este email!']));
     }
 
     /**
@@ -92,16 +86,13 @@ class UsersTest extends TestCase
      */
     public function testLogin()
     {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        
         $data = [
             'password' => '1234',
-            'email' => 'rcovery@test.com',
+            'username' => 'rcovery@test.com',
         ];
         $this->post('/login', $data);
 
         $this->assertResponseError();
-        $this->assertResponseContains(utf8_encode('Usuário ou senha incorretos!'));
+        $this->assertResponseContains('Usuário ou senha incorretos!');
     }
 }

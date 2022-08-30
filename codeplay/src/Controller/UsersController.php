@@ -28,6 +28,7 @@ class UsersController extends AppController
             "username" => $this->request->getData('username'),
             "password" => $this->request->getData('password'),
             "email" => $this->request->getData('email'),
+            "consent" => $this->request->getData('consent'),
         ]);
 
         try {
@@ -39,6 +40,10 @@ class UsersController extends AppController
         } catch (Exception $error) {            
             if (str_contains($error->getMessage(), "for key 'users.email'")) {
                 $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este email!']));
+            } else if (str_contains($error->getMessage(), "for key 'users.username'")) {
+                $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este nick!']));
+            } else if (str_contains($error->getMessage(), "'consent' cannot be null")) {
+                $response = $response->withStringBody(json_encode(['message' => 'Aceite os termos de uso!']));
             } else {
                 $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
             }
