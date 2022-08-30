@@ -26,12 +26,15 @@ class UsersController extends AppController
             if (!$this->request->getData('consent')) {
                 throw new Exception('null consent');
             }
+            if (strlen($this->request->getData('consent')) < 8) {
+                throw new Exception('password min');
+            }
 
             $users = $this->getTableLocator()->get('Users');
             $user = $users->newEntity([
                 "name" => $this->request->getData('name'),
                 "username" => $this->request->getData('username'),
-                "password" => $this->request->getData('password'),
+                "password" => hash("sha512", $this->request->getData('password')),
                 "email" => $this->request->getData('email'),
                 "consent" => $this->request->getData('consent'),
             ]);
@@ -48,6 +51,8 @@ class UsersController extends AppController
                 $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este nick!']));
             } else if (str_contains($error->getMessage(), "null consent")) {
                 $response = $response->withStringBody(json_encode(['message' => 'Aceite os termos de uso!']));
+            } else if (str_contains($error->getMessage(), "password min")) {
+                $response = $response->withStringBody(json_encode(['message' => 'Sua senha deve ter no mínimo 8 caracteres!']));
             } else {
                 $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
             }

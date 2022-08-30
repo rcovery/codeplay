@@ -36,6 +36,20 @@ class UsersTest extends TestCase
         $this->assertResponseContains('Aceite os termos');
     }
 
+    public function testCreatePassword()
+    {        
+        $data = [
+            'name' => 'RCovery',
+            'username' => 'rcovery',
+            'password' => '123',
+            'email' => 'rcovery@test.com',
+        ];
+        $this->post('/user', $data);
+
+        $this->assertResponseError();
+        $this->assertResponseContains('Sua senha deve ter');
+    }
+
     public function testCreate()
     {
         $data = [
