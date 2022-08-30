@@ -22,16 +22,20 @@ class UsersController extends AppController
     {
         $response = $this->response->withType('application/json');
 
-        $users = $this->getTableLocator()->get('Users');
-        $user = $users->newEntity([
-            "name" => $this->request->getData('name'),
-            "username" => $this->request->getData('username'),
-            "password" => $this->request->getData('password'),
-            "email" => $this->request->getData('email'),
-            "consent" => $this->request->getData('consent'),
-        ]);
-
         try {
+            if (!$this->request->getData('consent')) {
+                throw new Exception('null consent');
+            }
+
+            $users = $this->getTableLocator()->get('Users');
+            $user = $users->newEntity([
+                "name" => $this->request->getData('name'),
+                "username" => $this->request->getData('username'),
+                "password" => $this->request->getData('password'),
+                "email" => $this->request->getData('email'),
+                "consent" => $this->request->getData('consent'),
+            ]);
+
             if ($users->save($user)) {
                 $response = $response->withStringBody(json_encode(['message' => 'Tudo certo por aqui!']));
             } else {
@@ -42,7 +46,7 @@ class UsersController extends AppController
                 $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este email!']));
             } else if (str_contains($error->getMessage(), "for key 'users.username'")) {
                 $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este nick!']));
-            } else if (str_contains($error->getMessage(), "'consent' cannot be null")) {
+            } else if (str_contains($error->getMessage(), "null consent")) {
                 $response = $response->withStringBody(json_encode(['message' => 'Aceite os termos de uso!']));
             } else {
                 $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
