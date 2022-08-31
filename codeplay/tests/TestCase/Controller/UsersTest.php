@@ -43,6 +43,7 @@ class UsersTest extends TestCase
             'username' => 'rcovery',
             'password' => '123',
             'email' => 'rcovery@test.com',
+            'consent' => true
         ];
         $this->post('/user', $data);
 

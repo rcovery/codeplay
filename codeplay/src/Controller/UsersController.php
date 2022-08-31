@@ -13,20 +13,25 @@ class UsersController extends AppController
         return $this->render();
     }
 
-    public function view(): ?Response
+    public function viewLogin(): ?Response
+    {
+        return $this->render('login');
+    }
+
+    public function login(): ?Response
     {
         return $this->render();
     }
 
     public function create()
     {
-        $response = $this->response->withType('application/json');
-
         try {
+            $response = $this->response->withType('application/json');
+            
             if (!$this->request->getData('consent')) {
                 throw new Exception('null consent');
             }
-            if (strlen($this->request->getData('consent')) < 8) {
+            if (strlen($this->request->getData('password')) < 8) {
                 throw new Exception('password min');
             }
 
