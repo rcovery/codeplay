@@ -1,6 +1,10 @@
 <?php
     $this->element('rgbline');
     $this->element('navbar');
+
+    $this->start('title');
+    echo "CodePlay - ";
+    $this->end();
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,7 +12,6 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -22,8 +25,8 @@
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <?= $this->fetch('rgbline'); ?>
-    <?= $this->fetch('navbar'); ?>
+    <?= $this->fetch('rgbline') ?>
+    <?= $this->fetch('navbar') ?>
 
     <main class="main">
         <div class="container">
