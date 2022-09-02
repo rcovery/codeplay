@@ -10,8 +10,40 @@
     z-index:10
 }
 
+.nav_parent {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.nav_menu_button_parent {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_menu_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    row-gap: 5px;
+}
+
+.dropdown_bar {
+    display:block;
+    content:"";
+    width:20px;
+    height:3px;
+    border-radius:10px;
+    background:#000;
+    transition:.2s
+}
+
 .codeplay_logo {
-    max-width: 70px;
+    width: 50px;
 }
 
 @keyframes rainbow{

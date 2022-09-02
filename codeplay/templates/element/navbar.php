@@ -1,6 +1,6 @@
 <?php $this->start('navbar'); ?>
-<nav class="top-nav">
-    <div class="top-nav-title">
+<nav class="nav_parent">
+    <div>
         <a href="<?= $this->Url->build('/') ?>">
             <img class="codeplay_logo" title="Logo" alt="Logo" src="/img/logo.png"></img>
         </a>
@@ -13,10 +13,12 @@
     </div>
 
     <!-- TODO if not logged, show only login button -->
-	<!-- <div id="btn" onclick="dropdown()">
-		<span class="dropdown"></span>
-		<span class="dropdown"></span>
-		<span class="dropdown"></span>
-	</div> -->
+    <div class="nav_menu_button_parent">
+        <div class="nav_menu_button" onclick="dropdown()">
+            <span class="dropdown_bar"></span>
+            <span class="dropdown_bar"></span>
+            <span class="dropdown_bar"></span>
+        </div>
+    </div>
 </nav>
 <?php $this->end(); ?>
