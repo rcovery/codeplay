@@ -23,6 +23,11 @@ class UsersController extends AppController
         return $this->render();
     }
 
+    public function viewCreate(): ?Response
+    {
+        return $this->render('create');
+    }
+    
     public function create()
     {
         try {

@@ -55,10 +55,11 @@ return static function (RouteBuilder $routes) {
         $builder->get('/profile', ['controller' => 'Users', 'action' => 'profile', 'profile_page']);
         $builder->get('/user/{id}', ['controller' => 'Users', 'action' => 'view', 'user_page']);
 
-        $builder->post('/user', ['controller' => 'Users', 'action' => 'create', 'create_user']);
+        $builder->get('/create', ['controller' => 'Users', 'action' => 'viewCreate', 'get_create_page']);
+        $builder->post('/create', ['controller' => 'Users', 'action' => 'create', 'create_user']);
 
         $builder->get('/login', ['controller' => 'Users', 'action' => 'viewLogin', 'get_login_page']);
-        $builder->post('/login', ['controller' => 'Users', 'action' => 'login', 'login_page']);
+        $builder->post('/login', ['controller' => 'Users', 'action' => 'login', 'login']);
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
