@@ -96,15 +96,26 @@ class UsersTest extends TestCase
     /**
      * User Login
      */
-    public function testLogin()
+    public function testLoginError()
     {
         $data = [
-            'password' => '123456784',
-            'username' => 'rcovery@test.com',
+            'password' => '1234356784',
+            'username' => 'rcovery',
         ];
         $this->post('/login', $data);
 
-        $this->assertResponseError();
-        $this->assertResponseContains('Usuário ou senha incorretos!');
+        $this->assertFlashMessage('Usuário ou senha incorretos!');
+    }
+
+    public function testLogin()
+    {
+        $data = [
+            'password' => '12345678',
+            'username' => 'rcovery',
+        ];
+        $this->post('/login', $data);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('Logado com sucesso!');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -27,12 +28,27 @@ class UsersController extends AppController
 
     public function login(): ?Response
     {
+        $userInstance = $this->getTableLocator()->get('Users')->find();
+
+        $user = $userInstance->where([
+                'username' => $this->request->getData('username'),
+                'password' => hash("sha512", $this->request->getData('password'))
+            ])->select(['name', 'username', 'email'])
+            ->first();
+
+        if (!$user) {
+            $this->Flash->error('Usuário ou senha incorretos!');
+        }
+        
+        $this->Flash->set('Logado com sucesso!');
+
+        $this->Auth->setUser($user);
         return $this->render();
     }
 
-    public function logout()
+    public function logout(): ?Response
     {
-        return $this->Auth->logout();
+        return $this->redirect($this->Auth->logout());
     }
 
     public function viewCreate(): ?Response
@@ -40,13 +56,13 @@ class UsersController extends AppController
         $this->set('title', 'Create User');
         return $this->render('create');
     }
-    
+
     public function create()
     {
         $flashMessage = 'Usuário criado com sucesso!';
         $flashElement = 'success';
 
-        try {            
+        try {
             if (!$this->request->getData('consent')) {
                 throw new Exception('null consent');
             }

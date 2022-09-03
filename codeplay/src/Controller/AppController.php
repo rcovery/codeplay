@@ -49,11 +49,6 @@ class AppController extends Controller
             'logoutRedirect' => ['controller' => 'Pages', 'action' => 'home'],
             'loginAction' => '/login',
             'authError' => 'Uepaa, você entrou em uma área restrita!',
-            'authenticate' => [
-                'Form' => [
-                    'fields' => ['username' => 'email']
-                ]
-            ],
             'storage' => 'Session'
         ]);
         
