@@ -14,5 +14,5 @@
         <input id="consent_input" name='consent' type="checkbox" required/>
         
         <input type="submit" value="Criar sua conta!"/>
-    </form>
+    <?= $this->Form->end(); ?>
 </div>

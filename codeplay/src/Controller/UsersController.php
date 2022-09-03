@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Http\Response;
 use Exception;
 
 class UsersController extends AppController
 {
+    public function beforeFilter(EventInterface $event)
+    {
+        $this->Auth->allow(['viewCreate', 'create']);
+    }
     public function profile(): ?Response
     {
         $this->set('title', 'Profile');
@@ -23,6 +28,11 @@ class UsersController extends AppController
     public function login(): ?Response
     {
         return $this->render();
+    }
+
+    public function logout()
+    {
+        return $this->Auth->logout();
     }
 
     public function viewCreate(): ?Response

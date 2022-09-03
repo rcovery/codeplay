@@ -1,1 +1,3 @@
-<?= $this->assign('title', 'Login') ?>
+<div>
+    Faça o login!
+</div>

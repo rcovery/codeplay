@@ -44,6 +44,19 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        $this->loadComponent('Auth', [
+            'loginRedirect' => ['controller' => 'Pages', 'action' => 'home'],
+            'logoutRedirect' => ['controller' => 'Pages', 'action' => 'home'],
+            'loginAction' => '/login',
+            'authError' => 'Uepaa, você entrou em uma área restrita!',
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'email']
+                ]
+            ],
+            'storage' => 'Session'
+        ]);
+        
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
