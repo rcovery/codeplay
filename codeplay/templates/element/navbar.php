@@ -1,4 +1,6 @@
-<?php $this->start('navbar'); ?>
+<?php
+    $this->start('navbar');
+?>
 <nav class="nav_parent">
     <div>
         <a href="<?= $this->Url->build('/') ?>">
@@ -14,11 +16,15 @@
 
     <!-- TODO if not logged, show only login button -->
     <div class="nav_menu_button_parent">
-        <div class="nav_menu_button" onclick="dropdown()">
-            <span class="dropdown_bar"></span>
-            <span class="dropdown_bar"></span>
-            <span class="dropdown_bar"></span>
-        </div>
+        <?php if (isset($authenticatedUser['id'])) : ?>
+            <div class="nav_menu_button" onclick="dropdown()">
+                <span class="dropdown_bar"></span>
+                <span class="dropdown_bar"></span>
+                <span class="dropdown_bar"></span>
+            </div>
+        <?php else : ?>
+            <a href="<?= $this->Url->build('/login') ?>">Login</a>
+        <?php endif; ?>
     </div>
 </nav>
 <?php $this->end(); ?>

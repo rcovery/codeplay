@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -28,6 +29,11 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+    public function beforeRender(EventInterface $event)
+    {
+        $this->set('authenticatedUser', $this->Auth->user());
+    }
+
     /**
      * Initialization hook method.
      *
@@ -45,8 +51,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         $this->loadComponent('Auth', [
-            'loginRedirect' => ['controller' => 'Pages', 'action' => 'home'],
-            'logoutRedirect' => ['controller' => 'Pages', 'action' => 'home'],
+            'loginRedirect' => '/',
+            'logoutRedirect' => '/',
             'loginAction' => '/login',
             'authError' => 'Uepaa, você entrou em uma área restrita!',
             'storage' => 'Session'
