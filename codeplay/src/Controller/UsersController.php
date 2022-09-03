@@ -33,17 +33,17 @@ class UsersController extends AppController
         $user = $userInstance->where([
                 'username' => $this->request->getData('username'),
                 'password' => hash("sha512", $this->request->getData('password'))
-            ])->select(['name', 'username', 'email'])
+            ])->select(['id', 'name', 'username', 'email'])
             ->first();
 
         if (!$user) {
             $this->Flash->error('Usuário ou senha incorretos!');
+            return $this->render();
+        } else {
+            $this->Auth->setUser($user->toArray());
+            $this->Flash->set('Logado com sucesso!');
+            return $this->redirect($this->Auth->redirectUrl());
         }
-        
-        $this->Flash->set('Logado com sucesso!');
-
-        $this->Auth->setUser($user);
-        return $this->render();
     }
 
     public function logout(): ?Response
@@ -82,6 +82,11 @@ class UsersController extends AppController
             if (!$users->save($user)) {
                 $flashMessage = 'Tudo errado por aqui!';
                 $flashElement = 'warning';
+            } else {
+                $this->Flash->set($flashMessage, [
+                    "element" => $flashElement
+                ]);
+                return $this->redirect('/login');
             }
         } catch (Exception $error) {
             $flashElement = "error";

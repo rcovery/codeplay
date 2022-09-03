@@ -1,6 +1,5 @@
 <div>
     <?= $this->Form->create(); ?>
-        <input hidden name="token" value="<?= $this->request->getAttribute('csrfToken'); ?>"/>
         <label for="name_input">Nome Completo</label>
         <input id="name_input" name='name' required/>
         <label for="username_input">Nome do usuário</label>

@@ -61,8 +61,8 @@ class UsersTest extends TestCase
         ];
         $this->post('/create', $data);
 
-        $this->assertResponseOk();
         $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertRedirect('/login');
     }
 
     public function testCreateDuplicatedUser()
@@ -115,7 +115,7 @@ class UsersTest extends TestCase
         ];
         $this->post('/login', $data);
 
-        $this->assertResponseOk();
         $this->assertFlashMessage('Logado com sucesso!');
+        $this->assertRedirect('/');
     }
 }
