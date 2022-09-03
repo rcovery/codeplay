@@ -10,11 +10,13 @@ class UsersController extends AppController
 {
     public function profile(): ?Response
     {
+        $this->set('title', 'Profile');
         return $this->render();
     }
 
     public function viewLogin(): ?Response
     {
+        $this->set('title', 'Login');
         return $this->render('login');
     }
 
@@ -25,6 +27,7 @@ class UsersController extends AppController
 
     public function viewCreate(): ?Response
     {
+        $this->set('title', 'Create User');
         return $this->render('create');
     }
     

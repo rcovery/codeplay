@@ -1,10 +1,6 @@
 <?php
     $this->element('rgbline');
     $this->element('navbar');
-
-    $this->start('title');
-    echo "CodePlay - ";
-    $this->end();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +8,7 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $this->fetch('title') ?>
+        CodePlay<?= isset($title) ? " - " . h($title) : "" ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
