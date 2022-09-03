@@ -17,6 +17,7 @@ class UsersTest extends TestCase
     {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
+        $this->enableRetainFlashMessages();
     }
 
     /**
@@ -30,10 +31,9 @@ class UsersTest extends TestCase
             'password' => '123',
             'email' => 'rcovery@test.com',
         ];
-        $this->post('/user', $data);
+        $this->post('/create', $data);
 
-        $this->assertResponseError();
-        $this->assertResponseContains('Aceite os termos');
+        $this->assertFlashMessage('Aceite os termos de uso!', 'flash');
     }
 
     public function testCreatePassword()
@@ -45,10 +45,9 @@ class UsersTest extends TestCase
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
-        $this->post('/user', $data);
+        $this->post('/create', $data);
 
-        $this->assertResponseError();
-        $this->assertResponseContains('Sua senha deve ter');
+        $this->assertFlashMessage('Sua senha deve ter no mínimo 8 caracteres!', 'flash');
     }
 
     public function testCreate()
@@ -60,10 +59,10 @@ class UsersTest extends TestCase
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
-        $this->post('/user', $data);
+        $this->post('/create', $data);
 
         $this->assertResponseOk();
-        $this->assertResponseContains('Tudo certo');
+        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
     }
 
     public function testCreateDuplicatedUser()
@@ -75,10 +74,9 @@ class UsersTest extends TestCase
             'email' => 'rcovery2@test.com',
             'consent' => true
         ];
-        $this->post('/user', $data);
+        $this->post('/create', $data);
 
-        $this->assertResponseError();
-        $this->assertResponseContains(json_encode(['message' => 'Já existe um usuário com este nick!']));
+        $this->assertFlashMessage('Já existe um usuário com este nick!', 'flash');
     }
 
     public function testCreateDuplicatedEmail()
@@ -90,10 +88,9 @@ class UsersTest extends TestCase
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
-        $this->post('/user', $data);
+        $this->post('/create', $data);
 
-        $this->assertResponseError();
-        $this->assertResponseContains(json_encode(['message' => 'Já existe um usuário com este email!']));
+        $this->assertFlashMessage('Já existe um usuário com este email!', 'flash');
     }
 
     /**

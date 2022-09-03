@@ -33,9 +33,10 @@ class UsersController extends AppController
     
     public function create()
     {
-        try {
-            $response = $this->response->withType('application/json');
-            
+        $flashMessage = 'Usuário criado com sucesso!';
+        $flashElement = 'success';
+
+        try {            
             if (!$this->request->getData('consent')) {
                 throw new Exception('null consent');
             }
@@ -52,27 +53,31 @@ class UsersController extends AppController
                 "consent" => $this->request->getData('consent'),
             ]);
 
-            if ($users->save($user)) {
-                $response = $response->withStringBody(json_encode(['message' => 'Tudo certo por aqui!']));
-            } else {
-                $response = $response->withStringBody(json_encode(['message' => 'Tudo errado por aqui!']));
-            };
-        } catch (Exception $error) {            
-            if (str_contains($error->getMessage(), "for key 'users.email'")) {
-                $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este email!']));
-            } else if (str_contains($error->getMessage(), "for key 'users.username'")) {
-                $response = $response->withStringBody(json_encode(['message' => 'Já existe um usuário com este nick!']));
-            } else if (str_contains($error->getMessage(), "null consent")) {
-                $response = $response->withStringBody(json_encode(['message' => 'Aceite os termos de uso!']));
-            } else if (str_contains($error->getMessage(), "password min")) {
-                $response = $response->withStringBody(json_encode(['message' => 'Sua senha deve ter no mínimo 8 caracteres!']));
-            } else {
-                $response = $response->withStringBody(json_encode(['message' => 'Oops, ocorreu um problema, tente novamente!']));
+            if (!$users->save($user)) {
+                $flashMessage = 'Tudo errado por aqui!';
+                $flashElement = 'warning';
             }
+        } catch (Exception $error) {
+            $flashElement = "error";
 
-            $response = $response->withStatus(400);
+            if (str_contains($error->getMessage(), "for key 'users.email'")) {
+                $flashMessage = 'Já existe um usuário com este email!';
+            } else if (str_contains($error->getMessage(), "for key 'users.username'")) {
+                $flashMessage = 'Já existe um usuário com este nick!';
+            } else if (str_contains($error->getMessage(), "null consent")) {
+                $flashMessage = 'Aceite os termos de uso!';
+            } else if (str_contains($error->getMessage(), "password min")) {
+                $flashMessage = 'Sua senha deve ter no mínimo 8 caracteres!';
+            } else {
+                $flashMessage = 'Oops, ocorreu um problema, tente novamente!';
+            }
         }
 
-        return $response;
+        $this->Flash->set($flashMessage, [
+            "key" => "flash",
+            "element" => $flashElement
+        ]);
+
+        return $this->render();
     }
 }
