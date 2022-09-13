@@ -50,7 +50,7 @@ class UsersTest extends TestCase
         $this->assertRedirect('/login');
     }
 
-    public function testViewPostUnauthenticated()
+    public function testCreatePostUnauthenticated()
     {
         $data = [
             'password' => '12345678',
@@ -59,7 +59,7 @@ class UsersTest extends TestCase
         $this->post('/login', $data);
 
         $this->assertFlashMessage('Logado com sucesso!');
-        $this->assertRedirect('/');
+        $this->assertRedirect('/login');
     }
 
     public function testViewPost()

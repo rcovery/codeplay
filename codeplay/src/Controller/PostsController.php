@@ -23,7 +23,7 @@ class UsersController extends AppController
     
     public function viewCreate(): ?Response
     {
-        // $this->set('title', 'Create Post');
+        $this->set('title', 'Create Post');
         return $this->render('create');
     }
 
