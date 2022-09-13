@@ -20,34 +20,19 @@ class UsersTest extends TestCase
         $this->enableRetainFlashMessages();
     }
 
-    /**
-     * User Creation
-     */
-    public function testCreateWithoutConsent()
-    {        
+    public function testCreateWithoutFile()
+    {
         $data = [
             'name' => 'RCovery',
             'username' => 'rcovery',
-            'password' => '123',
-            'email' => 'rcovery@test.com',
-        ];
-        $this->post('/create', $data);
-
-        $this->assertFlashMessage('Aceite os termos de uso!', 'flash');
-    }
-
-    public function testCreatePassword()
-    {        
-        $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
-            'password' => '123',
+            'password' => '12345678',
             'email' => 'rcovery@test.com',
             'consent' => true
         ];
         $this->post('/create', $data);
 
-        $this->assertFlashMessage('Sua senha deve ter no mínimo 8 caracteres!', 'flash');
+        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertRedirect('/login');
     }
 
     public function testCreate()
@@ -65,49 +50,19 @@ class UsersTest extends TestCase
         $this->assertRedirect('/login');
     }
 
-    public function testCreateDuplicatedUser()
+    public function testViewPostUnauthenticated()
     {
         $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
             'password' => '12345678',
-            'email' => 'rcovery2@test.com',
-            'consent' => true
-        ];
-        $this->post('/create', $data);
-
-        $this->assertFlashMessage('Já existe um usuário com este nick!', 'flash');
-    }
-
-    public function testCreateDuplicatedEmail()
-    {
-        $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery2',
-            'password' => '12345678',
-            'email' => 'rcovery@test.com',
-            'consent' => true
-        ];
-        $this->post('/create', $data);
-
-        $this->assertFlashMessage('Já existe um usuário com este email!', 'flash');
-    }
-
-    /**
-     * User Login
-     */
-    public function testLoginError()
-    {
-        $data = [
-            'password' => '1234356784',
             'username' => 'rcovery',
         ];
         $this->post('/login', $data);
 
-        $this->assertFlashMessage('Usuário ou senha incorretos!');
+        $this->assertFlashMessage('Logado com sucesso!');
+        $this->assertRedirect('/');
     }
 
-    public function testLogin()
+    public function testViewPost()
     {
         $data = [
             'password' => '12345678',
