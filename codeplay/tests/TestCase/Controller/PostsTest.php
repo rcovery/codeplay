@@ -28,14 +28,48 @@ class UsersTest extends TestCase
         ]);
     }
 
-    public function testCreateWithoutFile()
+    public function testCreateWithoutTitle()
     {
         $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
-            'password' => '12345678',
-            'email' => 'rcovery@test.com',
-            'consent' => true
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
+        ];
+        $this->post('/post/create', $data);
+
+        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertRedirect('/login');
+    }
+
+    public function testCreateWithoutContent()
+    {
+        $data = [
+            'post_title' => 'Test title',
+            'programming_language' => 'Lua',
+        ];
+        $this->post('/post/create', $data);
+
+        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertRedirect('/login');
+    }
+
+    public function testCreateWithoutProgrammingLanguage()
+    {
+        $data = [
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+        ];
+        $this->post('/post/create', $data);
+
+        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertRedirect('/login');
+    }
+
+    public function testCreateWithoutFiles()
+    {
+        $data = [
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
@@ -47,18 +81,16 @@ class UsersTest extends TestCase
     {
         $file = new \Laminas\Diactoros\UploadedFile(
             '/path/to/test/file.pdf',
-            1234567, // bytes
+            123456789, // bytes
             \UPLOAD_ERR_OK,
             'attachment.pdf',
             'application/pdf'
         );
 
         $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
-            'password' => '12345678',
-            'email' => 'rcovery@test.com',
-            'consent' => true,
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
             'attachments' => [
                 0 => ['attachment' => $file]
             ]
@@ -75,38 +107,32 @@ class UsersTest extends TestCase
             55000, // bytes
             \UPLOAD_ERR_OK,
             'attachment.pdf',
-            'application/pdf'
+            'application/octet-stream'
         );
 
         $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
-            'password' => '12345678',
-            'email' => 'rcovery@test.com',
-            'consent' => true,
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
             'attachments' => [
                 0 => ['attachment' => $file]
             ]
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('O tipo de arquivo não é permitido!', 'flash');
     }
 
     public function testCreate()
     {
         $data = [
-            'name' => 'RCovery',
-            'username' => 'rcovery',
-            'password' => '12345678',
-            'email' => 'rcovery@test.com',
-            'consent' => true
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('Postagem criada com sucesso!', 'flash');
     }
 
     public function testCreatePostUnauthenticated()
@@ -114,36 +140,37 @@ class UsersTest extends TestCase
         $this->session([]);
 
         $data = [
-            'password' => '12345678',
-            'username' => 'rcovery',
+            'post_title' => 'Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Logado com sucesso!');
+        $this->assertRedirect('/login');
+    }
+
+    public function testViewCreatePostUnauthenticated()
+    {
+        $this->session([]);
+        $this->get('/post/create');
+
         $this->assertRedirect('/login');
     }
 
     public function testViewPost()
     {
-        $data = [
-            'password' => '12345678',
-            'username' => 'rcovery',
-        ];
-        $this->post('/post/1', $data);
+        $this->get('/post/1');
 
-        $this->assertFlashMessage('Logado com sucesso!');
+        // $this->assertFlashMessage('Logado com sucesso!');
+        // assert contains
     }
 
     public function testViewPostUnauthenticated()
     {
         $this->session([]);
-        
-        $data = [
-            'password' => '12345678',
-            'username' => 'rcovery',
-        ];
-        $this->post('/post/1', $data);
+        $this->get('/post/1');
 
-        $this->assertFlashMessage('Logado com sucesso!');
+        // $this->assertFlashMessage('Logado com sucesso!');
+        // assert contains
     }
 }
