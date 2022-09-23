@@ -36,8 +36,19 @@ class UsersTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('Insira o título da sua postagem!', 'flash');
+    }
+
+    public function testCreateWithTitleMaxLength()
+    {
+        $data = [
+            'post_title' => 'Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title',
+            'post_content' => 'Test post',
+            'programming_language' => 'Lua',
+        ];
+        $this->post('/post/create', $data);
+
+        $this->assertFlashMessage('O título da postagem deve ter menos de 150 caracteres!', 'flash');
     }
 
     public function testCreateWithoutContent()
@@ -48,8 +59,7 @@ class UsersTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('Insira a descrição da sua postagem!', 'flash');
     }
 
     public function testCreateWithoutProgrammingLanguage()
@@ -60,8 +70,7 @@ class UsersTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('Insira a linguagem de programação do seu jogo!', 'flash');
     }
 
     public function testCreateWithoutFiles()
@@ -73,8 +82,7 @@ class UsersTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
-        $this->assertRedirect('/login');
+        $this->assertFlashMessage('É necessário subir pelo menos um arquivo do jogo!', 'flash');
     }
 
     public function testCreateFileSize()
@@ -97,7 +105,7 @@ class UsersTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Usuário criado com sucesso!', 'flash');
+        $this->assertFlashMessage('O tamanho do arquivo é muito grande!', 'flash');
         $this->assertRedirect('/login');
     }
     public function testCreateFileMimetype()
