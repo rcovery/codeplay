@@ -7,9 +7,9 @@ use Cake\TestSuite\TestCase;
 use Cake\TestSuite\IntegrationTestTrait;
 
 /**
- * UserTest class
+ * PostTest class
  */
-class UsersTest extends TestCase
+class PostsTest extends TestCase
 {
     use IntegrationTestTrait;
 
