@@ -52,18 +52,23 @@ return static function (RouteBuilder $routes) {
          */
         $builder->get('/', ['controller' => 'Pages', 'action' => 'home', 'home']);
 
+        // Profile view
         $builder->get('/profile', ['controller' => 'Users', 'action' => 'profile', 'profile_page']);
         $builder->get('/user/{id}', ['controller' => 'Users', 'action' => 'view', 'user_page']);
 
+        // User creation
         $builder->get('/create', ['controller' => 'Users', 'action' => 'viewCreate', 'get_create_page']);
         $builder->post('/create', ['controller' => 'Users', 'action' => 'create', 'create_user']);
 
+        // Login
         $builder->get('/login', ['controller' => 'Users', 'action' => 'viewLogin', 'get_login_page']);
         $builder->post('/login', ['controller' => 'Users', 'action' => 'login', 'login']);
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
-        $builder->connect('/pages/*', 'Pages::display');
+
+        // Like posts/user
+        $builder->post('/like/post/{id}', ['controller' => 'Likes', 'action' => 'likePost']);
+        $builder->post('/like/user/{id}', ['controller' => 'Likes', 'action' => 'likeUser']);
+        
+        // $builder->connect('/pages/*', 'Pages::display');
 
         /*
          * Connect catchall routes for all controllers.
