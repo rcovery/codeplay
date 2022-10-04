@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-class UsersController extends AppController
+class LikesController extends AppController
 {
     // Give a star to post
     public function likePost()
