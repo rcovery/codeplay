@@ -30,59 +30,59 @@ class PostsTest extends TestCase
 
     public function testCreateWithoutTitle()
     {
-        $data = [
-            'post_content' => 'Test post',
+        $data = [,
+            'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Insira o título da sua postagem!', 'flash');
+        $this->assertFlashMessage('O título da postagem deve ter menos de 150 caracteres!');
     }
 
     public function testCreateWithTitleMaxLength()
     {
         $data = [
-            'post_title' => 'Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('O título da postagem deve ter menos de 150 caracteres!', 'flash');
+        $this->assertFlashMessage('O título da postagem deve ter menos de 150 caracteres!');
     }
 
     public function testCreateWithoutContent()
     {
         $data = [
-            'post_title' => 'Test title',
+            'title' => 'Test title',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Insira a descrição da sua postagem!', 'flash');
+        $this->assertFlashMessage('Insira a descrição da sua postagem!');
     }
 
     public function testCreateWithoutProgrammingLanguage()
     {
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Insira a linguagem de programação do seu jogo!', 'flash');
+        $this->assertFlashMessage('Insira a linguagem de programação do seu jogo!');
     }
 
     public function testCreateWithoutFiles()
     {
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('É necessário subir pelo menos um arquivo do jogo!', 'flash');
+        $this->assertFlashMessage('É necessário subir pelo menos um arquivo do jogo!');
     }
 
     public function testCreateFileSize()
@@ -96,8 +96,8 @@ class PostsTest extends TestCase
         );
 
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
             'attachments' => [
                 0 => ['attachment' => $file]
@@ -105,7 +105,7 @@ class PostsTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('O tamanho do arquivo é muito grande!', 'flash');
+        $this->assertFlashMessage('O tamanho do arquivo é muito grande!');
         $this->assertRedirect('/login');
     }
     public function testCreateFileMimetype()
@@ -119,8 +119,8 @@ class PostsTest extends TestCase
         );
 
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
             'attachments' => [
                 0 => ['attachment' => $file]
@@ -128,19 +128,19 @@ class PostsTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('O tipo de arquivo não é permitido!', 'flash');
+        $this->assertFlashMessage('O tipo de arquivo não é permitido!');
     }
 
     public function testCreate()
     {
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Postagem criada com sucesso!', 'flash');
+        $this->assertFlashMessage('Postagem criada com sucesso!');
     }
 
     public function testCreatePostUnauthenticated()
@@ -148,8 +148,8 @@ class PostsTest extends TestCase
         $this->session([]);
 
         $data = [
-            'post_title' => 'Test title',
-            'post_content' => 'Test post',
+            'title' => 'Test title',
+            'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
