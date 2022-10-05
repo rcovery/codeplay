@@ -60,6 +60,12 @@ return static function (RouteBuilder $routes) {
         $builder->get('/create', ['controller' => 'Users', 'action' => 'viewCreate', 'get_create_page']);
         $builder->post('/create', ['controller' => 'Users', 'action' => 'create', 'create_user']);
 
+        // Post view
+        $builder->get('/post/{id}', ['controller' => 'Posts', 'action' => 'viewPost']);
+
+        // Post creation
+        $builder->post('/post/create', ['controller' => 'Posts', 'action' => 'create']);
+
         // Login
         $builder->get('/login', ['controller' => 'Users', 'action' => 'viewLogin', 'get_login_page']);
         $builder->post('/login', ['controller' => 'Users', 'action' => 'login', 'login']);
