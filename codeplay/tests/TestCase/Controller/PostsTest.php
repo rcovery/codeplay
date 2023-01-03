@@ -30,7 +30,7 @@ class PostsTest extends TestCase
 
     public function testCreateWithoutTitle()
     {
-        $data = [,
+        $data = [
             'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
@@ -73,19 +73,7 @@ class PostsTest extends TestCase
         $this->assertFlashMessage('Insira a linguagem de programação do seu jogo!');
     }
 
-    public function testCreateWithoutFiles()
-    {
-        $data = [
-            'title' => 'Test title',
-            'content' => 'Test post',
-            'programming_language' => 'Lua',
-        ];
-        $this->post('/post/create', $data);
-
-        $this->assertFlashMessage('É necessário subir pelo menos um arquivo do jogo!');
-    }
-
-    public function testCreateFileSize()
+    /* public function testCreateFileSize()
     {
         $file = new \Laminas\Diactoros\UploadedFile(
             '/path/to/test/file.pdf',
@@ -123,13 +111,13 @@ class PostsTest extends TestCase
             'content' => 'Test post',
             'programming_language' => 'Lua',
             'attachments' => [
-                0 => ['attachment' => $file]
+                0 => $file
             ]
         ];
         $this->post('/post/create', $data);
 
         $this->assertFlashMessage('O tipo de arquivo não é permitido!');
-    }
+    } */
 
     public function testCreate()
     {

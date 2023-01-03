@@ -47,6 +47,8 @@ class PostsController extends AppController
             if (!$this->request->getData('programming_language')) {
                 throw new Exception('Insira a linguagem de programação do seu jogo!');
             }
+            
+            // TODO criar a postagem primeiro para depois upar os arquivos (criar uma página para upload de arquivos, ajustar testes)
 
             $model = $this->getTableLocator()->get('Posts');
             $entity = $model->newEntity([
@@ -54,7 +56,7 @@ class PostsController extends AppController
                 "content" => $this->request->getData('content'),
                 "programming_language" => $this->request->getData('programming_language'),
                 "user_id" => $this->Auth->user()['id'],
-                "" => $this->request->getData('consent'),
+                // TODO file url
             ]);
 
             $post = $model->save($entity);
@@ -78,5 +80,10 @@ class PostsController extends AppController
         ]);
 
         return $this->render();
+    }
+
+    private function isValidFile()
+    {
+        return true;
     }
 }
