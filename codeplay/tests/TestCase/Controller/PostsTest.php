@@ -128,7 +128,7 @@ class PostsTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashMessage('Postagem criada com sucesso!');
+        $this->assertFlashElement('success');
     }
 
     public function testCreatePostUnauthenticated()

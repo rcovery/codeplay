@@ -29,9 +29,6 @@ class PostsController extends AppController
 
     public function create()
     {
-        $flashMessage = 'Postagem criada com sucesso!';
-        $flashElement = 'success';
-
         try {
             $title = htmlspecialchars($this->request->getData('title'));
 
@@ -47,8 +44,6 @@ class PostsController extends AppController
             if (!$this->request->getData('programming_language')) {
                 throw new Exception('Insira a linguagem de programação do seu jogo!');
             }
-            
-            // TODO criar a postagem primeiro para depois upar os arquivos (criar uma página para upload de arquivos, ajustar testes)
 
             $model = $this->getTableLocator()->get('Posts');
             $entity = $model->newEntity([
@@ -56,34 +51,30 @@ class PostsController extends AppController
                 "content" => $this->request->getData('content'),
                 "programming_language" => $this->request->getData('programming_language'),
                 "user_id" => $this->Auth->user()['id'],
-                // TODO file url
             ]);
 
             $post = $model->save($entity);
             if (!$post) {
-                $flashMessage = 'Tudo errado por aqui!';
-                $flashElement = 'warning';
+                $this->Flash->set('Tudo errado por aqui!', [
+                    "element" => 'warning'
+                ]);
             } else {
-                $this->Flash->set($flashMessage, [
-                    "element" => $flashElement
+                $this->Flash->set('Postagem criada com sucesso!', [
+                    "element" => 'success'
                 ]);
                 return $this->redirect("/post/$post->id");
             }
         } catch (Exception $error) {
-            $flashElement = "error";
-            $flashMessage = $error->getMessage();
+            $this->Flash->set($error->getMessage(), [
+                "element" => "error"
+            ]);
         }
-
-        $this->Flash->set($flashMessage, [
-            "key" => "flash",
-            "element" => $flashElement
-        ]);
 
         return $this->render();
     }
 
-    private function isValidFile()
+    /* private function isValidFile()
     {
         return true;
-    }
+    } */
 }
