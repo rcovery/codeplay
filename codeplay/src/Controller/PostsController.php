@@ -30,12 +30,10 @@ class PostsController extends AppController
     public function create()
     {
         try {
-            $title = htmlspecialchars($this->request->getData('title'));
-
-            if (!$title) {
+            if (empty($this->request->getData('title'))) {
                 throw new Exception('Insira o título da sua postagem!');
             }
-            if (strlen($title) >= 150) {
+            if (strlen($this->request->getData('title')) >= 150) {
                 throw new Exception('O título da postagem deve ter menos de 150 caracteres!');
             }
             if (!$this->request->getData('content')) {
@@ -47,7 +45,7 @@ class PostsController extends AppController
 
             $model = $this->getTableLocator()->get('Posts');
             $entity = $model->newEntity([
-                "title" => $title,
+                "title" => $this->request->getData('title'),
                 "content" => $this->request->getData('content'),
                 "programming_language" => $this->request->getData('programming_language'),
                 "user_id" => $this->Auth->user()['id'],

@@ -30,21 +30,15 @@ class PostsTest extends TestCase
 
     public function testCreateWithoutTitle()
     {
-        $data = [
-            'content' => 'Test post',
-            'programming_language' => 'Lua',
-        ];
-        $this->post('/post/create', $data);
+        $this->post('/post/create');
 
-        $this->assertFlashMessage('O título da postagem deve ter menos de 150 caracteres!');
+        $this->assertFlashMessage('Insira o título da sua postagem!');
     }
 
     public function testCreateWithTitleMaxLength()
     {
         $data = [
             'title' => 'Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title',
-            'content' => 'Test post',
-            'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
@@ -55,7 +49,6 @@ class PostsTest extends TestCase
     {
         $data = [
             'title' => 'Test title',
-            'programming_language' => 'Lua',
         ];
         $this->post('/post/create', $data);
 
@@ -128,7 +121,7 @@ class PostsTest extends TestCase
         ];
         $this->post('/post/create', $data);
 
-        $this->assertFlashElement('success');
+        $this->assertFlashElement('Flash/success');
     }
 
     public function testCreatePostUnauthenticated()
@@ -140,6 +133,7 @@ class PostsTest extends TestCase
             'content' => 'Test post',
             'programming_language' => 'Lua',
         ];
+
         $this->post('/post/create', $data);
 
         $this->assertRedirect('/login');
