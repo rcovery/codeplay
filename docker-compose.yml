@@ -15,3 +15,15 @@ services:
       MYSQL_ROOT_PASSWORD: necronomicon
     ports:
       - "8001:3306"
+
+  redis:
+    image: redis
+    container_name: "codeplay_redis_server"
+    ports:
+      - "8003:6379"
+
+  # kafka:
+  #   image: bitnami/kafka
+  #   container_name: "codeplay_kafka_service"
+  #   ports:
+  #     - "8002:2181"

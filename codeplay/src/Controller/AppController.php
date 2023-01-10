@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -31,7 +33,9 @@ class AppController extends Controller
 {
     public function beforeRender(EventInterface $event)
     {
-        $this->set('authenticatedUser', $this->Auth->user());
+        if (!empty($this->Auth)) {
+            $this->set('authenticatedUser', $this->Auth->user());
+        }
     }
 
     /**
@@ -57,7 +61,7 @@ class AppController extends Controller
             'authError' => 'Uepaa, você entrou em uma área restrita!',
             'storage' => 'Session'
         ]);
-        
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
