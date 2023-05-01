@@ -17,6 +17,7 @@
         "cakephp/cakephp-codesniffer": "^4.5",
         "cakephp/debug_kit": "^4.5",
         "josegonzalez/dotenv": "^3.2",
+        "overtrue/phplint": "^6.1",
         "phpunit/phpunit": "~8.5.0 || ^9.3"
     },
     "suggest": {
@@ -40,13 +41,17 @@
         "post-install-cmd": "App\\Console\\Installer::postInstall",
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
         "check": [
-            "@test",
+        "@test",
             "@cs-check"
         ],
         "cs-check": "phpcs --colors -p  src/ tests/",
         "cs-fix": "phpcbf --colors -p src/ tests/",
         "stan": "phpstan analyse",
-        "test": "phpunit --colors=always"
+        "start": "./bin/cake server -H 0.0.0.0",
+        "start:dev": "./bin/cake server -H 0.0.0.0 -p 80",
+        "migrate": "./bin/cake migrations migrate",
+        "test": "phpunit --colors=always -v tests/",
+        "lint": "phplint ./ --exclude=vendor"
     },
     "prefer-stable": true,
     "config": {

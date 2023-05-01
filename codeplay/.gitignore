@@ -5,6 +5,8 @@
 /logs/*
 /tmp/*
 /vendor/*
+schema-dump-default.lock
+.phplint-cache
 
 # OS generated files #
 ######################
@@ -14,7 +16,8 @@
 .Spotlight-V100
 .Trashes
 # Icon must end with two \r
-Icon
+Icon
+
 ehthumbs.db
 Thumbs.db
 .directory

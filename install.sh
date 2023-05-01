@@ -1,1 +1,0 @@
-cd codeplay && composer install && bin/cake migrations migrate && bin/cake server -H 0.0.0.0 -p 80

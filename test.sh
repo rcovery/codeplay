@@ -1,1 +1,0 @@
-cd codeplay && vendor/bin/phpunit -v tests/

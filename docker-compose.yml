@@ -7,6 +7,7 @@ services:
     container_name: "codeplay"
     volumes:
       - .:/home/user/app
+      
   db:
     image: mysql
     container_name: "codeplay_db"
@@ -16,11 +17,11 @@ services:
     ports:
       - "8001:3306"
 
-  redis:
-    image: redis
-    container_name: "codeplay_redis_server"
-    ports:
-      - "8003:6379"
+  # redis:
+  #   image: redis
+  #   container_name: "codeplay_redis_server"
+  #   ports:
+  #     - "8003:6379"
 
   # kafka:
   #   image: bitnami/kafka
