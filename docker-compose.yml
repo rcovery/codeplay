@@ -4,20 +4,26 @@ services:
     build: .
     ports:
       - "8000:80"
+    environment:
+      DB_NAME: app
+      DB_PASS: necronomicon
+      DB_USER: lcraft
+      DB_HOST: db
     container_name: "codeplay"
     volumes:
-      - .:/home/user/app
+      - ./codeplay:/home/user/app
       
   db:
-    image: mysql
+    image: mysql:8.0-debian
     container_name: "codeplay_db"
     environment:
       MYSQL_DATABASE: app
+      MYSQL_PASSWORD: necronomicon
       MYSQL_ROOT_PASSWORD: necronomicon
+      MYSQL_USER: lcraft
     ports:
       - "8001:3306"
-    entrypoint: tail -f /dev/null
-
+  
   # redis:
   #   image: redis
   #   container_name: "codeplay_redis_server"

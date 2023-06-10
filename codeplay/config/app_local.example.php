@@ -36,10 +36,10 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'host' => 'db',
-            'username' => 'root',
-            'password' => 'necronomicon',
-            'database' => 'app',
+            'host' => env('DB_HOST'),
+            'username' => env('DB_USER'),
+            'password' => env('DB_PASS'),
+            'database' => env('DB_NAME'),
             'url' => env('DATABASE_URL', null),
         ],
 
@@ -47,10 +47,10 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-            'host' => 'db',
-            'username' => 'root',
-            'password' => 'necronomicon',
-            'database' => 'app',
+            'host' => env('DB_HOST'),
+            'username' => env('DB_USER'),
+            'password' => env('DB_PASS'),
+            'database' => env('DB_NAME'),
             'url' => env('DATABASE_URL', null),
         ],
     ],
