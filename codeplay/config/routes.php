@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration.
  *
@@ -62,9 +63,11 @@ return static function (RouteBuilder $routes) {
 
         // Post view
         $builder->get('/post/{id}', ['controller' => 'Posts', 'action' => 'viewPost']);
+        $builder->get('/post/create', ['controller' => 'Posts', 'action' => 'viewCreate']);
 
         // Post creation
         $builder->post('/post/create', ['controller' => 'Posts', 'action' => 'create']);
+
 
         // Login
         $builder->get('/login', ['controller' => 'Users', 'action' => 'viewLogin', 'get_login_page']);
@@ -73,7 +76,7 @@ return static function (RouteBuilder $routes) {
         // Like posts/user
         $builder->post('/like/post/{id}', ['controller' => 'Likes', 'action' => 'likePost']);
         $builder->post('/like/user/{id}', ['controller' => 'Likes', 'action' => 'likeUser']);
-        
+
         // $builder->connect('/pages/*', 'Pages::display');
 
         /*
