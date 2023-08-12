@@ -35,12 +35,6 @@ class PostsController extends AppController
 
     public function create()
     {
-        $userId = $this->Auth->user()['id'];
-
-        if (empty($userId)) {
-            return $this->redirect("/login");
-        }
-
         if (empty($this->request->getData('title'))) {
             return $this->Flash->error('Insira o título da sua postagem!');
         }
@@ -54,6 +48,7 @@ class PostsController extends AppController
             return $this->Flash->error('Insira a linguagem de programação do seu jogo!');
         }
 
+        $userId = $this->Auth->user()['id'];
         $model = $this->getTableLocator()->get('Posts');
         $entity = $model->newEntity([
             "title" => $this->request->getData('title'),

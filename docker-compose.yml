@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - "8000:80"
+      - "8080:8000"
     environment:
       DB_NAME: app
       DB_PASS: necronomicon
@@ -12,6 +13,7 @@ services:
     container_name: "codeplay"
     volumes:
       - ./codeplay:/home/user/app
+      - ./laravel:/home/user/app2
       
   db:
     image: mysql:8.0-debian

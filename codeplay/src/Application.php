@@ -74,6 +74,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         $this->addPlugin('Authentication');
         // Load more plugins here
+        $this->addPlugin('FileManager');
     }
 
     /**
