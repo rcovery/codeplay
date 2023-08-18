@@ -11,8 +11,7 @@ services:
       DB_HOST: db
     container_name: "codeplay"
     volumes:
-      - ./codeplay:/home/user/app
-      - ./laravel:/home/user/app2
+      - ./source:/home/user/app
       
   db:
     image: mysql:8.0-debian
