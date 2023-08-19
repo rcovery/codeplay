@@ -1,0 +1,1 @@
+<span id="rgb_top_bar"></span>

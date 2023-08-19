@@ -5,6 +5,8 @@ RUN apk add sudo \
     autoconf \
     zlib-dev \
     icu-dev \
+    nodejs \
+    npm \
     g++
 RUN adduser -D user sudo
 RUN echo "user:123" | chpasswd
