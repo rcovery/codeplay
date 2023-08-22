@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - "8000:8000"
+      - "5173:5173"
     environment:
       DB_NAME: app
       DB_PASS: necronomicon

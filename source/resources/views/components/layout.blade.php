@@ -8,6 +8,7 @@
         CodePlay - {{ $title }}
     </title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/css/codeplay.css', 'resources/js/app.js'])
 </head>
 
 <body>
