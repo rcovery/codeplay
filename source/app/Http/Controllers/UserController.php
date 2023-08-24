@@ -13,7 +13,9 @@ class UserController extends Controller
     public function index(Request $req)
     {
         // TODO block if logged user is not an admin
-        return view('users.index');
+        $users = User::all();
+
+        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -29,7 +31,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->input());
+        $user->save();
+
+        return redirect('/users');
     }
 
     /**
