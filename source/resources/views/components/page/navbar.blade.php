@@ -3,7 +3,7 @@
 <nav class="nav_parent">
     <div>
         <a href="/">
-            <img class="codeplay_logo" title="Logo" alt="Logo" src="/img/logo.png"></img>
+            <img class="codeplay_logo" title="Logo" alt="Logo" src="/logo.png"></img>
         </a>
     </div>
 

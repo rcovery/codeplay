@@ -12,6 +12,7 @@ class UserController extends Controller
      */
     public function index(Request $req)
     {
+        // TODO block if logged user is not an admin
         return view('users.index');
     }
 
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
