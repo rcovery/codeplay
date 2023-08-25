@@ -12,8 +12,8 @@
 </head>
 
 <body class="dark:bg-gray-800">
-    <x-page.rgbline></x-page.rgbline>
-    <x-page.navbar></x-page.navbar>
+    <x-page.rgbline />
+    <x-page.navbar />
 
     {{ $slot }}
 
