@@ -1,0 +1,1 @@
+<input type="submit" class="rounded bg-green-400 dark:bg-green-500 p-2 outline-0 text-green-50 dark:text-green-950 cursor-pointer" />

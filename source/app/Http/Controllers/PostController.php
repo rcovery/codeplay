@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $req)
+    public function index()
     {
-        // TODO block if logged user is not an admin
-        $users = User::all();
+        $posts = Post::all();
 
-        return view('users.index')->with('users', $users);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -23,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('posts.create');
     }
 
     /**
@@ -31,15 +30,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        Post::create($request->all());
 
-        return to_route('users.index');
+        return to_route('posts.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Post $post)
     {
         //
     }
@@ -47,7 +46,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Post $post)
     {
         //
     }
@@ -55,7 +54,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -63,7 +62,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Post $post)
     {
         //
     }

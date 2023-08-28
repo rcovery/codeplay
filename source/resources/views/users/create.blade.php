@@ -1,10 +1,9 @@
 <x-layout title="Register">
-    <form method="POST" action="/users">
+    <form method="POST" action="{{ route('users.store') }}">
         @csrf()
-        <input type="text" name="username" />
-        <input type="text" name="email" />
-        <input type="password" name="password" />
-        <input type="submit" />
+        <x-form.input type="text" name="username" />
+        <x-form.input type="text" name="email" />
+        <x-form.input type="password" name="password" />
+        <x-form.submit />
     </form>
-    <h1 class="text-3xl font-bold underline">Register</h1>
 </x-layout>

@@ -15,6 +15,8 @@
     <x-page.rgbline />
     <x-page.navbar />
 
+    <x-page.title title="{{ $title }}" />
+
     {{ $slot }}
 
     <footer>
