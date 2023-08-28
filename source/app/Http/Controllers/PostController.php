@@ -10,7 +10,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $posts = Post::all();
 
@@ -32,7 +32,7 @@ class PostController extends Controller
     {
         Post::create($request->all());
 
-        return to_route('posts.index');
+        return to_route('posts.index')->with('flash_message', 'Post successfully added!');
     }
 
     /**
@@ -40,7 +40,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -56,7 +56,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->fill($request->all());
+        $post->save();
+
+        return to_route('posts.index')->with('flash_message', 'Post updated successfully');
     }
 
     /**
@@ -64,6 +67,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return to_route('posts.index')->with('flash_message', 'Post removed successfully');
     }
 }

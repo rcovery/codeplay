@@ -11,11 +11,18 @@
     @vite(['resources/css/app.css', 'resources/css/codeplay.css', 'resources/js/app.js'])
 </head>
 
+@php
+$flash_message = session()->get('flash_message');
+@endphp
+
 <body class="dark:bg-gray-800">
     <x-page.rgbline />
     <x-page.navbar />
 
     <x-page.title title="{{ $title }}" />
+    @isset($flash_message)
+    <x-page.flash :message="$flash_message" />
+    @endisset
 
     {{ $slot }}
 

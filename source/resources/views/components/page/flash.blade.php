@@ -1,0 +1,1 @@
+<p class="bg-blue-400 p-2 m-2 rounded text-sky-950">{{$message}}</p>
