@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -19,8 +20,9 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/login', function () {
-})->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);

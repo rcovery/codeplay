@@ -13,6 +13,10 @@
     </div>
 
     <div class="mr-4">
-        <x-page.navbar.tab pagename="Login" link="login" />
+        @if (Auth::check())
+            <x-page.navbar.tab pagename="Logout" link="logout" />
+        @else
+            <x-page.navbar.tab pagename="Login" link="login" />
+        @endif
     </div>
 </nav>
