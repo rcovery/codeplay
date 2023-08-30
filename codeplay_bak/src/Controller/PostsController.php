@@ -54,7 +54,6 @@ class PostsController extends AppController
             "title" => $this->request->getData('title'),
             "content" => $this->request->getData('content'),
             "programming_language" => $this->request->getData('programming_language'),
-            "file" => '', // TODO implement file and thumb upload
             "thumb" => '',
             "user_id" => $userId,
         ]);

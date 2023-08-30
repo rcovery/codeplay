@@ -1,3 +1,2 @@
-<x-layout title="Home">
-    CodePlay Home
+<x-layout title="{{ __('messages.home') }}">
 </x-layout>

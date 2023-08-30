@@ -30,9 +30,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create($request->all());
+        $request->validate([
+            "title" => "required",
+            "content" => "required",
+        ]);
 
-        return to_route('posts.index')->with('flash', [
+        $post_created = Post::create($request->all());
+
+        return to_route('posts.edit', $post_created->id)->with('flash', [
             "message" => 'Post successfully added!'
         ]);
     }

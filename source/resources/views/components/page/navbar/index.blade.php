@@ -1,5 +1,3 @@
-<!-- TODO fazer uma navbar melhor -->
-
 <nav class="flex justify-between items-center w-full">
     <a href="{{ route('home') }}">
         <img class="w-12 ml-2 mt-2" title="Logo" alt="Logo" src="/logo.png" />

@@ -16,9 +16,12 @@
     <x-page.navbar />
 
     <x-page.title title="{{ $title }}" />
-    <x-page.flash />
 
-    {{ $slot }}
+    <div class="w-full sm:w-6/12 m-auto">
+        <x-page.flash />
+
+        {{ $slot }}
+    </div>
 
     <footer>
     </footer>

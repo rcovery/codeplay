@@ -1,5 +1,5 @@
 <?php
-    $this->start('navbar');
+$this->start('navbar');
 ?>
 <nav class="nav_parent">
     <div>
@@ -14,7 +14,6 @@
         </form>
     </div>
 
-    <!-- TODO if not logged, show only login button -->
     <div class="nav_menu_button_parent">
         <?php if (isset($authenticatedUser['id'])) : ?>
             <div class="nav_menu_button" onclick="dropdown()">
