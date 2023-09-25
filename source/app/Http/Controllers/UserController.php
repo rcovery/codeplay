@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct(private UserRepository $user)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        $this->user->add($request);
 
         return to_route('users.index');
     }
