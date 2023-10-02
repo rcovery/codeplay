@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +17,24 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::get('/register', [UserController::class, 'create'])->name('auth.register');
-Route::post('/register', [UserController::class, 'store'])->name('auth.register');
-
 Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);
+
+require __DIR__ . '/auth.php';
