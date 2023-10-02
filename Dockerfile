@@ -30,4 +30,4 @@ RUN docker-php-ext-install pcntl
 USER user
 WORKDIR /home/user/app
 
-ENTRYPOINT tail -f /dev/null
+ENTRYPOINT ["sh", "entrypoint.sh"]
