@@ -20,11 +20,11 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/register', [UserController::class, 'create'])->name('register');
-Route::post('/register', [UserController::class, 'store'])->name('register');
+Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register', [UserController::class, 'create'])->name('auth.register');
+Route::post('/register', [UserController::class, 'store'])->name('auth.register');
 
 Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);

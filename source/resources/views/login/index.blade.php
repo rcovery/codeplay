@@ -1,5 +1,5 @@
 <x-layout title="Login">
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('auth.login') }}">
         @csrf
 
         <div class="flex flex-col justify-center content-center">
@@ -10,5 +10,5 @@
         </div>
     </form>
 
-    <p>Don't have a login? <a href="{{ route('register') }}">Register here!</a></p>
+    <p>Don't have a login? <a href="{{ route('auth.register') }}">Register here!</a></p>
 </x-layout>

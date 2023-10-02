@@ -12,11 +12,11 @@
 
     <div class="mr-4">
         @auth
-            <x-page.navbar.tab pagename="Logout" link="logout" />
+            <x-page.navbar.tab pagename="Logout" link="auth.logout" />
         @endauth
 
         @guest
-            <x-page.navbar.tab pagename="Login" link="login" />
+            <x-page.navbar.tab pagename="Login" link="auth.login" />
         @endguest
     </div>
 </nav>
