@@ -13,10 +13,16 @@
 
 <body class="dark:bg-gray-800">
     <x-page.rgbline />
-    <x-page.navbar />
+
+    @php
+        $isAuthPage = Request::routeIs('auth.*');
+    @endphp
+
+    @unless ($isAuthPage)
+        <x-page.navbar />
+    @endunless
 
     <x-page.title title="{{ $title }}" />
-
     <div class="w-full sm:w-6/12 m-auto">
         <x-page.flash />
 
