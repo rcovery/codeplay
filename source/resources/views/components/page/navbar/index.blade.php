@@ -11,10 +11,12 @@
     </div>
 
     <div class="mr-4">
-        @if (Auth::check())
+        @auth
             <x-page.navbar.tab pagename="Logout" link="logout" />
-        @else
+        @endauth
+
+        @guest
             <x-page.navbar.tab pagename="Login" link="login" />
-        @endif
+        @endguest
     </div>
 </nav>
