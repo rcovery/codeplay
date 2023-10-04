@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(private PostRepository $post)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -31,9 +36,9 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $post_created = Post::create($request->all());
+        $post = $this->post->add($request);
 
-        return to_route('posts.edit', $post_created->id)->with('flash', [
+        return to_route('posts.edit', $post->id)->with('flash', [
             "message" => 'Post successfully added!'
         ]);
     }
@@ -59,8 +64,7 @@ class PostController extends Controller
      */
     public function update(StorePostRequest $request, Post $post)
     {
-        $post->fill($request->all());
-        $post->save();
+        $this->post->edit($request, $post);
 
         return to_route('posts.index')->with('flash', [
             "message" => 'Post updated successfully'
