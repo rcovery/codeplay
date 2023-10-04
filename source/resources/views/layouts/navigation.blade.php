@@ -18,6 +18,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        {{ __('Posts') }}
+                    </x-nav-link>
+                    @auth
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -62,6 +70,11 @@
             @endauth
             @guest
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-nav-link>
+                    &nbsp;
+                    &nbsp;
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{ __('Login') }}
                     </x-nav-link>
