@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,13 +29,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            "title" => "required",
-            "content" => "required",
-        ]);
-
         $post_created = Post::create($request->all());
 
         return to_route('posts.edit', $post_created->id)->with('flash', [
@@ -61,7 +57,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
         $post->fill($request->all());
         $post->save();

@@ -1,5 +1,7 @@
 <x-layout title="Posts">
-    <a href="{{ route('posts.create') }}">New Post!</a>
+    @if (Auth::check())
+        <a href="{{ route('posts.create') }}">New Post!</a>
+    @endif
 
     <div class="flex flex-col gap-4">
         @forelse($posts as $post)
