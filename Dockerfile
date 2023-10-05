@@ -30,4 +30,8 @@ RUN docker-php-ext-install pcntl
 USER user
 WORKDIR /home/user/app
 
+COPY ./source .
+RUN composer install
+RUN npm install
+
 ENTRYPOINT ["sh", "entrypoint.sh"]
