@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -16,9 +17,8 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $req)
+    public function index()
     {
-        // TODO block if logged user is not an admin
         $users = User::all();
 
         return view('users.index')->with('users', $users);
@@ -35,7 +35,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $this->user->add($request);
 

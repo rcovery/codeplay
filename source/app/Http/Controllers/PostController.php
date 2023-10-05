@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Repositories\PostRepository;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -34,7 +34,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $post = $this->post->add($request);
 
@@ -62,7 +62,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
         $this->post->edit($request, $post);
 
