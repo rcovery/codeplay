@@ -1,4 +1,9 @@
 <x-app-layout title="Posts">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Posts') }}
+        </h2>
+    </x-slot>
     <a href="{{ route('posts.create') }}">New Post!</a>
 
     <div class="flex flex-col gap-4">
@@ -23,9 +28,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">
-                                    <x-primary-button>
-                                        {{ __('Edit') }}
-                                    </x-primary-button>
+                                    <x-danger-button>
+                                        {{ __('Delete') }}
+                                    </x-danger-button>
                                 </button>
                             </form>
                         </div>
