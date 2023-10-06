@@ -9,11 +9,6 @@ class EloquentPostRepository implements PostRepository
 {
     public function add(Request $request): Post
     {
-        $request->validate([
-            "title" => "required",
-            "content" => "required",
-        ]);
-
         $post = Post::create($request->all());
 
         return $post;
