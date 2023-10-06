@@ -1,30 +1,19 @@
-<x-app-layout title="Posts">
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Posts') }}
-        </h2>
-    </x-slot>
-    <a href="{{ route('posts.create') }}">New Post!</a>
-
     <div class="flex flex-col gap-4">
-        @forelse($posts as $post)
+        @forelse($comments as $comments)
             <div>
                 <div class="p-2 flex justify-between">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ $post->title }}
-                    </div>
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ $post->content }}
+                        {{ $comments->content }}
                     </div>
 
-                    @if (Auth::id() == $post->user_id)
+                    @if (Auth::id() == $comments->user_id)
                         <div class="flex">
-                            <a href="{{ route('posts.edit', $post->id) }}">
+                            <a href="{{ route('posts.edit', $comments->id) }}">
                                 <x-primary-button>
                                     {{ __('Edit') }}
                                 </x-primary-button>
                             </a>
-                            <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+                            <form method="POST" action="{{ route('posts.destroy', $comments->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">
@@ -38,7 +27,13 @@
                 </div>
             </div>
         @empty
-            <h1>Sem postagens por enquanto!</h1>
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+                Sem comentários por enquanto!
+            </div>
         @endforelse
+
+        <div>
+            <x-input-label for="new_comment" value="New comment" />
+            <x-text-input class="w-full" id="new_comment" placeholder="Write something interesting!" />
+        </div>
     </div>
-</x-app-layout>

@@ -10,6 +10,7 @@ class PostController extends Controller
 {
     public function __construct(private PostRepository $post)
     {
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /**
