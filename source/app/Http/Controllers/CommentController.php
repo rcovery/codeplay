@@ -16,6 +16,6 @@ class CommentController extends Controller
     {
         $this->comment->add($request, $post);
 
-        back();
+        return to_route('posts.show', ['post' => $post->id]);
     }
 }

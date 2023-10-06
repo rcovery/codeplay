@@ -1,11 +1,11 @@
     @php
         $post = request('post');
-        $comments = $post->comments();
+        $comments = $post->comments;
     @endphp
 
     <div class="flex flex-col gap-4">
         <div class="pt-5">
-            <form method="POST" action="{{ route('comments.store', $post->id) }}">
+            <form method="POST" action="{{ route('comments.store', ['post' => $post->id]) }}">
                 @csrf
                 <x-input-label for="new_comment" value="New comment" />
                 <x-textarea-input class="w-full" name="content" id="new_comment"

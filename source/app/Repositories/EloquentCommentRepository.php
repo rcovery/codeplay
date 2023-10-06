@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EloquentCommentRepository implements CommentRepository
 {
@@ -12,8 +13,7 @@ class EloquentCommentRepository implements CommentRepository
     {
         $data = $request->all();
         $data['post_id'] = $post->id;
-
-        dd($data);
+        $data['user_id'] = Auth::user()->id;
 
         $comment = Comment::create($data);
 
