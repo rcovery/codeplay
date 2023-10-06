@@ -10,9 +10,9 @@
         @forelse($posts as $post)
             <div>
                 <div class="p-2 flex justify-between">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a href="{{ route('posts.show', $post->id) }}" class="p-6 underline text-gray-900 dark:text-gray-100">
                         {{ $post->title }}
-                    </div>
+                    </a>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         {{ $post->content }}
                     </div>
