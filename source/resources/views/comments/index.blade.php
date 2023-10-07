@@ -2,9 +2,8 @@
         $post = request('post');
         $comments = $post
             ->comments()
-            ->with('user')
-            ->with('replies')
-            ->where('comment_id', null)
+            ->topComments()
+            ->lastReplies()
             ->get();
     @endphp
 

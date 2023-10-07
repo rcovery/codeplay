@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,5 +25,17 @@ class Comment extends Model
     public function replies()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeTopComments(Builder $builder): void
+    {
+        $builder->where('comment_id', null)->with('user');
+    }
+
+    public function scopeLastReplies(Builder $builder): void
+    {
+        $builder->with('replies', function () use ($builder) {
+            return $builder->where('comment_id', 'IS NOT', null)->with('user');
+        });
     }
 }
