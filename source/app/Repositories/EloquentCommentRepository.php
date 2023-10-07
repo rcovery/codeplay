@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class EloquentCommentRepository implements CommentRepository
 {
-    public function add(Request $request, Post $post): Comment
+    public function add(Request $request, Post $post, int $comment_id = null): Comment
     {
         $data = $request->all();
+        $data['comment_id'] = $comment_id;
         $data['post_id'] = $post->id;
         $data['user_id'] = Auth::user()->id;
 
