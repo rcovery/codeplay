@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReplyCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('/posts/{post}/comments', CommentController::class)->only(['store', 'update']);
+    Route::resource('/posts/{post}/comments', CommentController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('/posts/{post}/comments/{comment}/replies', ReplyCommentController::class)->only(['store', 'update', 'destroy']);
 });
 
 Route::get('/', function () {

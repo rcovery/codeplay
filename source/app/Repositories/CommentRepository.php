@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 
 interface CommentRepository
 {
-    public function add(Request $request, Post $post): Comment;
+    public function add(Request $request, Post $post, int $comment_id = null): Comment;
     public function edit(Request $request, Comment $post): Comment;
 }
