@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Mail\UserRegistered;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+Route::get('/email', function () {
+    return new UserRegistered();
+});
 
 Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);
