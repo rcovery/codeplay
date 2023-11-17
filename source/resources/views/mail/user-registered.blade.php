@@ -1,3 +1,5 @@
 <x-mail::message>
-    Teste Email
+    # Hi, {{ $user_name }}!
+
+    - Welcome to Code Play!
 </x-mail::message>

@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "shufo.vscode-blade-formatter",
-        "cjhowe7.laravel-blade"
+        "cjhowe7.laravel-blade",
+        "m1guelpf.better-pest"
     ]
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/email', function () {
-    return new UserRegistered();
+    return new UserRegistered(Auth::user()->name);
 });
 
 Route::resource('/users', UserController::class);
