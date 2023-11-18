@@ -16,8 +16,14 @@
                     </div>
                 </div>
                 <hr>
-                <div>
-                    @include('comments.index')
+                <div class="flex">
+                    <div class="w-3/4">
+                        @include('comments.index')
+                    </div>
+                    <div class="w-1/4">
+                        {{-- Include Related Posts  --}}
+                        Related Posts
+                    </div>
                 </div>
             </div>
         </div>
