@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -37,6 +39,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+Route::get('/email', function () {
+    return new UserRegistered(Auth::user()->name);
+});
 
 Route::resource('/users', UserController::class);
 Route::resource('/posts', PostController::class);
